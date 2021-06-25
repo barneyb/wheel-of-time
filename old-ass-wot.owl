@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b#"
+     xml:base="urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:wot="http://wot.barneyb.com/"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://wot.barneyb.com/book -->
+
+    <owl:AnnotationProperty rdf:about="http://wot.barneyb.com/book">
+        <rdfs:label>book</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <rdfs:range rdf:resource="http://webprotege.stanford.edu/RVUWJwTRHsRSk6WFgYfIVY"/>
+        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R8xq8QO8Ss5OJJZ6Hkmse1A"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/Location"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/page -->
+
+    <owl:AnnotationProperty rdf:about="http://wot.barneyb.com/page">
+        <rdfs:label>page</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R8xq8QO8Ss5OJJZ6Hkmse1A"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/Location"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://wot.barneyb.com/origin -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/origin">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R8xq8QO8Ss5OJJZ6Hkmse1A"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/Location"/>
+        <rdfs:label>origin</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/species -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/species">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R8xq8QO8Ss5OJJZ6Hkmse1A"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/Species"/>
+        <rdfs:label>species</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b#child_of -->
+
+    <owl:ObjectProperty rdf:about="urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b#child_of">
+        <rdfs:subPropertyOf rdf:resource="urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b#related_to"/>
+        <owl:inverseOf rdf:resource="urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b#parent_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b#parent_of -->
+
+    <owl:ObjectProperty rdf:about="urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b#parent_of">
+        <rdfs:subPropertyOf rdf:resource="urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b#related_to"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b#related_to -->
+
+    <owl:ObjectProperty rdf:about="urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b#related_to">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R8xq8QO8Ss5OJJZ6Hkmse1A"/>
+        <rdfs:range rdf:resource="http://webprotege.stanford.edu/R8xq8QO8Ss5OJJZ6Hkmse1A"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8xq8QO8Ss5OJJZ6Hkmse1A -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/R8xq8QO8Ss5OJJZ6Hkmse1A">
+        <rdfs:label>Character</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RVUWJwTRHsRSk6WFgYfIVY -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RVUWJwTRHsRSk6WFgYfIVY">
+        <rdfs:label>Book</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://wot.barneyb.com/Location -->
+
+    <owl:Class rdf:about="http://wot.barneyb.com/Location">
+        <rdfs:label>Location</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://wot.barneyb.com/Species -->
+
+    <owl:Class rdf:about="http://wot.barneyb.com/Species">
+        <rdfs:label>Species</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b#Parents -->
+
+    <owl:Class rdf:about="urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b#Parents">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://webprotege.stanford.edu/R8xq8QO8Ss5OJJZ6Hkmse1A"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b#parent_of"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://wot.barneyb.com/Eye-of-the-World -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/Eye-of-the-World">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RVUWJwTRHsRSk6WFgYfIVY"/>
+        <rdfs:label xml:lang="en">The Eye of the World</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/Horse -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/Horse">
+        <rdf:type rdf:resource="http://wot.barneyb.com/Species"/>
+        <rdfs:label>Horse</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/Human -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/Human">
+        <rdf:type rdf:resource="http://wot.barneyb.com/Species"/>
+        <rdfs:label>Human</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/Matthew-Cauthon -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/Matthew-Cauthon">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8xq8QO8Ss5OJJZ6Hkmse1A"/>
+        <wot:species rdf:resource="http://wot.barneyb.com/Human"/>
+        <rdfs:label>Matthew Cauthon</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/The-Crossroads-of-Twilight -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/The-Crossroads-of-Twilight">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RVUWJwTRHsRSk6WFgYfIVY"/>
+        <rdfs:label xml:lang="en">The Crossroads of Twilight</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/The-Dragon-Reborn -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/The-Dragon-Reborn">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RVUWJwTRHsRSk6WFgYfIVY"/>
+        <rdfs:label xml:lang="en">The Dragon Reborn</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/The-Fires-of-Heaven -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/The-Fires-of-Heaven">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RVUWJwTRHsRSk6WFgYfIVY"/>
+        <rdfs:label xml:lang="en">The Fires of Heaven</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/The-Great-Hunt -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/The-Great-Hunt">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RVUWJwTRHsRSk6WFgYfIVY"/>
+        <rdfs:label xml:lang="en">The Great Hunt</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/The-Lord-of-Chaos -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/The-Lord-of-Chaos">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RVUWJwTRHsRSk6WFgYfIVY"/>
+        <rdfs:label xml:lang="en">The Lord of Chaos</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/The-Shadow-Rising -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/The-Shadow-Rising">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RVUWJwTRHsRSk6WFgYfIVY"/>
+        <rdfs:label xml:lang="en">The Shadow Rising</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/Rand-al%27Thor -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/Rand-al%27Thor">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8xq8QO8Ss5OJJZ6Hkmse1A"/>
+        <wot:species rdf:resource="http://wot.barneyb.com/Human"/>
+        <child_of rdf:resource="http://wot.barneyb.com/Tam-al%27Thor"/>
+        <wot:book>&apos;The Eye of the World&apos;</wot:book>
+        <wot:page rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</wot:page>
+        <rdfs:label>Rand al&apos;Thor</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/Tam-al%27Thor -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/Tam-al%27Thor">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8xq8QO8Ss5OJJZ6Hkmse1A"/>
+        <wot:species rdf:resource="http://wot.barneyb.com/Human"/>
+        <parent_of rdf:resource="http://wot.barneyb.com/Rand-al%27Thor"/>
+        <rdfs:label>Tam al&apos;Thor</rdfs:label>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

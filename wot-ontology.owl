@@ -1,0 +1,681 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://wot.barneyb.com/wot/"
+     xml:base="http://wot.barneyb.com/wot/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://wot.barneyb.com/wot/"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://wot.barneyb.com/wot/belongs_to -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/belongs_to">
+        <owl:inverseOf rdf:resource="http://wot.barneyb.com/wot/member_of"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Organization"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/by -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/by">
+        <owl:inverseOf rdf:resource="http://wot.barneyb.com/wot/can"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Ability"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Character"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/can -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/can">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Character"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Ability"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/child-of -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/child-of">
+        <rdfs:subPropertyOf rdf:resource="http://wot.barneyb.com/wot/related_to"/>
+        <owl:inverseOf rdf:resource="http://wot.barneyb.com/wot/parent-of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/hasHome -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/hasHome">
+        <rdfs:subPropertyOf rdf:resource="http://wot.barneyb.com/wot/ofRegion"/>
+        <owl:inverseOf rdf:resource="http://wot.barneyb.com/wot/residents"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Character"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Location"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/introduced -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/introduced">
+        <owl:inverseOf rdf:resource="http://wot.barneyb.com/wot/met-in-chapter"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Chapter"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Character"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/member_of -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/member_of">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Organization"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Character"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/mentionedIn -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/mentionedIn">
+        <owl:inverseOf rdf:resource="http://wot.barneyb.com/wot/mentions"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label>mentioned in</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/mentions -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/mentions"/>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/met-in-chapter -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/met-in-chapter">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Character"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Chapter"/>
+        <rdfs:label>met in chapter</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/of-book -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/of-book">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Chapter"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <rdfs:label>of book</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/ofRegion -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/ofRegion">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/origin -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/origin">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Character"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Location"/>
+        <rdfs:label>origin</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/parent-of -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/parent-of">
+        <rdfs:subPropertyOf rdf:resource="http://wot.barneyb.com/wot/related_to"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/regions -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/regions">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://wot.barneyb.com/wot/within"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Location"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Location"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/related_to -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/related_to">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Character"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Character"/>
+        <rdfs:label>related to</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/residents -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/residents">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Location"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Character"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/species -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/species">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Character"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Species"/>
+        <rdfs:label>species</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/within -->
+
+    <owl:ObjectProperty rdf:about="http://wot.barneyb.com/wot/within">
+        <rdfs:subPropertyOf rdf:resource="http://wot.barneyb.com/wot/ofRegion"/>
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Location"/>
+        <rdfs:range rdf:resource="http://wot.barneyb.com/wot/Location"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://wot.barneyb.com/wot/chapterOfBook -->
+
+    <owl:DatatypeProperty rdf:about="http://wot.barneyb.com/wot/chapterOfBook">
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Chapter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/order-of-publication -->
+
+    <owl:DatatypeProperty rdf:about="http://wot.barneyb.com/wot/order-of-publication">
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+        <rdfs:label>order of publication</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/year-of-publication -->
+
+    <owl:DatatypeProperty rdf:about="http://wot.barneyb.com/wot/year-of-publication">
+        <rdfs:domain rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+        <rdfs:label>year of publication</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Ability -->
+
+    <owl:Class rdf:about="http://wot.barneyb.com/wot/Ability"/>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Book -->
+
+    <owl:Class rdf:about="http://wot.barneyb.com/wot/Book">
+        <rdfs:subClassOf rdf:resource="http://wot.barneyb.com/wot/StoryLocation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Channeler -->
+
+    <owl:Class rdf:about="http://wot.barneyb.com/wot/Channeler">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://wot.barneyb.com/wot/can"/>
+                        <owl:hasValue rdf:resource="http://wot.barneyb.com/wot/Channel_Saidar"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://wot.barneyb.com/wot/can"/>
+                        <owl:hasValue rdf:resource="http://wot.barneyb.com/wot/Channel_Saidin"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Chapter -->
+
+    <owl:Class rdf:about="http://wot.barneyb.com/wot/Chapter">
+        <rdfs:subClassOf rdf:resource="http://wot.barneyb.com/wot/StoryLocation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Character -->
+
+    <owl:Class rdf:about="http://wot.barneyb.com/wot/Character"/>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Location -->
+
+    <owl:Class rdf:about="http://wot.barneyb.com/wot/Location"/>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Organization -->
+
+    <owl:Class rdf:about="http://wot.barneyb.com/wot/Organization"/>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Species -->
+
+    <owl:Class rdf:about="http://wot.barneyb.com/wot/Species"/>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/StoryLocation -->
+
+    <owl:Class rdf:about="http://wot.barneyb.com/wot/StoryLocation"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://wot.barneyb.com/wot/A_Crown-of-Swords -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/A_Crown-of-Swords">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1996</year-of-publication>
+        <rdfs:label>A Crown of Swords</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/A_Memory-of-Light -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/A_Memory-of-Light">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2013</year-of-publication>
+        <rdfs:label>A Memory of Light</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/AesSedai -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/AesSedai">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Organization"/>
+        <member_of rdf:resource="http://wot.barneyb.com/wot/The_White_Tower"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/An_Empty_Road -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/An_Empty_Road">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Chapter"/>
+        <mentionedIn rdf:resource="http://wot.barneyb.com/wot/Eye-of-the-World"/>
+        <chapterOfBook rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</chapterOfBook>
+        <rdfs:label>An Empty Road</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Andor -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Andor">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Location"/>
+        <within rdf:resource="http://wot.barneyb.com/wot/Wetlands"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Ashaman -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Ashaman">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Organization"/>
+        <member_of rdf:resource="http://wot.barneyb.com/wot/The_Black_Tower"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Channel_Saidar -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Channel_Saidar">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Ability"/>
+        <rdfs:label>Channel Saidar</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Channel_Saidin -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Channel_Saidin">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Ability"/>
+        <rdfs:label>Channel Saidin</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Crossroads-of-Twilight -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Crossroads-of-Twilight">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2003</year-of-publication>
+        <rdfs:label xml:lang="en">Crossroads of Twilight</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Eye-of-the-World -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Eye-of-the-World">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1990</year-of-publication>
+        <rdfs:label xml:lang="en">The Eye of the World</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Horse -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Horse">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Species"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Human -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Human">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Species"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Knife-of-Dreams -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Knife-of-Dreams">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2005</year-of-publication>
+        <rdfs:label>Knife of Dreams</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Lord-of-Chaos -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Lord-of-Chaos">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1994</year-of-publication>
+        <rdfs:label xml:lang="en">Lord of Chaos</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Matrim-Cauthon -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Matrim-Cauthon">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Character"/>
+        <species rdf:resource="http://wot.barneyb.com/wot/Human"/>
+        <rdfs:label>Matrim Cauthon</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/New_Spring -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/New_Spring">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2004</year-of-publication>
+        <rdfs:label>New Spring</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Rand-al-Thor -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Rand-al-Thor">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Character"/>
+        <belongs_to rdf:resource="http://wot.barneyb.com/wot/The_Black_Tower"/>
+        <can rdf:resource="http://wot.barneyb.com/wot/Channel_Saidin"/>
+        <child-of rdf:resource="http://wot.barneyb.com/wot/Tam-al-Thor"/>
+        <hasHome rdf:resource="http://wot.barneyb.com/wot/TheTwoRivers"/>
+        <mentionedIn rdf:resource="http://wot.barneyb.com/wot/An_Empty_Road"/>
+        <mentionedIn rdf:resource="http://wot.barneyb.com/wot/With_the_Choedan_Kal"/>
+        <met-in-chapter rdf:resource="http://wot.barneyb.com/wot/An_Empty_Road"/>
+        <species rdf:resource="http://wot.barneyb.com/wot/Human"/>
+        <rdfs:label>Rand al&apos;Thor</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Tam-al-Thor -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Tam-al-Thor">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Character"/>
+        <hasHome rdf:resource="http://wot.barneyb.com/wot/TheTwoRivers"/>
+        <species rdf:resource="http://wot.barneyb.com/wot/Human"/>
+        <rdfs:label>Tam al&apos;Thor</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/The-Dragon-Reborn -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/The-Dragon-Reborn">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1991</year-of-publication>
+        <rdfs:label xml:lang="en">The Dragon Reborn</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/The-Fires-of-Heaven -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/The-Fires-of-Heaven">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1993</year-of-publication>
+        <rdfs:label xml:lang="en">The Fires of Heaven</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/The-Great-Hunt -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/The-Great-Hunt">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1990</year-of-publication>
+        <rdfs:label xml:lang="en">The Great Hunt</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/The-Shadow-Rising -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/The-Shadow-Rising">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1992</year-of-publication>
+        <rdfs:label xml:lang="en">The Shadow Rising</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/TheTwoRivers -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/TheTwoRivers">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Location"/>
+        <within rdf:resource="http://wot.barneyb.com/wot/Andor"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/The_Black_Tower -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/The_Black_Tower">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Organization"/>
+        <rdfs:label>The Black Tower</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/The_Children_of_the_Light -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/The_Children_of_the_Light">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Organization"/>
+        <rdfs:label>The Children of the Light</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/The_Gathering_Storm -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/The_Gathering_Storm">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">13</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2009</year-of-publication>
+        <rdfs:label>The Gathering Storm</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/The_Path-of-Daggers -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/The_Path-of-Daggers">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1998</year-of-publication>
+        <rdfs:label>The Path of Daggers</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/The_White_Tower -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/The_White_Tower">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Organization"/>
+        <rdfs:label>The White Tower</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Towers-of-Midnight -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Towers-of-Midnight">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">14</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2010</year-of-publication>
+        <rdfs:label>Towers of Midnight</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Wetlands -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Wetlands">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Location"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/Winters_Heart -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/Winters_Heart">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Book"/>
+        <order-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</order-of-publication>
+        <year-of-publication rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2000</year-of-publication>
+        <rdfs:label>Winter&apos;s Heart</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wot.barneyb.com/wot/With_the_Choedan_Kal -->
+
+    <owl:NamedIndividual rdf:about="http://wot.barneyb.com/wot/With_the_Choedan_Kal">
+        <rdf:type rdf:resource="http://wot.barneyb.com/wot/Chapter"/>
+        <mentionedIn rdf:resource="http://wot.barneyb.com/wot/Winters_Heart"/>
+        <chapterOfBook rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">35</chapterOfBook>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
