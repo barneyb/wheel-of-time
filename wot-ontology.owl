@@ -8,7 +8,6 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
 Ontology(<http://wot.barneyb.com/wot/>
-Import(<http://purl.org/dc/terms/>)
 
 Declaration(Class(:Angreal))
 Declaration(Class(:Book))
@@ -29,13 +28,21 @@ Declaration(Class(:Weapon))
 Declaration(Class(:Wolf))
 Declaration(ObjectProperty(dc:hasPart))
 Declaration(ObjectProperty(dc:isPartOf))
-Declaration(NamedIndividual(:AnEmptyRoad))
+Declaration(DataProperty(:chapterNumber))
+Declaration(NamedIndividual(:TEotW_AnEmptyRoad))
 Declaration(NamedIndividual(:TheEyeOfTheWorld))
 Declaration(AnnotationProperty(dc:date))
 Declaration(AnnotationProperty(dc:identifier))
 Declaration(AnnotationProperty(dc:title))
-Declaration(AnnotationProperty(:chapter))
 Declaration(Datatype(xsd:date))
+############################
+#   Annotation Properties
+############################
+
+# Annotation Property: dc:title (dc:title)
+
+SubAnnotationPropertyOf(dc:title rdfs:label)
+
 
 ############################
 #   Object Properties
@@ -51,6 +58,16 @@ TransitiveObjectProperty(dc:hasPart)
 
 AnnotationAssertion(rdfs:label dc:isPartOf "isPartOf")
 TransitiveObjectProperty(dc:isPartOf)
+
+
+############################
+#   Data Properties
+############################
+
+# Data Property: :chapterNumber (:chapterNumber)
+
+FunctionalDataProperty(:chapterNumber)
+DataPropertyRange(:chapterNumber xsd:integer)
 
 
 
@@ -131,12 +148,12 @@ SubClassOf(:Wolf :LivingThing)
 #   Named Individuals
 ############################
 
-# Individual: :AnEmptyRoad (An Empty Road)
+# Individual: :TEotW_AnEmptyRoad (An Empty Road)
 
-AnnotationAssertion(:chapter :AnEmptyRoad "1"^^xsd:integer)
-AnnotationAssertion(rdfs:label :AnEmptyRoad "An Empty Road")
-ClassAssertion(:Chapter :AnEmptyRoad)
-ObjectPropertyAssertion(dc:isPartOf :AnEmptyRoad :TheEyeOfTheWorld)
+AnnotationAssertion(rdfs:label :TEotW_AnEmptyRoad "An Empty Road")
+ClassAssertion(:Chapter :TEotW_AnEmptyRoad)
+ObjectPropertyAssertion(dc:isPartOf :TEotW_AnEmptyRoad :TheEyeOfTheWorld)
+DataPropertyAssertion(:chapterNumber :TEotW_AnEmptyRoad "1"^^xsd:integer)
 
 # Individual: :TheEyeOfTheWorld (The Eye of the World)
 
