@@ -1,4 +1,5 @@
 Prefix(:=<http://wot.barneyb.com/wot/>)
+Prefix(dc:=<http://purl.org/dc/terms/>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
@@ -7,10 +8,12 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
 Ontology(<http://wot.barneyb.com/wot/>
+Import(<http://purl.org/dc/terms/>)
 
 Declaration(Class(:Angreal))
 Declaration(Class(:Book))
 Declaration(Class(:Chapter))
+Declaration(Class(:Clothing))
 Declaration(Class(:Event))
 Declaration(Class(:Horse))
 Declaration(Class(:Human))
@@ -19,21 +22,35 @@ Declaration(Class(:LivingThing))
 Declaration(Class(:ObjectOfPower))
 Declaration(Class(:Ogier))
 Declaration(Class(:Saangreal))
-Declaration(Class(:StoryLocation))
+Declaration(Class(:StoryPart))
 Declaration(Class(:Terangreal))
+Declaration(Class(:Vehicle))
+Declaration(Class(:Weapon))
 Declaration(Class(:Wolf))
-Declaration(ObjectProperty(:hasStoryLocation))
+Declaration(ObjectProperty(dc:hasPart))
+Declaration(ObjectProperty(dc:isPartOf))
 Declaration(NamedIndividual(:AnEmptyRoad))
 Declaration(NamedIndividual(:TheEyeOfTheWorld))
+Declaration(AnnotationProperty(dc:date))
+Declaration(AnnotationProperty(dc:identifier))
+Declaration(AnnotationProperty(dc:title))
+Declaration(AnnotationProperty(:chapter))
+Declaration(Datatype(xsd:date))
 
 ############################
 #   Object Properties
 ############################
 
-# Object Property: :hasStoryLocation (:hasStoryLocation)
+# Object Property: dc:hasPart (hasPart)
 
-TransitiveObjectProperty(:hasStoryLocation)
-ObjectPropertyRange(:hasStoryLocation :StoryLocation)
+AnnotationAssertion(rdfs:label dc:hasPart "hasPart")
+InverseObjectProperties(dc:hasPart dc:isPartOf)
+TransitiveObjectProperty(dc:hasPart)
+
+# Object Property: dc:isPartOf (isPartOf)
+
+AnnotationAssertion(rdfs:label dc:isPartOf "isPartOf")
+TransitiveObjectProperty(dc:isPartOf)
 
 
 
@@ -47,12 +64,16 @@ SubClassOf(:Angreal :ObjectOfPower)
 
 # Class: :Book (:Book)
 
-SubClassOf(:Book :StoryLocation)
+SubClassOf(:Book :StoryPart)
 DisjointClasses(:Book :Chapter)
 
 # Class: :Chapter (:Chapter)
 
-SubClassOf(:Chapter :StoryLocation)
+SubClassOf(:Chapter :StoryPart)
+
+# Class: :Clothing (:Clothing)
+
+SubClassOf(:Clothing :Item)
 
 # Class: :Event (:Event)
 
@@ -85,7 +106,7 @@ SubClassOf(:Ogier :LivingThing)
 AnnotationAssertion(rdfs:label :Saangreal "Sa'angreal")
 SubClassOf(:Saangreal :ObjectOfPower)
 
-# Class: :StoryLocation (:StoryLocation)
+# Class: :StoryPart (:StoryPart)
 
 
 # Class: :Terangreal (Ter'angreal)
@@ -93,12 +114,40 @@ SubClassOf(:Saangreal :ObjectOfPower)
 AnnotationAssertion(rdfs:label :Terangreal "Ter'angreal")
 SubClassOf(:Terangreal :ObjectOfPower)
 
+# Class: :Vehicle (:Vehicle)
+
+SubClassOf(:Vehicle :Item)
+
+# Class: :Weapon (:Weapon)
+
+SubClassOf(:Weapon :Item)
+
 # Class: :Wolf (:Wolf)
 
 SubClassOf(:Wolf :LivingThing)
 
 
+############################
+#   Named Individuals
+############################
+
+# Individual: :AnEmptyRoad (An Empty Road)
+
+AnnotationAssertion(:chapter :AnEmptyRoad "1"^^xsd:integer)
+AnnotationAssertion(rdfs:label :AnEmptyRoad "An Empty Road")
+ClassAssertion(:Chapter :AnEmptyRoad)
+ObjectPropertyAssertion(dc:isPartOf :AnEmptyRoad :TheEyeOfTheWorld)
+
+# Individual: :TheEyeOfTheWorld (The Eye of the World)
+
+AnnotationAssertion(dc:date :TheEyeOfTheWorld "1990-01-15"^^xsd:date)
+AnnotationAssertion(dc:identifier :TheEyeOfTheWorld "TEofW")
+AnnotationAssertion(dc:title :TheEyeOfTheWorld "The Eye of the World")
+AnnotationAssertion(rdfs:label :TheEyeOfTheWorld "The Eye of the World")
+ClassAssertion(:Book :TheEyeOfTheWorld)
+
+
 DisjointClasses(:Angreal :Saangreal :Terangreal)
-DisjointClasses(:Event :Item :LivingThing :StoryLocation)
+DisjointClasses(:Event :Item :LivingThing :StoryPart)
 DisjointClasses(:Horse :Human :Ogier :Wolf)
 )
