@@ -1,25 +1,18 @@
-book,chapter,title
-acos,prologue,PROLOGUE: Lightnings
-amol,epilogue,EPILOGUE: To See the Answer
-amol,prologue,PROLOGUE: By Grace and Banners Fallen
-cot,epilogue,EPILOGUE: An Answer
-cot,prologue,PROLOGUE: Glimmers of the Pattern
-kod,epilogue,EPILOGUE: Remember the Old Saying
-kod,prologue,PROLOGUE: Embers Falling on Dry Grass
-loc,epilogue,EPILOGUE: The Answer
-loc,prologue,PROLOGUE: The First Message
-ns,epilogue,EPILOGUE
-tdr,prologue,PROLOGUE: Fortress of the Light
-teotw,earlier,EARLIER: Ravens
-teotw,prologue,PROLOGUE: Dragonmount
-tfoh,prologue,PROLOGUE: The First Sparks Fall
-tgh,prologue,PROLOGUE: In The Shadow
-tgs,epilogue,EPILOGUE: Bathed in Light
-tgs,prologue,PROLOGUE: What the Storm Means
-tom,epilogue,EPILOGUE: And After
-tom,prologue,PROLOGUE: Distinctions
-tpod,prologue,PROLOGUE: Deceptive Appearances
-wh,prologue,PROLOGUE: Snow
+book,chron,title
+teotw,-1,EARLIER: Ravens
+acos,0,PROLOGUE: Lightnings
+amol,0,PROLOGUE: By Grace and Banners Fallen
+cot,0,PROLOGUE: Glimmers of the Pattern
+kod,0,PROLOGUE: Embers Falling on Dry Grass
+loc,0,PROLOGUE: The First Message
+tdr,0,PROLOGUE: Fortress of the Light
+teotw,0,PROLOGUE: Dragonmount
+tfoh,0,PROLOGUE: The First Sparks Fall
+tgh,0,PROLOGUE: In The Shadow
+tgs,0,PROLOGUE: What the Storm Means
+tom,0,PROLOGUE: Distinctions
+tpod,0,PROLOGUE: Deceptive Appearances
+wh,0,PROLOGUE: Snow
 acos,1,High Chasaline
 amol,1,Eastward the Wind Blew
 cot,1,Time to Be Gone
@@ -95,7 +88,7 @@ tom,5,Writings
 tpod,5,The Breaking Storm
 tsr,5,Questioners
 wh,5,Flags
-acos,6,Old Fear, and New Fear
+acos,6,"Old Fear, and New Fear"
 amol,6,A Knack
 cot,6,The Scent of a Dream
 kod,6,A Stave and a Razor
@@ -261,7 +254,7 @@ tpod,16,Unexpected Absences
 tsr,16,Leavetakings
 wh,16,An Unexpected Encounter
 acos,17,The Triumph of Logic
-amol,17,Older, More Weathered
+amol,17,"Older, More Weathered"
 cot,17,Secrets
 kod,17,A Bronze Bear
 loc,17,The Wheel of a Life
@@ -271,7 +264,7 @@ teotw,17,Watchers and Hunters
 tfoh,17,Heading West
 tgh,17,Choices
 tgs,17,Questions of Control
-tom,17,Partings, and a Meeting
+tom,17,"Partings, and a Meeting"
 tpod,17,Out on the Ice
 tsr,17,Deceptions
 wh,17,Pink Ribbons
@@ -358,11 +351,11 @@ loc,23,To Understand a Message
 ns,23,The Evening Star
 tdr,23,Sealed
 teotw,23,Wolfbrother
-tfoh,23,"The Fifth, I Give You"
+tfoh,23,""The Fifth, I Give You""
 tgh,23,The Testing
 tgs,23,A Warp in the Air
 tom,23,Foxheads
-tpod,23,Fog of War, Storm of Battle
+tpod,23,"Fog of War, Storm of Battle"
 tsr,23,Beyond the Stone
 wh,23,To Lose the Sun
 acos,24,The Kin
@@ -465,7 +458,7 @@ tgs,30,Old Advice
 tom,30,Men Dream Here
 tpod,30,Beginnings
 tsr,30,Beyond the Oak
-wh,30,Cold, Fat Raindrops
+wh,30,"Cold, Fat Raindrops"
 acos,31,Mashiara
 amol,31,A Tempest of Water
 kod,31,The House on Full Moon Street
@@ -602,7 +595,7 @@ amol,43,A Field of Glass
 loc,43,The Crown of Roses
 tdr,43,Shadowbrothers
 teotw,43,Decisions and Apparitions
-tfoh,43,This Place, This Day
+tfoh,43,"This Place, This Day"
 tgh,43,A Plan
 tgs,43,Sealed to the Flame
 tom,43,Some Tea
@@ -629,7 +622,7 @@ amol,46,To Awaken
 loc,46,Beyond the Gate
 tdr,46,A Message Out of the Shadow
 teotw,46,Fal Dara
-tfoh,46,Other Battles, Other Weapons
+tfoh,46,"Other Battles, Other Weapons"
 tgh,46,To Come Out of the Shadow
 tgs,46,To Be Forged Again
 tom,46,Working Leather
@@ -664,7 +657,7 @@ tsr,49,Cold Rocks Hold
 loc,50,Thorns
 tdr,50,The Hammer
 teotw,50,Meetings at the Eye
-tfoh,50,To Teach, and Learn
+tfoh,50,"To Teach, and Learn"
 tgh,50,After
 tgs,50,Veins of Gold
 tom,50,Choosing Enemies
@@ -704,3 +697,10 @@ tsr,56,Goldeneyes
 tom,57,A Rabbit for Supper
 tsr,57,A Breaking in the Three-fold Land
 tsr,58,The Traps of Rhuidean
+amol,99,EPILOGUE: To See the Answer
+cot,99,EPILOGUE: An Answer
+kod,99,EPILOGUE: Remember the Old Saying
+loc,99,EPILOGUE: The Answer
+ns,99,EPILOGUE
+tgs,99,EPILOGUE: Bathed in Light
+tom,99,EPILOGUE: And After

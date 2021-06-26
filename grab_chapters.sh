@@ -16,13 +16,17 @@ curl http://www.encyclopaedia-wot.org/books/tgs/index.html -o tgs.txt
 curl http://www.encyclopaedia-wot.org/books/tom/index.html -o tom.txt
 curl http://www.encyclopaedia-wot.org/books/amol/index.html -o amol.txt
 
-echo "book,chapter,title" > chapters.csv
+echo "book,chron,title" > chapters.csv
 grep -i '<li><a ' ns.txt teotw.txt tgh.txt tdr.txt tsr.txt tfoh.txt loc.txt acos.txt tpod.txt wh.txt cot.txt kod.txt tgs.txt tom.txt amol.txt \
     | grep -v 'novella.html' \
     | sed -e 's/<\/[aA]>.*$//' \
         -e 's/<\/\?[iI]>//g' \
         -e 's/A HREF/a href/' \
         -e 's/.txt: \?<li><a href="\(ch\)\?/,/' \
-        -e 's/\.html">/,/' \
-    | sort -t , -k 2n \
+        -e 's/\.html">\([^|]*,.*\)/,"\1"/' \
+        -e 's/\.html">\(.*\)/,\1/' \
+        -e 's/,earlier,/,-1,/' \
+        -e 's/,prologue,/,0,/' \
+        -e 's/,epilogue,/,99,/' \
+    | sort -t ',' -k 2n \
     >> chapters.csv
