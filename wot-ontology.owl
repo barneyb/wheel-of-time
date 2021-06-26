@@ -4,70 +4,103 @@ Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
 Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(foaf:=<http://xmlns.com/foaf/0.1/>)
 Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
 Ontology(<http://wot.barneyb.com/wot/>
 
 Declaration(Class(:Angreal))
+Declaration(Class(:Animal))
 Declaration(Class(:Book))
 Declaration(Class(:Chapter))
+Declaration(Class(:City))
 Declaration(Class(:Clothing))
-Declaration(Class(:Event))
+Declaration(Class(:Country))
+Declaration(Class(:Drakhar))
+Declaration(Class(:Feature))
+Declaration(Class(:Forest))
+Declaration(Class(:Gholam))
+Declaration(Class(:GrayMan))
+Declaration(Class(:Hold))
 Declaration(Class(:Horse))
 Declaration(Class(:Human))
 Declaration(Class(:Item))
 Declaration(Class(:LivingThing))
+Declaration(Class(:Location))
+Declaration(Class(:Mountain))
+Declaration(Class(:MountainRange))
+Declaration(Class(:Myrddraal))
 Declaration(Class(:ObjectOfPower))
 Declaration(Class(:Ogier))
+Declaration(Class(:PhysicalThing))
+Declaration(Class(:Raven))
+Declaration(Class(:Region))
+Declaration(Class(:River))
 Declaration(Class(:Saangreal))
+Declaration(Class(:Shadowspawn))
+Declaration(Class(:Sheep))
 Declaration(Class(:StoryPart))
 Declaration(Class(:Terangreal))
+Declaration(Class(:Town))
+Declaration(Class(:Trolloc))
 Declaration(Class(:Vehicle))
+Declaration(Class(:Village))
 Declaration(Class(:Weapon))
 Declaration(Class(:Wolf))
-Declaration(ObjectProperty(dc:hasPart))
 Declaration(ObjectProperty(dc:isPartOf))
-Declaration(DataProperty(:chapterNumber))
-Declaration(NamedIndividual(:TEotW_AnEmptyRoad))
+Declaration(ObjectProperty(:hasPart))
+Declaration(NamedIndividual(:AnEmptyRoad))
+Declaration(NamedIndividual(:RandAlThor))
+Declaration(NamedIndividual(:TamAlThor))
 Declaration(NamedIndividual(:TheEyeOfTheWorld))
 Declaration(AnnotationProperty(dc:date))
 Declaration(AnnotationProperty(dc:identifier))
 Declaration(AnnotationProperty(dc:title))
+Declaration(AnnotationProperty(:alternateIRI))
+Declaration(AnnotationProperty(:chapterNumber))
+Declaration(AnnotationProperty(:chronologyOrder))
+Declaration(AnnotationProperty(foaf:name))
 Declaration(Datatype(xsd:date))
 ############################
 #   Annotation Properties
 ############################
 
+# Annotation Property: dc:date (dc:date)
+
+AnnotationPropertyRange(dc:date xsd:date)
+
+# Annotation Property: dc:identifier (dc:identifier)
+
+AnnotationPropertyRange(dc:identifier xsd:token)
+
 # Annotation Property: dc:title (dc:title)
 
-SubAnnotationPropertyOf(dc:title rdfs:label)
+AnnotationPropertyRange(dc:title xsd:string)
+
+# Annotation Property: :chapterNumber (:chapterNumber)
+
+AnnotationPropertyRange(:chapterNumber xsd:integer)
+
+# Annotation Property: :chronologyOrder (:chronologyOrder)
+
+AnnotationPropertyRange(:chronologyOrder xsd:integer)
 
 
 ############################
 #   Object Properties
 ############################
 
-# Object Property: dc:hasPart (hasPart)
+# Object Property: dc:isPartOf (is part of)
 
-AnnotationAssertion(rdfs:label dc:hasPart "hasPart")
-InverseObjectProperties(dc:hasPart dc:isPartOf)
-TransitiveObjectProperty(dc:hasPart)
-
-# Object Property: dc:isPartOf (isPartOf)
-
-AnnotationAssertion(rdfs:label dc:isPartOf "isPartOf")
+AnnotationAssertion(rdfs:label dc:isPartOf "is part of")
+InverseObjectProperties(dc:isPartOf :hasPart)
 TransitiveObjectProperty(dc:isPartOf)
 
+# Object Property: :hasPart (has part)
 
-############################
-#   Data Properties
-############################
-
-# Data Property: :chapterNumber (:chapterNumber)
-
-FunctionalDataProperty(:chapterNumber)
-DataPropertyRange(:chapterNumber xsd:integer)
+AnnotationAssertion(rdfs:label :hasPart "has part")
+TransitiveObjectProperty(:hasPart)
 
 
 
@@ -79,6 +112,10 @@ DataPropertyRange(:chapterNumber xsd:integer)
 
 SubClassOf(:Angreal :ObjectOfPower)
 
+# Class: :Animal (:Animal)
+
+SubClassOf(:Animal :LivingThing)
+
 # Class: :Book (:Book)
 
 SubClassOf(:Book :StoryPart)
@@ -88,16 +125,45 @@ DisjointClasses(:Book :Chapter)
 
 SubClassOf(:Chapter :StoryPart)
 
+# Class: :City (:City)
+
+SubClassOf(:City :Location)
+
 # Class: :Clothing (:Clothing)
 
 SubClassOf(:Clothing :Item)
 
-# Class: :Event (:Event)
+# Class: :Country (:Country)
 
+SubClassOf(:Country :Location)
+
+# Class: :Drakhar (:Drakhar)
+
+SubClassOf(:Drakhar :Shadowspawn)
+
+# Class: :Feature (:Feature)
+
+SubClassOf(:Feature :Location)
+
+# Class: :Forest (:Forest)
+
+SubClassOf(:Forest :Feature)
+
+# Class: :Gholam (:Gholam)
+
+SubClassOf(:Gholam :Shadowspawn)
+
+# Class: :GrayMan (:GrayMan)
+
+SubClassOf(:GrayMan :Shadowspawn)
+
+# Class: :Hold (:Hold)
+
+SubClassOf(:Hold :Location)
 
 # Class: :Horse (:Horse)
 
-SubClassOf(:Horse :LivingThing)
+SubClassOf(:Horse :Animal)
 
 # Class: :Human (:Human)
 
@@ -105,9 +171,27 @@ SubClassOf(:Human :LivingThing)
 
 # Class: :Item (:Item)
 
+SubClassOf(:Item :PhysicalThing)
 
 # Class: :LivingThing (:LivingThing)
 
+SubClassOf(:LivingThing :PhysicalThing)
+
+# Class: :Location (:Location)
+
+SubClassOf(:Location :PhysicalThing)
+
+# Class: :Mountain (:Mountain)
+
+SubClassOf(:Mountain :Feature)
+
+# Class: :MountainRange (:MountainRange)
+
+SubClassOf(:MountainRange :Feature)
+
+# Class: :Myrddraal (:Myrddraal)
+
+SubClassOf(:Myrddraal :Shadowspawn)
 
 # Class: :ObjectOfPower (Object of Power)
 
@@ -118,22 +202,51 @@ SubClassOf(:ObjectOfPower :Item)
 
 SubClassOf(:Ogier :LivingThing)
 
+# Class: :Raven (:Raven)
+
+SubClassOf(:Raven :Animal)
+
+# Class: :Region (:Region)
+
+SubClassOf(:Region :Location)
+
+# Class: :River (:River)
+
+SubClassOf(:River :Feature)
+
 # Class: :Saangreal (Sa'angreal)
 
 AnnotationAssertion(rdfs:label :Saangreal "Sa'angreal")
 SubClassOf(:Saangreal :ObjectOfPower)
 
-# Class: :StoryPart (:StoryPart)
+# Class: :Shadowspawn (:Shadowspawn)
 
+SubClassOf(:Shadowspawn :LivingThing)
+
+# Class: :Sheep (:Sheep)
+
+SubClassOf(:Sheep :Animal)
 
 # Class: :Terangreal (Ter'angreal)
 
 AnnotationAssertion(rdfs:label :Terangreal "Ter'angreal")
 SubClassOf(:Terangreal :ObjectOfPower)
 
+# Class: :Town (:Town)
+
+SubClassOf(:Town :Location)
+
+# Class: :Trolloc (:Trolloc)
+
+SubClassOf(:Trolloc :Shadowspawn)
+
 # Class: :Vehicle (:Vehicle)
 
 SubClassOf(:Vehicle :Item)
+
+# Class: :Village (:Village)
+
+SubClassOf(:Village :Location)
 
 # Class: :Weapon (:Weapon)
 
@@ -141,19 +254,31 @@ SubClassOf(:Weapon :Item)
 
 # Class: :Wolf (:Wolf)
 
-SubClassOf(:Wolf :LivingThing)
+SubClassOf(:Wolf :Animal)
 
 
 ############################
 #   Named Individuals
 ############################
 
-# Individual: :TEotW_AnEmptyRoad (An Empty Road)
+# Individual: :AnEmptyRoad (An Empty Road)
 
-AnnotationAssertion(rdfs:label :TEotW_AnEmptyRoad "An Empty Road")
-ClassAssertion(:Chapter :TEotW_AnEmptyRoad)
-ObjectPropertyAssertion(dc:isPartOf :TEotW_AnEmptyRoad :TheEyeOfTheWorld)
-DataPropertyAssertion(:chapterNumber :TEotW_AnEmptyRoad "1"^^xsd:integer)
+AnnotationAssertion(:chapterNumber :AnEmptyRoad "1"^^xsd:integer)
+AnnotationAssertion(rdfs:label :AnEmptyRoad "An Empty Road")
+ClassAssertion(:Chapter :AnEmptyRoad)
+ObjectPropertyAssertion(dc:isPartOf :AnEmptyRoad :TheEyeOfTheWorld)
+
+# Individual: :RandAlThor (Rand al'Thor)
+
+AnnotationAssertion(rdfs:label :RandAlThor "Rand al'Thor")
+ClassAssertion(:Human :RandAlThor)
+
+# Individual: :TamAlThor (Tam al'Thor)
+
+AnnotationAssertion(:alternateIRI :TamAlThor :TamlinAlThor)
+AnnotationAssertion(rdfs:label :TamAlThor "Tam al'Thor")
+AnnotationAssertion(foaf:name :TamAlThor "Tamlin al'Thor")
+ClassAssertion(:Human :TamAlThor)
 
 # Individual: :TheEyeOfTheWorld (The Eye of the World)
 
@@ -165,6 +290,9 @@ ClassAssertion(:Book :TheEyeOfTheWorld)
 
 
 DisjointClasses(:Angreal :Saangreal :Terangreal)
-DisjointClasses(:Event :Item :LivingThing :StoryPart)
-DisjointClasses(:Horse :Human :Ogier :Wolf)
+DisjointClasses(:Animal :Human :Ogier :Shadowspawn)
+DisjointClasses(:City :Country :Feature :Hold :Region :Town :Village)
+DisjointClasses(:Forest :Mountain :MountainRange :River)
+DisjointClasses(:Horse :Raven :Sheep :Wolf)
+DisjointClasses(:Item :LivingThing :Location)
 )
