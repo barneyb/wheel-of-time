@@ -43,6 +43,11 @@ dcterms:title rdf:type owl:AnnotationProperty ;
                  rdfs:range xsd:integer .
 
 
+###  http://xmlns.com/foaf/0.1/name
+foaf:name rdf:type owl:AnnotationProperty ;
+          rdfs:range xsd:string .
+
+
 #################################################################
 #    Datatypes
 #################################################################
@@ -155,23 +160,15 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
 
 
 ###  http://wot.barneyb.com/wot/Item
-:Item rdf:type owl:Class ;
-      rdfs:subClassOf :PhysicalThing .
+:Item rdf:type owl:Class .
 
 
 ###  http://wot.barneyb.com/wot/LivingThing
-:LivingThing rdf:type owl:Class ;
-             rdfs:subClassOf :PhysicalThing .
+:LivingThing rdf:type owl:Class .
 
 
 ###  http://wot.barneyb.com/wot/Location
-:Location rdf:type owl:Class ;
-          rdfs:subClassOf :PhysicalThing .
-
-
-###  http://wot.barneyb.com/wot/Mountain
-:Mountain rdf:type owl:Class ;
-          rdfs:subClassOf :Feature .
+:Location rdf:type owl:Class .
 
 
 ###  http://wot.barneyb.com/wot/MountainRange
@@ -193,10 +190,6 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
 ###  http://wot.barneyb.com/wot/Ogier
 :Ogier rdf:type owl:Class ;
        rdfs:subClassOf :LivingThing .
-
-
-###  http://wot.barneyb.com/wot/PhysicalThing
-:PhysicalThing rdf:type owl:Class .
 
 
 ###  http://wot.barneyb.com/wot/Raven
@@ -360,7 +353,6 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
 
 [ rdf:type owl:AllDisjointClasses ;
   owl:members ( :Forest
-                :Mountain
                 :MountainRange
                 :River
               )
@@ -380,6 +372,7 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
   owl:members ( :Item
                 :LivingThing
                 :Location
+                :StoryPart
               )
 ] .
 
