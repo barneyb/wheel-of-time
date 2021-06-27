@@ -1,11 +1,11 @@
 @prefix : <http://wot.barneyb.com/wot/> .
-@prefix dc: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @base <http://wot.barneyb.com/wot/> .
 
 <http://wot.barneyb.com/wot/> rdf:type owl:Ontology .
@@ -15,18 +15,18 @@
 #################################################################
 
 ###  http://purl.org/dc/terms/date
-dc:date rdf:type owl:AnnotationProperty ;
-        rdfs:range xsd:date .
+dcterms:date rdf:type owl:AnnotationProperty ;
+             rdfs:range xsd:date .
 
 
 ###  http://purl.org/dc/terms/identifier
-dc:identifier rdf:type owl:AnnotationProperty ;
-              rdfs:range xsd:token .
+dcterms:identifier rdf:type owl:AnnotationProperty ;
+                   rdfs:range xsd:token .
 
 
 ###  http://purl.org/dc/terms/title
-dc:title rdf:type owl:AnnotationProperty ;
-         rdfs:range xsd:string .
+dcterms:title rdf:type owl:AnnotationProperty ;
+              rdfs:range xsd:string .
 
 
 ###  http://wot.barneyb.com/wot/alternateIRI
@@ -56,10 +56,10 @@ xsd:date rdf:type rdfs:Datatype .
 #################################################################
 
 ###  http://purl.org/dc/terms/isPartOf
-dc:isPartOf rdf:type owl:ObjectProperty ;
-            owl:inverseOf :hasPart ;
-            rdf:type owl:TransitiveProperty ;
-            rdfs:label "is part of" .
+dcterms:isPartOf rdf:type owl:ObjectProperty ;
+                 owl:inverseOf :hasPart ;
+                 rdf:type owl:TransitiveProperty ;
+                 rdfs:label "is part of" .
 
 
 ###  http://wot.barneyb.com/wot/hasPart
@@ -277,8 +277,8 @@ dc:isPartOf rdf:type owl:ObjectProperty ;
 ###  http://wot.barneyb.com/wot/AnEmptyRoad
 :AnEmptyRoad rdf:type owl:NamedIndividual ,
                       :Chapter ;
-             dc:isPartOf :TheEyeOfTheWorld ;
-             dc:title "An Empty Road" ;
+             dcterms:isPartOf :TheEyeOfTheWorld ;
+             dcterms:title "An Empty Road" ;
              :chapterNumber 1 ;
              rdfs:label "An Empty Road" .
 
@@ -292,8 +292,8 @@ dc:isPartOf rdf:type owl:ObjectProperty ;
 ###  http://wot.barneyb.com/wot/PrologueDragonmount
 :PrologueDragonmount rdf:type owl:NamedIndividual ,
                               :Chapter ;
-                     dc:isPartOf :TheEyeOfTheWorld ;
-                     dc:title "PROLOGUE: Dragonmount" ;
+                     dcterms:isPartOf :TheEyeOfTheWorld ;
+                     dcterms:title "PROLOGUE: Dragonmount" ;
                      :chapterNumber 0 ;
                      rdfs:label "PROLOGUE: Dragonmount" .
 
@@ -307,9 +307,9 @@ dc:isPartOf rdf:type owl:ObjectProperty ;
 ###  http://wot.barneyb.com/wot/TheEyeOfTheWorld
 :TheEyeOfTheWorld rdf:type owl:NamedIndividual ,
                            :Book ;
-                  dc:date "1990-01-15"^^xsd:date ;
-                  dc:identifier "TEotW" ;
-                  dc:title "The Eye of the World" ;
+                  dcterms:date "1990-01-15"^^xsd:date ;
+                  dcterms:identifier "TEotW" ;
+                  dcterms:title "The Eye of the World" ;
                   :chronologyOrder 1 ;
                   rdfs:label "The Eye of the World" .
 

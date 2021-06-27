@@ -1,4 +1,4 @@
-// noinspection NodeCoreCodingAssistance
+// noinspection NodeCoreCodingAssistance,JSUnusedLocalSymbols
 
 const fs = require('fs');
 const assert = require('assert');
@@ -131,7 +131,7 @@ chapters
     .forEach(c => c.id = `${c.id}_${c.book.tag}`);
 
 const prelude = `@prefix : <http://wot.barneyb.com/wot/> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -151,9 +151,9 @@ books.forEach(b => blocks.push(`
 ### ${b.id}
 :${b.id} rdf:type owl:NamedIndividual ,
         :Book ;
-    dc:date "${b.date}"^^xsd:date ;
-    dc:identifier "${b.tag}" ;
-    dc:title "${escapeTurtle(b.title)}" ;
+    dcterms:date "${b.date}"^^xsd:date ;
+    dcterms:identifier "${b.tag}" ;
+    dcterms:title "${escapeTurtle(b.title)}" ;
     :chronologyOrder ${b.chron} ;
     rdfs:label "${escapeTurtle(b.title)}" .
 `))
@@ -162,8 +162,8 @@ chapters.forEach(c => blocks.push(`
 ### ${c.book.tag} / ${c.id}
 :${c.id} rdf:type owl:NamedIndividual ,
         :Chapter ;
-    dc:isPartOf :${c.book.id} ;
-    dc:title "${escapeTurtle(c.title)}" ;
+    dcterms:isPartOf :${c.book.id} ;
+    dcterms:title "${escapeTurtle(c.title)}" ;
     :chapterNumber ${c.chron} ;
     rdfs:label "${escapeTurtle(c.title)}" .
 `));
