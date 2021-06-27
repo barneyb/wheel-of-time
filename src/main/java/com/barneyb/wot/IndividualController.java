@@ -30,7 +30,7 @@ public class IndividualController {
         val result = new ArrayList<>();
         try (RDFConnection conn = RDFConnectionFactory.connect(dataset)) {
             Txn.executeWrite(conn, () -> {
-                conn.load("/home/barneyb/Documents/wot/wot-ontology.owl");
+                conn.load("/home/barneyb/Documents/wot/ontology.ttl");
                 conn.querySelect("prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
                         "SELECT DISTINCT ?s ?label { " +
                         "?s ?p ?o. " +

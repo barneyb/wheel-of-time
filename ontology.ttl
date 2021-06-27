@@ -1,0 +1,387 @@
+@prefix : <http://wot.barneyb.com/wot/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://wot.barneyb.com/wot/> .
+
+<http://wot.barneyb.com/wot/> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/date
+dc:date rdf:type owl:AnnotationProperty ;
+        rdfs:range xsd:date .
+
+
+###  http://purl.org/dc/terms/identifier
+dc:identifier rdf:type owl:AnnotationProperty ;
+              rdfs:range xsd:token .
+
+
+###  http://purl.org/dc/terms/title
+dc:title rdf:type owl:AnnotationProperty ;
+         rdfs:range xsd:string .
+
+
+###  http://wot.barneyb.com/wot/alternateIRI
+:alternateIRI rdf:type owl:AnnotationProperty .
+
+
+###  http://wot.barneyb.com/wot/chapterNumber
+:chapterNumber rdf:type owl:AnnotationProperty ;
+               rdfs:range xsd:integer .
+
+
+###  http://wot.barneyb.com/wot/chronologyOrder
+:chronologyOrder rdf:type owl:AnnotationProperty ;
+                 rdfs:range xsd:integer .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/dc/terms/isPartOf
+dc:isPartOf rdf:type owl:ObjectProperty ;
+            owl:inverseOf :hasPart ;
+            rdf:type owl:TransitiveProperty ;
+            rdfs:label "is part of" .
+
+
+###  http://wot.barneyb.com/wot/hasPart
+:hasPart rdf:type owl:ObjectProperty ,
+                  owl:TransitiveProperty ;
+         rdfs:label "has part" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://wot.barneyb.com/wot/Angreal
+:Angreal rdf:type owl:Class ;
+         rdfs:subClassOf :ObjectOfPower .
+
+
+###  http://wot.barneyb.com/wot/Animal
+:Animal rdf:type owl:Class ;
+        rdfs:subClassOf :LivingThing .
+
+
+###  http://wot.barneyb.com/wot/Book
+:Book rdf:type owl:Class ;
+      rdfs:subClassOf :StoryPart ;
+      owl:disjointWith :Chapter .
+
+
+###  http://wot.barneyb.com/wot/Chapter
+:Chapter rdf:type owl:Class ;
+         rdfs:subClassOf :StoryPart .
+
+
+###  http://wot.barneyb.com/wot/City
+:City rdf:type owl:Class ;
+      rdfs:subClassOf :Location .
+
+
+###  http://wot.barneyb.com/wot/Clothing
+:Clothing rdf:type owl:Class ;
+          rdfs:subClassOf :Item .
+
+
+###  http://wot.barneyb.com/wot/Country
+:Country rdf:type owl:Class ;
+         rdfs:subClassOf :Location .
+
+
+###  http://wot.barneyb.com/wot/Darkhound
+:Darkhound rdf:type owl:Class ;
+           rdfs:subClassOf :Shadowspawn .
+
+
+###  http://wot.barneyb.com/wot/Drakhar
+:Drakhar rdf:type owl:Class ;
+         rdfs:subClassOf :Shadowspawn .
+
+
+###  http://wot.barneyb.com/wot/Feature
+:Feature rdf:type owl:Class ;
+         rdfs:subClassOf :Location .
+
+
+###  http://wot.barneyb.com/wot/Forest
+:Forest rdf:type owl:Class ;
+        rdfs:subClassOf :Feature .
+
+
+###  http://wot.barneyb.com/wot/Gholam
+:Gholam rdf:type owl:Class ;
+        rdfs:subClassOf :Shadowspawn .
+
+
+###  http://wot.barneyb.com/wot/GrayMan
+:GrayMan rdf:type owl:Class ;
+         rdfs:subClassOf :Shadowspawn ;
+         rdfs:label "Gray Man" .
+
+
+###  http://wot.barneyb.com/wot/Hold
+:Hold rdf:type owl:Class ;
+      rdfs:subClassOf :Location .
+
+
+###  http://wot.barneyb.com/wot/Horse
+:Horse rdf:type owl:Class ;
+       rdfs:subClassOf :Animal .
+
+
+###  http://wot.barneyb.com/wot/Human
+:Human rdf:type owl:Class ;
+       rdfs:subClassOf :LivingThing .
+
+
+###  http://wot.barneyb.com/wot/Item
+:Item rdf:type owl:Class ;
+      rdfs:subClassOf :PhysicalThing .
+
+
+###  http://wot.barneyb.com/wot/LivingThing
+:LivingThing rdf:type owl:Class ;
+             rdfs:subClassOf :PhysicalThing .
+
+
+###  http://wot.barneyb.com/wot/Location
+:Location rdf:type owl:Class ;
+          rdfs:subClassOf :PhysicalThing .
+
+
+###  http://wot.barneyb.com/wot/Mountain
+:Mountain rdf:type owl:Class ;
+          rdfs:subClassOf :Feature .
+
+
+###  http://wot.barneyb.com/wot/MountainRange
+:MountainRange rdf:type owl:Class ;
+               rdfs:subClassOf :Feature .
+
+
+###  http://wot.barneyb.com/wot/Myrddraal
+:Myrddraal rdf:type owl:Class ;
+           rdfs:subClassOf :Shadowspawn .
+
+
+###  http://wot.barneyb.com/wot/ObjectOfPower
+:ObjectOfPower rdf:type owl:Class ;
+               rdfs:subClassOf :Item ;
+               rdfs:label "Object of Power" .
+
+
+###  http://wot.barneyb.com/wot/Ogier
+:Ogier rdf:type owl:Class ;
+       rdfs:subClassOf :LivingThing .
+
+
+###  http://wot.barneyb.com/wot/PhysicalThing
+:PhysicalThing rdf:type owl:Class .
+
+
+###  http://wot.barneyb.com/wot/Raven
+:Raven rdf:type owl:Class ;
+       rdfs:subClassOf :Animal .
+
+
+###  http://wot.barneyb.com/wot/Region
+:Region rdf:type owl:Class ;
+        rdfs:subClassOf :Location .
+
+
+###  http://wot.barneyb.com/wot/River
+:River rdf:type owl:Class ;
+       rdfs:subClassOf :Feature .
+
+
+###  http://wot.barneyb.com/wot/Saangreal
+:Saangreal rdf:type owl:Class ;
+           rdfs:subClassOf :ObjectOfPower ;
+           rdfs:label "Sa'angreal" .
+
+
+###  http://wot.barneyb.com/wot/Shadowspawn
+:Shadowspawn rdf:type owl:Class ;
+             rdfs:subClassOf :LivingThing .
+
+
+###  http://wot.barneyb.com/wot/Sheep
+:Sheep rdf:type owl:Class ;
+       rdfs:subClassOf :Animal .
+
+
+###  http://wot.barneyb.com/wot/StoryPart
+:StoryPart rdf:type owl:Class .
+
+
+###  http://wot.barneyb.com/wot/Terangreal
+:Terangreal rdf:type owl:Class ;
+            rdfs:subClassOf :ObjectOfPower ;
+            rdfs:label "Ter'angreal" .
+
+
+###  http://wot.barneyb.com/wot/Town
+:Town rdf:type owl:Class ;
+      rdfs:subClassOf :Location .
+
+
+###  http://wot.barneyb.com/wot/Trolloc
+:Trolloc rdf:type owl:Class ;
+         rdfs:subClassOf :Shadowspawn .
+
+
+###  http://wot.barneyb.com/wot/Vehicle
+:Vehicle rdf:type owl:Class ;
+         rdfs:subClassOf :Item .
+
+
+###  http://wot.barneyb.com/wot/Village
+:Village rdf:type owl:Class ;
+         rdfs:subClassOf :Location .
+
+
+###  http://wot.barneyb.com/wot/Weapon
+:Weapon rdf:type owl:Class ;
+        rdfs:subClassOf :Item .
+
+
+###  http://wot.barneyb.com/wot/Wolf
+:Wolf rdf:type owl:Class ;
+      rdfs:subClassOf :Animal .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://wot.barneyb.com/wot/AnEmptyRoad
+:AnEmptyRoad rdf:type owl:NamedIndividual ,
+                      :Chapter ;
+             dc:isPartOf :TheEyeOfTheWorld ;
+             dc:title "An Empty Road" ;
+             :chapterNumber 1 ;
+             rdfs:label "An Empty Road" .
+
+
+###  http://wot.barneyb.com/wot/LewsTherinTelamon
+:LewsTherinTelamon rdf:type owl:NamedIndividual ,
+                            :Human ;
+                   rdfs:label "Lews Therin Telamon" .
+
+
+###  http://wot.barneyb.com/wot/PrologueDragonmount
+:PrologueDragonmount rdf:type owl:NamedIndividual ,
+                              :Chapter ;
+                     dc:isPartOf :TheEyeOfTheWorld ;
+                     dc:title "PROLOGUE: Dragonmount" ;
+                     :chapterNumber 0 ;
+                     rdfs:label "PROLOGUE: Dragonmount" .
+
+
+###  http://wot.barneyb.com/wot/RandAlThor
+:RandAlThor rdf:type owl:NamedIndividual ,
+                     :Human ;
+            rdfs:label "Rand al'Thor" .
+
+
+###  http://wot.barneyb.com/wot/TheEyeOfTheWorld
+:TheEyeOfTheWorld rdf:type owl:NamedIndividual ,
+                           :Book ;
+                  dc:date "1990-01-15"^^xsd:date ;
+                  dc:identifier "TEotW" ;
+                  dc:title "The Eye of the World" ;
+                  :chronologyOrder 1 ;
+                  rdfs:label "The Eye of the World" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Angreal
+                :Saangreal
+                :Terangreal
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Animal
+                :Human
+                :Ogier
+                :Shadowspawn
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :City
+                :Country
+                :Feature
+                :Hold
+                :Region
+                :Town
+                :Village
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Darkhound
+                :Drakhar
+                :Gholam
+                :GrayMan
+                :Myrddraal
+                :Trolloc
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Forest
+                :Mountain
+                :MountainRange
+                :River
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Horse
+                :Raven
+                :Sheep
+                :Wolf
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Item
+                :LivingThing
+                :Location
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
