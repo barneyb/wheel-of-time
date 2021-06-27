@@ -43,6 +43,12 @@ dcterms:title rdf:type owl:AnnotationProperty ;
                  rdfs:range xsd:integer .
 
 
+###  http://wot.barneyb.com/wot/storyLocation
+:storyLocation rdf:type owl:AnnotationProperty ;
+               rdfs:label "story location" ;
+               rdfs:range :StoryPart .
+
+
 ###  http://xmlns.com/foaf/0.1/name
 foaf:name rdf:type owl:AnnotationProperty ;
           rdfs:range xsd:string .
@@ -67,10 +73,30 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
                  rdfs:label "is part of" .
 
 
+###  http://wot.barneyb.com/wot/hasLearnedOf
+:hasLearnedOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty .
+
+
 ###  http://wot.barneyb.com/wot/hasPart
 :hasPart rdf:type owl:ObjectProperty ,
                   owl:TransitiveProperty ;
          rdfs:label "has part" .
+
+
+###  http://wot.barneyb.com/wot/reincarnatedAs
+:reincarnatedAs rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                owl:inverseOf :reincarnationOf ;
+                rdf:type owl:TransitiveProperty ;
+                rdfs:label "reincarnated as" .
+
+
+###  http://wot.barneyb.com/wot/reincarnationOf
+:reincarnationOf rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdf:type owl:TransitiveProperty ;
+                 rdfs:label "reincarnation of" .
 
 
 #################################################################
@@ -282,6 +308,7 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
                    rdfs:label "Lews Therin Telamon" .
 
 
+
 ###  http://wot.barneyb.com/wot/PrologueDragonmount
 :PrologueDragonmount rdf:type owl:NamedIndividual ,
                               :Chapter ;
@@ -294,7 +321,23 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
 ###  http://wot.barneyb.com/wot/RandAlThor
 :RandAlThor rdf:type owl:NamedIndividual ,
                      :Human ;
+            rdfs:comment "A young man of The Two Rivers" ;
             rdfs:label "Rand al'Thor" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :RandAlThor ;
+   owl:annotatedProperty :hasLearnedOf ;
+   owl:annotatedTarget :Myrddraal ;
+   :storyLocation :AnEmptyRoad ;
+   rdfs:comment "On the way to Emond's Field"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :RandAlThor ;
+   owl:annotatedProperty :reincarnationOf ;
+   owl:annotatedTarget :LewsTherinTelamon ;
+   :storyLocation :TheWheelTurns
+ ] .
 
 
 ###  http://wot.barneyb.com/wot/TheEyeOfTheWorld
@@ -305,6 +348,15 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
                   dcterms:title "The Eye of the World" ;
                   :chronologyOrder 1 ;
                   rdfs:label "The Eye of the World" .
+
+
+###  http://wot.barneyb.com/wot/TheWheelTurns
+:TheWheelTurns rdf:type owl:NamedIndividual ,
+                        :Chapter ;
+               dcterms:isPartOf :TheEyeOfTheWorld ;
+               dcterms:title "The Wheel Turns" ;
+               :chapterNumber 53 ;
+               rdfs:label "The Wheel Turns" .
 
 
 #################################################################
