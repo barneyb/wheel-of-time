@@ -20,9 +20,9 @@ the "al'" on Rand's surname, like many Emond's Field surnames, is not a title.
 It was certainly derived from one: Aemon al Caar al Thorin, last King of
 Manetheren, and Emond's Field's namesake.
 
-Collisions are avoided by prefixing the local ID with some sub-namespace
+Collisions are avoided by suffixing the local ID with some sub-namespace
 separated by an underscore. Thus, the ID for the "Wolfbrother" chapter in _The
-Eye of the World_ is `TEofW_Wolfbrother`. Both _The Great Hunt_ and _A Memory of
+Eye of the World_ is `Wolfbrother_TEofW`. Both _The Great Hunt_ and _A Memory of
 Light_ also have "Wolfbrother" chapters.
 
 ## Labels

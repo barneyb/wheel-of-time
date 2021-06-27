@@ -1,706 +1,706 @@
-book,chron,title
-teotw,-1,"EARLIER: Ravens"
-acos,0,"PROLOGUE: Lightnings"
-amol,0,"PROLOGUE: By Grace and Banners Fallen"
-cot,0,"PROLOGUE: Glimmers of the Pattern"
-kod,0,"PROLOGUE: Embers Falling on Dry Grass"
-loc,0,"PROLOGUE: The First Message"
-tdr,0,"PROLOGUE: Fortress of the Light"
-teotw,0,"PROLOGUE: Dragonmount"
-tfoh,0,"PROLOGUE: The First Sparks Fall"
-tgh,0,"PROLOGUE: In The Shadow"
-tgs,0,"PROLOGUE: What the Storm Means"
-tom,0,"PROLOGUE: Distinctions"
-tpod,0,"PROLOGUE: Deceptive Appearances"
-wh,0,"PROLOGUE: Snow"
-acos,1,"High Chasaline"
-amol,1,"Eastward the Wind Blew"
-cot,1,"Time to Be Gone"
-kod,1,"When Last Sounds"
-loc,1,"Lion on the Hill"
-ns,1,"The Hook"
-tdr,1,"Waiting"
-teotw,1,"An Empty Road"
-tfoh,1,"Fanning the Sparks"
-tgh,1,"The Flame of Tar Valon"
-tgs,1,"Tears from Steel"
-tom,1,"Apples First"
-tpod,1,"To Keep the Bargain"
-tsr,1,"Seeds of Shadow"
-wh,1,"Leaving the Prophet"
-acos,2,"The Butcher's Yard"
-amol,2,"The Choice of an Ajah"
-cot,2,"Two Captains"
-kod,2,"The Dark One's Touch"
-loc,2,"A New Arrival"
-ns,2,"A Wish Fulfilled"
-tdr,2,"Saidin"
-teotw,2,"Strangers"
-tfoh,2,"Rhuidean"
-tgh,2,"The Welcome"
-tgs,2,"The Nature of Pain"
-tom,2,"Questions of Leadership"
-tpod,2,"Unweaving"
-tsr,2,"Whirlpools in the Pattern"
-wh,2,"Taken"
-acos,3,"Hill of the Golden Dawn"
-amol,3,"A Dangerous Place"
-cot,3,"A Fan of Colors"
-kod,3,"At the Gardens"
-loc,3,"A Woman's Eyes"
-ns,3,"Practice"
-tdr,3,"News from the Plain"
-teotw,3,"The Peddler"
-tfoh,3,"Pale Shadows"
-tgh,3,"Friends and Enemies"
-tgs,3,"The Ways of Honor"
-tom,3,"The Amyrlin's Anger"
-tpod,3,"A Pleasant Ride"
-tsr,3,"Reflection"
-wh,3,"Customs"
-acos,4,"Into Cairhien"
-amol,4,"Advantages to a Bond"
-cot,4,"The Tale of a Doll"
-kod,4,"A Deal"
-loc,4,"A Sense of Humor"
-ns,4,"Leaving the Tower"
-tdr,4,"Shadows Sleeping"
-teotw,4,"The Gleeman"
-tfoh,4,"Twilight"
-tgh,4,"Summoned"
-tgs,4,"Nightfall"
-tom,4,"The Pattern Groans"
-tpod,4,"A Quiet Place"
-tsr,4,"Strings"
-wh,4,"Offers"
-acos,5,"A Broken Crown"
-amol,5,"To Require a Boon"
-cot,5,"The Forging of a Hammer"
-kod,5,"Something . . . Strange"
-loc,5,"A Different Dance"
-ns,5,"The Human Heart"
-tdr,5,"Nightmares Walking"
-teotw,5,"Winternight"
-tfoh,5,"Among the Wise Ones"
-tgh,5,"The Shadow in Shienar"
-tgs,5,"A Tale of Blood"
-tom,5,"Writings"
-tpod,5,"The Breaking Storm"
-tsr,5,"Questioners"
-wh,5,"Flags"
-acos,6,"Old Fear, and New Fear"
-amol,6,"A Knack"
-cot,6,"The Scent of a Dream"
-kod,6,"A Stave and a Razor"
-loc,6,"Threads Woven of Shadow"
-ns,6,"Surprises"
-tdr,6,"The Hunt Begins"
-teotw,6,"The Westwood"
-tfoh,6,"Gateways"
-tgh,6,"Dark Prophecy"
-tgs,6,"When Iron Melts"
-tom,6,"Questioning Intentions"
-tpod,6,"Threads"
-tsr,6,"Doorways"
-wh,6,"The Scent of Madness"
-acos,7,"Pitfalls and Tripwires"
-amol,7,"Into the Thick of It"
-cot,7,"Blacksmith's Puzzle"
-kod,7,"A Cold Medallion"
-loc,7,"A Matter of Thought"
-ns,7,"The Itch"
-tdr,7,"The Way Out of the Mountains"
-teotw,7,"Out of the Woods"
-tfoh,7,"A Departure"
-tgh,7,"Blood Calls Blood"
-tgs,7,"The Plan for Arad Doman"
-tom,7,"Lighter than a Feather"
-tpod,7,"A Goatpen"
-tsr,7,"Playing With Fire"
-wh,7,"The Streets of Caemlyn"
-acos,8,"The Figurehead"
-amol,8,"That Smoldering City"
-cot,8,"Whirlpools of Color"
-kod,8,"Dragons' Eggs"
-loc,8,"The Storm Gathers"
-ns,8,"Shreds of Serenity"
-tdr,8,"Jarra"
-teotw,8,"A Place of Safety"
-tfoh,8,"Over the Border"
-tgh,8,"The Dragon Reborn"
-tgs,8,"Clean Shirts"
-tom,8,"The Seven-Striped Lass"
-tpod,8,"A Simple Country Woman"
-tsr,8,"Hard Heads"
-wh,8,"Sea Folk and Kin"
-acos,9,"A Pair of Silverpike"
-amol,9,"To Die Well"
-cot,9,"Traps"
-kod,9,"A Short Path"
-loc,9,"Plans"
-ns,9,"It Begins"
-tdr,9,"Wolf Dreams"
-teotw,9,"Tellings of the Wheel"
-tfoh,9,"A Signal"
-tgh,9,"Leavetakings"
-tgs,9,"Leaving Malden"
-tom,9,"Blood in the Air"
-tpod,9,"Tangles"
-tsr,9,"Decisions"
-wh,9,"A Cup of Tea"
-acos,10,"Unseen Eyes"
-amol,10,"The Use of Dragons"
-cot,10,"A Blazing Beacon"
-kod,10,"A Village in Shiota"
-loc,10,"A Saying in the Borderlands"
-ns,10,"It Finishes"
-tdr,10,"Secrets"
-teotw,10,"Leavetaking"
-tfoh,10,"Figs and Mice"
-tgh,10,"The Hunt Begins"
-tgs,10,"The Last of the Tabac"
-tom,10,"After the Taint"
-tpod,10,"Changes"
-tsr,10,"The Stone Stands"
-wh,10,"A Plan Succeeds"
-acos,11,"An Oath"
-amol,11,"Just Another Sell-sword"
-cot,11,"Talk of Debts"
-kod,11,"A Hell in Maderin"
-loc,11,"Lessons and Teachers"
-ns,11,"Just Before Dawn"
-tdr,11,"Tar Valon"
-teotw,11,"The Road to Taren Ferry"
-tfoh,11,"The Nine Horse Hitch"
-tgh,11,"Glimmers of the Pattern"
-tgs,11,"The Death of Adrin"
-tom,11,"An Unexpected Letter"
-tpod,11,"Questions and an Oath"
-tsr,11,"What Lies Hidden"
-wh,11,"Ideas of Importance"
-acos,12,"A Morning of Victory"
-amol,12,"A Shard of a Moment"
-cot,12,"A Bargain"
-kod,12,"A Manufactory"
-loc,12,"Questions and Answers"
-ns,12,"Entering Home"
-tdr,12,"The Amyrlin Seat"
-teotw,12,"Across the Taren"
-tfoh,12,"An Old Pipe"
-tgh,12,"Woven in the Pattern"
-tgs,12,"Unexpected Encounters"
-tom,12,"An Empty Ink Bottle"
-tpod,12,"New Alliances"
-tsr,12,"Tanchico or the Tower"
-wh,12,"A Lily in Winter"
-acos,13,"The Bowl of the Winds"
-amol,13,"What Must Be Done"
-cot,13,"High Seats"
-kod,13,"Siege"
-loc,13,"Under the Dust"
-ns,13,"Business in the City"
-tdr,13,"Punishments"
-teotw,13,"Choices"
-tfoh,13,"A Small Room in Sienda"
-tgh,13,"From Stone to Stone"
-tgs,13,"An Offer and a Departure"
-tom,13,"For What Has Been Wrought"
-tpod,13,"Floating Like Snow"
-tsr,13,"Rumors"
-wh,13,"Wonderful News"
-acos,14,"White Plumes"
-amol,14,"Doses of Forkroot"
-cot,14,"What Wise Ones Know"
-kod,14,"Wet Things"
-loc,14,"Dreams and Nightmares"
-ns,14,"Changes"
-tdr,14,"The Bite of the Thorns"
-teotw,14,"The Stag and Lion"
-tfoh,14,"Meetings"
-tgh,14,"Wolfbrother"
-tgs,14,"A Box Opens"
-tom,14,"A Vow"
-tpod,14,"Message from the M'Hael"
-tsr,14,"Customs of Mayene"
-wh,14,"What a Veil Hides"
-acos,15,"Insects"
-amol,15,"Your Neck in a Cord"
-cot,15,"Gathering Darkness"
-kod,15,"A Different Skill"
-loc,15,"A Pile of Sand"
-ns,15,"Into Canluum"
-tdr,15,"The Gray Man"
-teotw,15,"Strangers and Friends"
-tfoh,15,"What Can Be Learned in Dreams"
-tgh,15,"Kinslayer"
-tgs,15,"A Place to Begin"
-tom,15,"Use a Pebble"
-tpod,15,"Stronger Than Written Law"
-tsr,15,"Into the Doorway"
-wh,15,"In Need of a Bellfounder"
-acos,16,"A Touch on the Cheek"
-amol,16,"A Silence Like Screaming"
-cot,16,"The Subject of Negotiations"
-kod,16,"The New Follower"
-loc,16,"Tellings of the Wheel"
-ns,16,"The Deeps"
-tdr,16,"Hunters Three"
-teotw,16,"The Wisdom"
-tfoh,16,"An Unexpected Offer"
-tgh,16,"In the Mirror of Darkness"
-tgs,16,"In the White Tower"
-tom,16,"Shanna'har"
-tpod,16,"Unexpected Absences"
-tsr,16,"Leavetakings"
-wh,16,"An Unexpected Encounter"
-acos,17,"The Triumph of Logic"
-amol,17,"Older, More Weathered"
-cot,17,"Secrets"
-kod,17,"A Bronze Bear"
-loc,17,"The Wheel of a Life"
-ns,17,"An Arrival"
-tdr,17,"The Red Sister"
-teotw,17,"Watchers and Hunters"
-tfoh,17,"Heading West"
-tgh,17,"Choices"
-tgs,17,"Questions of Control"
-tom,17,"Partings, and a Meeting"
-tpod,17,"Out on the Ice"
-tsr,17,"Deceptions"
-wh,17,"Pink Ribbons"
-acos,18,"As the Plow Breaks the Earth"
-amol,18,"To Feel Wasted"
-cot,18,"A Chat with Siuan"
-kod,18,"News for the Dragon"
-loc,18,"A Taste of Solitude"
-ns,18,"A Narrow Passage"
-tdr,18,"Healing"
-teotw,18,"The Caemlyn Road"
-tfoh,18,"A Hound of Darkness"
-tgh,18,"To the White Tower"
-tgs,18,"A Message in Haste"
-tom,18,"The Strength of This Place"
-tpod,18,"A Peculiar Calling"
-tsr,18,"Into the Ways"
-wh,18,"An Offer"
-acos,19,"Diamonds and Stars"
-amol,19,"The Choice of a Patch"
-cot,19,"Surprises"
-kod,19,"Vows"
-loc,19,"Matters of Toh"
-ns,19,"Pond Water"
-tdr,19,"Awakening"
-teotw,19,"Shadow's Waiting"
-tfoh,19,"Memories"
-tgh,19,"Beneath the Dagger"
-tgs,19,"Gambits"
-tom,19,"Talk of Dragons"
-tpod,19,"The Law"
-tsr,19,"The Wavedancer"
-wh,19,"Three Women"
-acos,20,"Patterns Within Patterns"
-amol,20,"Into Thakan'dar"
-cot,20,"In the Night"
-kod,20,"The Golden Crane"
-loc,20,"From the Stedding"
-ns,20,"Breakfast in Manala"
-tdr,20,"Visitations"
-teotw,20,"Dust on the Wind"
-tfoh,20,"Jangai Pass"
-tgh,20,"Saidin"
-tgs,20,"On a Broken Road"
-tom,20,"A Choice"
-tpod,20,"Into Andor"
-tsr,20,"Winds Rising"
-wh,20,"Questions of Treason"
-acos,21,"Swovan Night"
-amol,21,"Not a Mistake to Ignore"
-cot,21,"A Mark"
-kod,21,"Within the Stone"
-loc,21,"To Shadar Logoth"
-ns,21,"Some Tricks of the Power"
-tdr,21,"A World of Dreams"
-teotw,21,"Listen to the Wind"
-tfoh,21,"The Gift of a Blade"
-tgh,21,"The Nine Rings"
-tgs,21,"Embers and Ash"
-tom,21,"An Open Gate"
-tpod,21,"Answering the Summons"
-tsr,21,"Into the Heart"
-wh,21,"A Matter of Property"
-acos,22,"Small Sacrifices"
-amol,22,"The Wyld"
-cot,22,"One Answer"
-kod,22,"To Make an Anchor Weep"
-loc,22,"Heading South"
-ns,22,"Keeping Custom"
-tdr,22,"The Price of the Ring"
-teotw,22,"A Path Chosen"
-tfoh,22,"Birdcalls by Night"
-tgh,22,"Watchers"
-tgs,22,"The Last That Could Be Done"
-tom,22,"The End of a Legend"
-tpod,22,"Gathering Clouds"
-tsr,22,"Out of the Stone"
-wh,22,"Out of Thin Air"
-acos,23,"Next Door to a Weaver"
-amol,23,"At the Edge of Time"
-cot,23,"Ornaments"
-kod,23,"Call to a Sitting"
-loc,23,"To Understand a Message"
-ns,23,"The Evening Star"
-tdr,23,"Sealed"
-teotw,23,"Wolfbrother"
-tfoh,23,""The Fifth, I Give You""
-tgh,23,"The Testing"
-tgs,23,"A Warp in the Air"
-tom,23,"Foxheads"
-tpod,23,"Fog of War, Storm of Battle"
-tsr,23,"Beyond the Stone"
-wh,23,"To Lose the Sun"
-acos,24,"The Kin"
-amol,24,"To Ignore the Omens"
-cot,24,"A Strengthening Storm"
-kod,24,"Honey in the Tea"
-loc,24,"An Embassy"
-ns,24,"Making Use of Invisibility"
-tdr,24,"Scouting and Discoveries"
-teotw,24,"Flight Down the Arinelle"
-tfoh,24,"A Message Sent"
-tgh,24,"New Friends and Old Enemies"
-tgs,24,"A New Commitment"
-tom,24,"To Make a Stand"
-tpod,24,"A Time for Iron"
-tsr,24,"Rhuidean"
-wh,24,"Among the Counsels"
-acos,25,"Mindtrap"
-amol,25,"Quick Fragments"
-cot,25,"When to Wear Jewels"
-kod,25,"Attending Elaida"
-loc,25,"Like Lightning and Rain"
-ns,25,"An Answer"
-tdr,25,"Questions"
-teotw,25,"The Traveling People"
-tfoh,25,"Dreams of Galad"
-tgh,25,"Cairhien"
-tgs,25,"In Darkness"
-tom,25,"Return to Bandar Eban"
-tpod,25,"An Unwelcome Return"
-tsr,25,"The Road to the Spear"
-wh,25,"Bonds"
-acos,26,"The Irrevocable Words"
-amol,26,"Considerations"
-cot,26,"In So Habor"
-kod,26,"As If the World Were Fog"
-loc,26,"Connecting Lines"
-ns,26,"When to Surrender"
-tdr,26,"Behind a Lock"
-teotw,26,"Whitebridge"
-tfoh,26,"Sallie Daera"
-tgh,26,"Discord"
-tgs,26,"A Crack in the Stone"
-tom,26,"Parley"
-tpod,26,"The Extra Bit"
-tsr,26,"The Dedicated"
-wh,26,"Expectation"
-acos,27,"To Be Alone"
-amol,27,"Friendly Fire"
-cot,27,"What Must Be Done"
-kod,27,"A Plain Wooden Box"
-loc,27,"Gifts"
-tdr,27,"Tel'aran'rhiod"
-teotw,27,"Shelter From the Storm"
-tfoh,27,"The Practice of Diffidence"
-tgh,27,"The Shadow in the Night"
-tgs,27,"The Tipsy Gelding"
-tom,27,"A Call to Stand"
-tpod,27,"The Bargain"
-tsr,27,"Within the Ways"
-wh,27,"To Surprise Queens and Kings"
-acos,28,"Bread and Cheese"
-amol,28,"Too Many Men"
-cot,28,"A Cluster of Rosebuds"
-kod,28,"In Malden"
-loc,28,"Letters"
-tdr,28,"A Way Out"
-teotw,28,"Footprints in Air"
-tfoh,28,"Trapped"
-tgh,28,"A New Thread in the Pattern"
-tgs,28,"Night in Hinderstap"
-tom,28,"Oddities"
-tpod,28,"Crimsonthorn"
-tsr,28,"To the Tower of Ghenjei"
-wh,28,"News in a Cloth Sack"
-acos,29,"The Festival of Birds"
-amol,29,"The Loss of a Hill"
-cot,29,"Something Flickers"
-kod,29,"The Last Knot"
-loc,29,"Fire and Spirit"
-tdr,29,"A Trap to Spring"
-teotw,29,"Eyes Without Pity"
-tfoh,29,"Memories of Saldaea"
-tgh,29,"Seanchan"
-tgs,29,"Into Bandar Eban"
-tom,29,"A Terrible Feeling"
-tpod,29,"A Cup of Sleep"
-tsr,29,"Homecoming"
-wh,29,"Another Plan"
-acos,30,"The First Cup"
-amol,30,"The Way of the Predator"
-cot,30,"What the Oath Rod Can Do"
-kod,30,"Outside the Gates"
-loc,30,"To Heal Again"
-tdr,30,"The First Toss"
-teotw,30,"Children of Shadow"
-tfoh,30,"A Wager"
-tgh,30,"Daes Dae'mar"
-tgs,30,"Old Advice"
-tom,30,"Men Dream Here"
-tpod,30,"Beginnings"
-tsr,30,"Beyond the Oak"
-wh,30,"Cold, Fat Raindrops"
-acos,31,"Mashiara"
-amol,31,"A Tempest of Water"
-kod,31,"The House on Full Moon Street"
-loc,31,"Red Wax"
-tdr,31,"The Woman of Tanchico"
-teotw,31,"Play for Your Supper"
-tfoh,31,"The Far Snows"
-tgh,31,"On the Scent"
-tgs,31,"A Promise to Lews Therin"
-tom,31,"Into the Void"
-tpod,31,"After"
-tsr,31,"Assurances"
-wh,31,"What the Aelfinn Said"
-acos,32,"Sealed to the Flame"
-amol,32,"A Yellow Flower-Spider"
-kod,32,"To Keep the Bargain"
-loc,32,"Summoned in Haste"
-tdr,32,"The First Ship"
-teotw,32,"Four Kings in Shadow"
-tfoh,32,"A Short Spear"
-tgh,32,"Dangerous Words"
-tgs,32,"Rivers of Shadow"
-tom,32,"A Storm of Light"
-tsr,32,"Questions to Be Asked"
-wh,32,"A Portion of Wisdom"
-acos,33,"A Bath"
-amol,33,"The Prince's Tabac"
-kod,33,"Nine Out of Ten"
-loc,33,"Courage to Strengthen"
-tdr,33,"Within the Weave"
-teotw,33,"The Dark Waits"
-tfoh,33,"A Question of Crimson"
-tgh,33,"A Message from the Dark"
-tgs,33,"A Conversation with the Dragon"
-tom,33,"A Good Soup"
-tsr,33,"A New Weave in the Pattern"
-wh,33,"Blue Carp Street"
-acos,34,"Ta'veren"
-amol,34,"Drifting"
-kod,34,"A Cup of Kaf"
-loc,34,"Journey to Salidar"
-tdr,34,"A Different Dance"
-teotw,34,"The Last Village"
-tfoh,34,"A Silver Arrow"
-tgh,34,"The Wheel Weaves"
-tgs,34,"Legends"
-tom,34,"Judgment"
-tsr,34,"He Who Comes With the Dawn"
-wh,34,"The Hummingbird's Secret"
-acos,35,"Into the Woods"
-amol,35,"A Practiced Grin"
-kod,35,"The Importance of Dyelin"
-loc,35,"In the Hall of the Sitters"
-tdr,35,"The Falcon"
-teotw,35,"Caemlyn"
-tfoh,35,"Ripped Away"
-tgh,35,"Stedding Tsofu"
-tgs,35,"A Halo of Blackness"
-tom,35,"The Right Thing"
-tsr,35,"Sharp Lessons"
-wh,35,"With the Choedan Kal"
-acos,36,"Blades"
-amol,36,"Unchangeable Things"
-kod,36,"Under an Oak"
-loc,36,"The Amyrlin Is Raised"
-tdr,36,"Daughter of the Night"
-teotw,36,"Web of the Pattern"
-tfoh,36,"A New Name"
-tgh,36,"Among the Elders"
-tgs,36,"The Death of Tuon"
-tom,36,"An Invitation"
-tsr,36,"Misdirections"
-acos,37,"A Note from the Palace"
-amol,37,"The Last Battle"
-kod,37,"Prince of the Ravens"
-loc,37,"When Battle Begins"
-tdr,37,"Fires in Cairhien"
-teotw,37,"The Long Chase"
-tfoh,37,"Performances in Samara"
-tgh,37,"What Might Be"
-tgs,37,"A Force of Light"
-tom,37,"Darkness in the Tower"
-tsr,37,"Imre Stand"
-acos,38,"Six Stories"
-amol,38,"The Place That Was Not"
-loc,38,"A Sudden Chill"
-tdr,38,"Maidens of the Spear"
-teotw,38,"Rescue"
-tfoh,38,"An Old Acquaintance"
-tgh,38,"Practice"
-tgs,38,"News in Tel'aran'rhiod"
-tom,38,"Wounds"
-tsr,38,"Hidden Faces"
-acos,39,"Promises to Keep"
-amol,39,"Those Who Fight"
-loc,39,"Possibilities"
-tdr,39,"Threads in the Pattern"
-teotw,39,"Weaving of the Web"
-tfoh,39,"Encounters in Samara"
-tgh,39,"Flight from the White Tower"
-tgs,39,"A Visit from Verin Sedai"
-tom,39,"In the Three-fold Land"
-tsr,39,"A Cup of Wine"
-acos,40,"Spears"
-amol,40,"Wolfbrother"
-loc,40,"Unexpected Laughter"
-tdr,40,"A Hero in the Night"
-teotw,40,"The Web Tightens"
-tfoh,40,"The Wheel Weaves"
-tgh,40,"Damane"
-tgs,40,"The Tower Shakes"
-tom,40,"A Making"
-tsr,40,"Hunter of Trollocs"
-acos,41,"A Crown of Swords"
-amol,41,"A Smile"
-loc,41,"A Threat"
-tdr,41,"A Hunter's Oath"
-teotw,41,"Old Friends and New Threats"
-tfoh,41,"The Craft of Kin Tovere"
-tgh,41,"Disagreements"
-tgs,41,"A Fount of Power"
-tom,41,"An Unexpected Ally"
-tsr,41,"Among the Tuatha'an"
-amol,42,"Impossibilities"
-loc,42,"The Black Tower"
-tdr,42,"Easing the Badger"
-teotw,42,"Remembrance of Dreams"
-tfoh,42,"Before the Arrow"
-tgh,42,"Falme"
-tgs,42,"Before the Stone of Tear"
-tom,42,"Stronger than Blood"
-tsr,42,"A Missing Leaf"
-amol,43,"A Field of Glass"
-loc,43,"The Crown of Roses"
-tdr,43,"Shadowbrothers"
-teotw,43,"Decisions and Apparitions"
-tfoh,43,"This Place, This Day"
-tgh,43,"A Plan"
-tgs,43,"Sealed to the Flame"
-tom,43,"Some Tea"
-tsr,43,"Care for the Living"
-amol,44,"Two Craftsmen"
-loc,44,"The Color of Trust"
-tdr,44,"Hunted"
-teotw,44,"The Dark Along the Ways"
-tfoh,44,"The Lesser Sadness"
-tgh,44,"Five Will Ride Forth"
-tgs,44,"Scents Unknown"
-tom,44,"A Backhanded Request"
-tsr,44,"The Breaking Storm"
-amol,45,"Tendrils of Mist"
-loc,45,"A Bitter Thought"
-tdr,45,"Caemlyn"
-teotw,45,"What Follows in Shadow"
-tfoh,45,"After the Storm"
-tgh,45,"Blademaster"
-tgs,45,"The Tower Stands"
-tom,45,"A Reunion"
-tsr,45,"The Tinker's Sword"
-amol,46,"To Awaken"
-loc,46,"Beyond the Gate"
-tdr,46,"A Message Out of the Shadow"
-teotw,46,"Fal Dara"
-tfoh,46,"Other Battles, Other Weapons"
-tgh,46,"To Come Out of the Shadow"
-tgs,46,"To Be Forged Again"
-tom,46,"Working Leather"
-tsr,46,"Veils"
-amol,47,"Watching the Flow Writhe"
-loc,47,"The Wandering Woman"
-tdr,47,"To Race the Shadow"
-teotw,47,"More Tales of the Wheel"
-tfoh,47,"The Price of a Ship"
-tgh,47,"The Grave Is No Bar to My Call"
-tgs,47,"The One He Lost"
-tom,47,"A Teaching Chamber"
-tsr,47,"The Truth of a Viewing"
-amol,48,"A Brilliant Lance"
-loc,48,"Leaning on the Knife"
-tdr,48,"Following the Craft"
-teotw,48,"The Blight"
-tfoh,48,"Leavetakings"
-tgh,48,"First Claiming"
-tgs,48,"Reading the Commentary"
-tom,48,"Near Avendesora"
-tsr,48,"An Offer Refused"
-amol,49,"Light and Shadow"
-loc,49,"The Mirror of Mists"
-tdr,49,"A Storm in Tear"
-teotw,49,"The Dark One Stirs"
-tfoh,49,"To Boannda"
-tgh,49,"What Was Meant to Be"
-tgs,49,"Just Another Man"
-tom,49,"Court of the Sun"
-tsr,49,"Cold Rocks Hold"
-loc,50,"Thorns"
-tdr,50,"The Hammer"
-teotw,50,"Meetings at the Eye"
-tfoh,50,"To Teach, and Learn"
-tgh,50,"After"
-tgs,50,"Veins of Gold"
-tom,50,"Choosing Enemies"
-tsr,50,"Traps"
-loc,51,"The Taking"
-tdr,51,"Bait for the Net"
-teotw,51,"Against the Shadow"
-tfoh,51,"News Comes to Cairhien"
-tom,51,"A Testing"
-tsr,51,"Revelations in Tanchico"
-loc,52,"Weaves of the Power"
-tdr,52,"In Search of a Remedy"
-teotw,52,"There Is Neither Beginning Nor End"
-tfoh,52,"Choices"
-tom,52,"Boots"
-tsr,52,"Need"
-loc,53,"The Feast of Lights"
-tdr,53,"A Flow of the Spirit"
-teotw,53,"The Wheel Turns"
-tfoh,53,"Fading Words"
-tom,53,"Gateways"
-tsr,53,"The Price of a Departure"
-loc,54,"The Sending"
-tdr,54,"Into the Stone"
-tfoh,54,"To Caemlyn"
-tom,54,"The Light of the World"
-tsr,54,"Into the Palace"
-loc,55,"Dumai's Wells"
-tdr,55,"What Is Written in Prophecy"
-tfoh,55,"The Threads Burn"
-tom,55,"The One Left Behind"
-tsr,55,"Into the Deep"
-tdr,56,"People of the Dragon"
-tfoh,56,"Glowing Embers"
-tom,56,"Something Wrong"
-tsr,56,"Goldeneyes"
-tom,57,"A Rabbit for Supper"
-tsr,57,"A Breaking in the Three-fold Land"
-tsr,58,"The Traps of Rhuidean"
-amol,99,"EPILOGUE: To See the Answer"
-cot,99,"EPILOGUE: An Answer"
-kod,99,"EPILOGUE: Remember the Old Saying"
-loc,99,"EPILOGUE: The Answer"
-ns,99,"EPILOGUE"
-tgs,99,"EPILOGUE: Bathed in Light"
-tom,99,"EPILOGUE: And After"
+book|chron|title
+teotw|-1|EARLIER: Ravens
+acos|0|PROLOGUE: Lightnings
+amol|0|PROLOGUE: By Grace and Banners Fallen
+cot|0|PROLOGUE: Glimmers of the Pattern
+kod|0|PROLOGUE: Embers Falling on Dry Grass
+loc|0|PROLOGUE: The First Message
+tdr|0|PROLOGUE: Fortress of the Light
+teotw|0|PROLOGUE: Dragonmount
+tfoh|0|PROLOGUE: The First Sparks Fall
+tgh|0|PROLOGUE: In The Shadow
+tgs|0|PROLOGUE: What the Storm Means
+tom|0|PROLOGUE: Distinctions
+tpod|0|PROLOGUE: Deceptive Appearances
+wh|0|PROLOGUE: Snow
+acos|1|High Chasaline
+amol|1|Eastward the Wind Blew
+cot|1|Time to Be Gone
+kod|1|When Last Sounds
+loc|1|Lion on the Hill
+ns|1|The Hook
+tdr|1|Waiting
+teotw|1|An Empty Road
+tfoh|1|Fanning the Sparks
+tgh|1|The Flame of Tar Valon
+tgs|1|Tears from Steel
+tom|1|Apples First
+tpod|1|To Keep the Bargain
+tsr|1|Seeds of Shadow
+wh|1|Leaving the Prophet
+acos|2|The Butcher's Yard
+amol|2|The Choice of an Ajah
+cot|2|Two Captains
+kod|2|The Dark One's Touch
+loc|2|A New Arrival
+ns|2|A Wish Fulfilled
+tdr|2|Saidin
+teotw|2|Strangers
+tfoh|2|Rhuidean
+tgh|2|The Welcome
+tgs|2|The Nature of Pain
+tom|2|Questions of Leadership
+tpod|2|Unweaving
+tsr|2|Whirlpools in the Pattern
+wh|2|Taken
+acos|3|Hill of the Golden Dawn
+amol|3|A Dangerous Place
+cot|3|A Fan of Colors
+kod|3|At the Gardens
+loc|3|A Woman's Eyes
+ns|3|Practice
+tdr|3|News from the Plain
+teotw|3|The Peddler
+tfoh|3|Pale Shadows
+tgh|3|Friends and Enemies
+tgs|3|The Ways of Honor
+tom|3|The Amyrlin's Anger
+tpod|3|A Pleasant Ride
+tsr|3|Reflection
+wh|3|Customs
+acos|4|Into Cairhien
+amol|4|Advantages to a Bond
+cot|4|The Tale of a Doll
+kod|4|A Deal
+loc|4|A Sense of Humor
+ns|4|Leaving the Tower
+tdr|4|Shadows Sleeping
+teotw|4|The Gleeman
+tfoh|4|Twilight
+tgh|4|Summoned
+tgs|4|Nightfall
+tom|4|The Pattern Groans
+tpod|4|A Quiet Place
+tsr|4|Strings
+wh|4|Offers
+acos|5|A Broken Crown
+amol|5|To Require a Boon
+cot|5|The Forging of a Hammer
+kod|5|Something . . . Strange
+loc|5|A Different Dance
+ns|5|The Human Heart
+tdr|5|Nightmares Walking
+teotw|5|Winternight
+tfoh|5|Among the Wise Ones
+tgh|5|The Shadow in Shienar
+tgs|5|A Tale of Blood
+tom|5|Writings
+tpod|5|The Breaking Storm
+tsr|5|Questioners
+wh|5|Flags
+acos|6|Old Fear, and New Fear
+amol|6|A Knack
+cot|6|The Scent of a Dream
+kod|6|A Stave and a Razor
+loc|6|Threads Woven of Shadow
+ns|6|Surprises
+tdr|6|The Hunt Begins
+teotw|6|The Westwood
+tfoh|6|Gateways
+tgh|6|Dark Prophecy
+tgs|6|When Iron Melts
+tom|6|Questioning Intentions
+tpod|6|Threads
+tsr|6|Doorways
+wh|6|The Scent of Madness
+acos|7|Pitfalls and Tripwires
+amol|7|Into the Thick of It
+cot|7|Blacksmith's Puzzle
+kod|7|A Cold Medallion
+loc|7|A Matter of Thought
+ns|7|The Itch
+tdr|7|The Way Out of the Mountains
+teotw|7|Out of the Woods
+tfoh|7|A Departure
+tgh|7|Blood Calls Blood
+tgs|7|The Plan for Arad Doman
+tom|7|Lighter than a Feather
+tpod|7|A Goatpen
+tsr|7|Playing With Fire
+wh|7|The Streets of Caemlyn
+acos|8|The Figurehead
+amol|8|That Smoldering City
+cot|8|Whirlpools of Color
+kod|8|Dragons' Eggs
+loc|8|The Storm Gathers
+ns|8|Shreds of Serenity
+tdr|8|Jarra
+teotw|8|A Place of Safety
+tfoh|8|Over the Border
+tgh|8|The Dragon Reborn
+tgs|8|Clean Shirts
+tom|8|The Seven-Striped Lass
+tpod|8|A Simple Country Woman
+tsr|8|Hard Heads
+wh|8|Sea Folk and Kin
+acos|9|A Pair of Silverpike
+amol|9|To Die Well
+cot|9|Traps
+kod|9|A Short Path
+loc|9|Plans
+ns|9|It Begins
+tdr|9|Wolf Dreams
+teotw|9|Tellings of the Wheel
+tfoh|9|A Signal
+tgh|9|Leavetakings
+tgs|9|Leaving Malden
+tom|9|Blood in the Air
+tpod|9|Tangles
+tsr|9|Decisions
+wh|9|A Cup of Tea
+acos|10|Unseen Eyes
+amol|10|The Use of Dragons
+cot|10|A Blazing Beacon
+kod|10|A Village in Shiota
+loc|10|A Saying in the Borderlands
+ns|10|It Finishes
+tdr|10|Secrets
+teotw|10|Leavetaking
+tfoh|10|Figs and Mice
+tgh|10|The Hunt Begins
+tgs|10|The Last of the Tabac
+tom|10|After the Taint
+tpod|10|Changes
+tsr|10|The Stone Stands
+wh|10|A Plan Succeeds
+acos|11|An Oath
+amol|11|Just Another Sell-sword
+cot|11|Talk of Debts
+kod|11|A Hell in Maderin
+loc|11|Lessons and Teachers
+ns|11|Just Before Dawn
+tdr|11|Tar Valon
+teotw|11|The Road to Taren Ferry
+tfoh|11|The Nine Horse Hitch
+tgh|11|Glimmers of the Pattern
+tgs|11|The Death of Adrin
+tom|11|An Unexpected Letter
+tpod|11|Questions and an Oath
+tsr|11|What Lies Hidden
+wh|11|Ideas of Importance
+acos|12|A Morning of Victory
+amol|12|A Shard of a Moment
+cot|12|A Bargain
+kod|12|A Manufactory
+loc|12|Questions and Answers
+ns|12|Entering Home
+tdr|12|The Amyrlin Seat
+teotw|12|Across the Taren
+tfoh|12|An Old Pipe
+tgh|12|Woven in the Pattern
+tgs|12|Unexpected Encounters
+tom|12|An Empty Ink Bottle
+tpod|12|New Alliances
+tsr|12|Tanchico or the Tower
+wh|12|A Lily in Winter
+acos|13|The Bowl of the Winds
+amol|13|What Must Be Done
+cot|13|High Seats
+kod|13|Siege
+loc|13|Under the Dust
+ns|13|Business in the City
+tdr|13|Punishments
+teotw|13|Choices
+tfoh|13|A Small Room in Sienda
+tgh|13|From Stone to Stone
+tgs|13|An Offer and a Departure
+tom|13|For What Has Been Wrought
+tpod|13|Floating Like Snow
+tsr|13|Rumors
+wh|13|Wonderful News
+acos|14|White Plumes
+amol|14|Doses of Forkroot
+cot|14|What Wise Ones Know
+kod|14|Wet Things
+loc|14|Dreams and Nightmares
+ns|14|Changes
+tdr|14|The Bite of the Thorns
+teotw|14|The Stag and Lion
+tfoh|14|Meetings
+tgh|14|Wolfbrother
+tgs|14|A Box Opens
+tom|14|A Vow
+tpod|14|Message from the M'Hael
+tsr|14|Customs of Mayene
+wh|14|What a Veil Hides
+acos|15|Insects
+amol|15|Your Neck in a Cord
+cot|15|Gathering Darkness
+kod|15|A Different Skill
+loc|15|A Pile of Sand
+ns|15|Into Canluum
+tdr|15|The Gray Man
+teotw|15|Strangers and Friends
+tfoh|15|What Can Be Learned in Dreams
+tgh|15|Kinslayer
+tgs|15|A Place to Begin
+tom|15|Use a Pebble
+tpod|15|Stronger Than Written Law
+tsr|15|Into the Doorway
+wh|15|In Need of a Bellfounder
+acos|16|A Touch on the Cheek
+amol|16|A Silence Like Screaming
+cot|16|The Subject of Negotiations
+kod|16|The New Follower
+loc|16|Tellings of the Wheel
+ns|16|The Deeps
+tdr|16|Hunters Three
+teotw|16|The Wisdom
+tfoh|16|An Unexpected Offer
+tgh|16|In the Mirror of Darkness
+tgs|16|In the White Tower
+tom|16|Shanna'har
+tpod|16|Unexpected Absences
+tsr|16|Leavetakings
+wh|16|An Unexpected Encounter
+acos|17|The Triumph of Logic
+amol|17|Older, More Weathered
+cot|17|Secrets
+kod|17|A Bronze Bear
+loc|17|The Wheel of a Life
+ns|17|An Arrival
+tdr|17|The Red Sister
+teotw|17|Watchers and Hunters
+tfoh|17|Heading West
+tgh|17|Choices
+tgs|17|Questions of Control
+tom|17|Partings, and a Meeting
+tpod|17|Out on the Ice
+tsr|17|Deceptions
+wh|17|Pink Ribbons
+acos|18|As the Plow Breaks the Earth
+amol|18|To Feel Wasted
+cot|18|A Chat with Siuan
+kod|18|News for the Dragon
+loc|18|A Taste of Solitude
+ns|18|A Narrow Passage
+tdr|18|Healing
+teotw|18|The Caemlyn Road
+tfoh|18|A Hound of Darkness
+tgh|18|To the White Tower
+tgs|18|A Message in Haste
+tom|18|The Strength of This Place
+tpod|18|A Peculiar Calling
+tsr|18|Into the Ways
+wh|18|An Offer
+acos|19|Diamonds and Stars
+amol|19|The Choice of a Patch
+cot|19|Surprises
+kod|19|Vows
+loc|19|Matters of Toh
+ns|19|Pond Water
+tdr|19|Awakening
+teotw|19|Shadow's Waiting
+tfoh|19|Memories
+tgh|19|Beneath the Dagger
+tgs|19|Gambits
+tom|19|Talk of Dragons
+tpod|19|The Law
+tsr|19|The Wavedancer
+wh|19|Three Women
+acos|20|Patterns Within Patterns
+amol|20|Into Thakan'dar
+cot|20|In the Night
+kod|20|The Golden Crane
+loc|20|From the Stedding
+ns|20|Breakfast in Manala
+tdr|20|Visitations
+teotw|20|Dust on the Wind
+tfoh|20|Jangai Pass
+tgh|20|Saidin
+tgs|20|On a Broken Road
+tom|20|A Choice
+tpod|20|Into Andor
+tsr|20|Winds Rising
+wh|20|Questions of Treason
+acos|21|Swovan Night
+amol|21|Not a Mistake to Ignore
+cot|21|A Mark
+kod|21|Within the Stone
+loc|21|To Shadar Logoth
+ns|21|Some Tricks of the Power
+tdr|21|A World of Dreams
+teotw|21|Listen to the Wind
+tfoh|21|The Gift of a Blade
+tgh|21|The Nine Rings
+tgs|21|Embers and Ash
+tom|21|An Open Gate
+tpod|21|Answering the Summons
+tsr|21|Into the Heart
+wh|21|A Matter of Property
+acos|22|Small Sacrifices
+amol|22|The Wyld
+cot|22|One Answer
+kod|22|To Make an Anchor Weep
+loc|22|Heading South
+ns|22|Keeping Custom
+tdr|22|The Price of the Ring
+teotw|22|A Path Chosen
+tfoh|22|Birdcalls by Night
+tgh|22|Watchers
+tgs|22|The Last That Could Be Done
+tom|22|The End of a Legend
+tpod|22|Gathering Clouds
+tsr|22|Out of the Stone
+wh|22|Out of Thin Air
+acos|23|Next Door to a Weaver
+amol|23|At the Edge of Time
+cot|23|Ornaments
+kod|23|Call to a Sitting
+loc|23|To Understand a Message
+ns|23|The Evening Star
+tdr|23|Sealed
+teotw|23|Wolfbrother
+tfoh|23|"The Fifth, I Give You"
+tgh|23|The Testing
+tgs|23|A Warp in the Air
+tom|23|Foxheads
+tpod|23|Fog of War, Storm of Battle
+tsr|23|Beyond the Stone
+wh|23|To Lose the Sun
+acos|24|The Kin
+amol|24|To Ignore the Omens
+cot|24|A Strengthening Storm
+kod|24|Honey in the Tea
+loc|24|An Embassy
+ns|24|Making Use of Invisibility
+tdr|24|Scouting and Discoveries
+teotw|24|Flight Down the Arinelle
+tfoh|24|A Message Sent
+tgh|24|New Friends and Old Enemies
+tgs|24|A New Commitment
+tom|24|To Make a Stand
+tpod|24|A Time for Iron
+tsr|24|Rhuidean
+wh|24|Among the Counsels
+acos|25|Mindtrap
+amol|25|Quick Fragments
+cot|25|When to Wear Jewels
+kod|25|Attending Elaida
+loc|25|Like Lightning and Rain
+ns|25|An Answer
+tdr|25|Questions
+teotw|25|The Traveling People
+tfoh|25|Dreams of Galad
+tgh|25|Cairhien
+tgs|25|In Darkness
+tom|25|Return to Bandar Eban
+tpod|25|An Unwelcome Return
+tsr|25|The Road to the Spear
+wh|25|Bonds
+acos|26|The Irrevocable Words
+amol|26|Considerations
+cot|26|In So Habor
+kod|26|As If the World Were Fog
+loc|26|Connecting Lines
+ns|26|When to Surrender
+tdr|26|Behind a Lock
+teotw|26|Whitebridge
+tfoh|26|Sallie Daera
+tgh|26|Discord
+tgs|26|A Crack in the Stone
+tom|26|Parley
+tpod|26|The Extra Bit
+tsr|26|The Dedicated
+wh|26|Expectation
+acos|27|To Be Alone
+amol|27|Friendly Fire
+cot|27|What Must Be Done
+kod|27|A Plain Wooden Box
+loc|27|Gifts
+tdr|27|Tel'aran'rhiod
+teotw|27|Shelter From the Storm
+tfoh|27|The Practice of Diffidence
+tgh|27|The Shadow in the Night
+tgs|27|The Tipsy Gelding
+tom|27|A Call to Stand
+tpod|27|The Bargain
+tsr|27|Within the Ways
+wh|27|To Surprise Queens and Kings
+acos|28|Bread and Cheese
+amol|28|Too Many Men
+cot|28|A Cluster of Rosebuds
+kod|28|In Malden
+loc|28|Letters
+tdr|28|A Way Out
+teotw|28|Footprints in Air
+tfoh|28|Trapped
+tgh|28|A New Thread in the Pattern
+tgs|28|Night in Hinderstap
+tom|28|Oddities
+tpod|28|Crimsonthorn
+tsr|28|To the Tower of Ghenjei
+wh|28|News in a Cloth Sack
+acos|29|The Festival of Birds
+amol|29|The Loss of a Hill
+cot|29|Something Flickers
+kod|29|The Last Knot
+loc|29|Fire and Spirit
+tdr|29|A Trap to Spring
+teotw|29|Eyes Without Pity
+tfoh|29|Memories of Saldaea
+tgh|29|Seanchan
+tgs|29|Into Bandar Eban
+tom|29|A Terrible Feeling
+tpod|29|A Cup of Sleep
+tsr|29|Homecoming
+wh|29|Another Plan
+acos|30|The First Cup
+amol|30|The Way of the Predator
+cot|30|What the Oath Rod Can Do
+kod|30|Outside the Gates
+loc|30|To Heal Again
+tdr|30|The First Toss
+teotw|30|Children of Shadow
+tfoh|30|A Wager
+tgh|30|Daes Dae'mar
+tgs|30|Old Advice
+tom|30|Men Dream Here
+tpod|30|Beginnings
+tsr|30|Beyond the Oak
+wh|30|Cold, Fat Raindrops
+acos|31|Mashiara
+amol|31|A Tempest of Water
+kod|31|The House on Full Moon Street
+loc|31|Red Wax
+tdr|31|The Woman of Tanchico
+teotw|31|Play for Your Supper
+tfoh|31|The Far Snows
+tgh|31|On the Scent
+tgs|31|A Promise to Lews Therin
+tom|31|Into the Void
+tpod|31|After
+tsr|31|Assurances
+wh|31|What the Aelfinn Said
+acos|32|Sealed to the Flame
+amol|32|A Yellow Flower-Spider
+kod|32|To Keep the Bargain
+loc|32|Summoned in Haste
+tdr|32|The First Ship
+teotw|32|Four Kings in Shadow
+tfoh|32|A Short Spear
+tgh|32|Dangerous Words
+tgs|32|Rivers of Shadow
+tom|32|A Storm of Light
+tsr|32|Questions to Be Asked
+wh|32|A Portion of Wisdom
+acos|33|A Bath
+amol|33|The Prince's Tabac
+kod|33|Nine Out of Ten
+loc|33|Courage to Strengthen
+tdr|33|Within the Weave
+teotw|33|The Dark Waits
+tfoh|33|A Question of Crimson
+tgh|33|A Message from the Dark
+tgs|33|A Conversation with the Dragon
+tom|33|A Good Soup
+tsr|33|A New Weave in the Pattern
+wh|33|Blue Carp Street
+acos|34|Ta'veren
+amol|34|Drifting
+kod|34|A Cup of Kaf
+loc|34|Journey to Salidar
+tdr|34|A Different Dance
+teotw|34|The Last Village
+tfoh|34|A Silver Arrow
+tgh|34|The Wheel Weaves
+tgs|34|Legends
+tom|34|Judgment
+tsr|34|He Who Comes With the Dawn
+wh|34|The Hummingbird's Secret
+acos|35|Into the Woods
+amol|35|A Practiced Grin
+kod|35|The Importance of Dyelin
+loc|35|In the Hall of the Sitters
+tdr|35|The Falcon
+teotw|35|Caemlyn
+tfoh|35|Ripped Away
+tgh|35|Stedding Tsofu
+tgs|35|A Halo of Blackness
+tom|35|The Right Thing
+tsr|35|Sharp Lessons
+wh|35|With the Choedan Kal
+acos|36|Blades
+amol|36|Unchangeable Things
+kod|36|Under an Oak
+loc|36|The Amyrlin Is Raised
+tdr|36|Daughter of the Night
+teotw|36|Web of the Pattern
+tfoh|36|A New Name
+tgh|36|Among the Elders
+tgs|36|The Death of Tuon
+tom|36|An Invitation
+tsr|36|Misdirections
+acos|37|A Note from the Palace
+amol|37|The Last Battle
+kod|37|Prince of the Ravens
+loc|37|When Battle Begins
+tdr|37|Fires in Cairhien
+teotw|37|The Long Chase
+tfoh|37|Performances in Samara
+tgh|37|What Might Be
+tgs|37|A Force of Light
+tom|37|Darkness in the Tower
+tsr|37|Imre Stand
+acos|38|Six Stories
+amol|38|The Place That Was Not
+loc|38|A Sudden Chill
+tdr|38|Maidens of the Spear
+teotw|38|Rescue
+tfoh|38|An Old Acquaintance
+tgh|38|Practice
+tgs|38|News in Tel'aran'rhiod
+tom|38|Wounds
+tsr|38|Hidden Faces
+acos|39|Promises to Keep
+amol|39|Those Who Fight
+loc|39|Possibilities
+tdr|39|Threads in the Pattern
+teotw|39|Weaving of the Web
+tfoh|39|Encounters in Samara
+tgh|39|Flight from the White Tower
+tgs|39|A Visit from Verin Sedai
+tom|39|In the Three-fold Land
+tsr|39|A Cup of Wine
+acos|40|Spears
+amol|40|Wolfbrother
+loc|40|Unexpected Laughter
+tdr|40|A Hero in the Night
+teotw|40|The Web Tightens
+tfoh|40|The Wheel Weaves
+tgh|40|Damane
+tgs|40|The Tower Shakes
+tom|40|A Making
+tsr|40|Hunter of Trollocs
+acos|41|A Crown of Swords
+amol|41|A Smile
+loc|41|A Threat
+tdr|41|A Hunter's Oath
+teotw|41|Old Friends and New Threats
+tfoh|41|The Craft of Kin Tovere
+tgh|41|Disagreements
+tgs|41|A Fount of Power
+tom|41|An Unexpected Ally
+tsr|41|Among the Tuatha'an
+amol|42|Impossibilities
+loc|42|The Black Tower
+tdr|42|Easing the Badger
+teotw|42|Remembrance of Dreams
+tfoh|42|Before the Arrow
+tgh|42|Falme
+tgs|42|Before the Stone of Tear
+tom|42|Stronger than Blood
+tsr|42|A Missing Leaf
+amol|43|A Field of Glass
+loc|43|The Crown of Roses
+tdr|43|Shadowbrothers
+teotw|43|Decisions and Apparitions
+tfoh|43|This Place, This Day
+tgh|43|A Plan
+tgs|43|Sealed to the Flame
+tom|43|Some Tea
+tsr|43|Care for the Living
+amol|44|Two Craftsmen
+loc|44|The Color of Trust
+tdr|44|Hunted
+teotw|44|The Dark Along the Ways
+tfoh|44|The Lesser Sadness
+tgh|44|Five Will Ride Forth
+tgs|44|Scents Unknown
+tom|44|A Backhanded Request
+tsr|44|The Breaking Storm
+amol|45|Tendrils of Mist
+loc|45|A Bitter Thought
+tdr|45|Caemlyn
+teotw|45|What Follows in Shadow
+tfoh|45|After the Storm
+tgh|45|Blademaster
+tgs|45|The Tower Stands
+tom|45|A Reunion
+tsr|45|The Tinker's Sword
+amol|46|To Awaken
+loc|46|Beyond the Gate
+tdr|46|A Message Out of the Shadow
+teotw|46|Fal Dara
+tfoh|46|Other Battles, Other Weapons
+tgh|46|To Come Out of the Shadow
+tgs|46|To Be Forged Again
+tom|46|Working Leather
+tsr|46|Veils
+amol|47|Watching the Flow Writhe
+loc|47|The Wandering Woman
+tdr|47|To Race the Shadow
+teotw|47|More Tales of the Wheel
+tfoh|47|The Price of a Ship
+tgh|47|The Grave Is No Bar to My Call
+tgs|47|The One He Lost
+tom|47|A Teaching Chamber
+tsr|47|The Truth of a Viewing
+amol|48|A Brilliant Lance
+loc|48|Leaning on the Knife
+tdr|48|Following the Craft
+teotw|48|The Blight
+tfoh|48|Leavetakings
+tgh|48|First Claiming
+tgs|48|Reading the Commentary
+tom|48|Near Avendesora
+tsr|48|An Offer Refused
+amol|49|Light and Shadow
+loc|49|The Mirror of Mists
+tdr|49|A Storm in Tear
+teotw|49|The Dark One Stirs
+tfoh|49|To Boannda
+tgh|49|What Was Meant to Be
+tgs|49|Just Another Man
+tom|49|Court of the Sun
+tsr|49|Cold Rocks Hold
+loc|50|Thorns
+tdr|50|The Hammer
+teotw|50|Meetings at the Eye
+tfoh|50|To Teach, and Learn
+tgh|50|After
+tgs|50|Veins of Gold
+tom|50|Choosing Enemies
+tsr|50|Traps
+loc|51|The Taking
+tdr|51|Bait for the Net
+teotw|51|Against the Shadow
+tfoh|51|News Comes to Cairhien
+tom|51|A Testing
+tsr|51|Revelations in Tanchico
+loc|52|Weaves of the Power
+tdr|52|In Search of a Remedy
+teotw|52|There Is Neither Beginning Nor End
+tfoh|52|Choices
+tom|52|Boots
+tsr|52|Need
+loc|53|The Feast of Lights
+tdr|53|A Flow of the Spirit
+teotw|53|The Wheel Turns
+tfoh|53|Fading Words
+tom|53|Gateways
+tsr|53|The Price of a Departure
+loc|54|The Sending
+tdr|54|Into the Stone
+tfoh|54|To Caemlyn
+tom|54|The Light of the World
+tsr|54|Into the Palace
+loc|55|Dumai's Wells
+tdr|55|What Is Written in Prophecy
+tfoh|55|The Threads Burn
+tom|55|The One Left Behind
+tsr|55|Into the Deep
+tdr|56|People of the Dragon
+tfoh|56|Glowing Embers
+tom|56|Something Wrong
+tsr|56|Goldeneyes
+tom|57|A Rabbit for Supper
+tsr|57|A Breaking in the Three-fold Land
+tsr|58|The Traps of Rhuidean
+amol|99|EPILOGUE: To See the Answer
+cot|99|EPILOGUE: An Answer
+kod|99|EPILOGUE: Remember the Old Saying
+loc|99|EPILOGUE: The Answer
+ns|99|EPILOGUE
+tgs|99|EPILOGUE: Bathed in Light
+tom|99|EPILOGUE: And After

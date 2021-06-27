@@ -1,16 +1,16 @@
-chron,title,date,abbrev,key,path
-0,New Spring,2004-01-06,NS,ns,NewSpring
-1,The Eye of the World,1990-01-15,TEotW,teotw,TheEyeOfTheWorld
-2,The Great Hunt,1990-11-15,TGH,tgh,TheGreatHunt
-3,The Dragon Reborn,1991-10-15,TDR,tdr,TheDragonReborn
-4,The Shadow Rising,1992-09-15,TSR,tsr,TheShadowRising
-5,The Fires of Heaven,1993-10-15,TFoH,tfoh,TheFiresOfHeaven
-6,Lord of Chaos,1994-10-15,LoC,loc,LordOfChaos
-7,A Crown of Swords,1996-05-15,ACoS,acos,ACrownOfSwords
-8,The Path of Daggers,1998-10-20,TPoD,tpod,ThePathOfDaggers
-9,Winter's Heart,2000-11-07,WH,wh,WintersHeart
-10,Crossroads of Twilight,2003-01-07,CoT,cot,CrossroadsOfTwilight
-11,Knife of Dreams,2005-10-11,KoD,kod,KnifeOfDreams
-12,The Gathering Storm,2009-10-27,TGS,tgs,TheGatheringStorm
-13,Towers of Midnight,2010-11-02,ToM,tom,TowersOfMidnight
-14,A Memory of Light,2013-01-08,AMoL,amol,AMemoryOfLight
+chron|title|date
+0|New Spring|2004-01-06
+1|The Eye of the World|1990-01-15
+2|The Great Hunt|1990-11-15
+3|The Dragon Reborn|1991-10-15
+4|The Shadow Rising|1992-09-15
+5|The Fires of Heaven|1993-10-15
+6|Lord of Chaos|1994-10-15
+7|A Crown of Swords|1996-05-15
+8|The Path of Daggers|1998-10-20
+9|Winter's Heart|2000-11-07
+10|Crossroads of Twilight|2003-01-07
+11|Knife of Dreams|2005-10-11
+12|The Gathering Storm|2009-10-27
+13|Towers of Midnight|2010-11-02
+14|A Memory of Light|2013-01-08
