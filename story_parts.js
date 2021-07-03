@@ -4,7 +4,8 @@ const fs = require('fs');
 const assert = require('assert');
 
 function getWords(s) {
-    return s.replace(/[^a-z ]+/ig, "")
+    return s.replace(/'/g, "")
+        .replace(/[^a-z]+/ig, " ")
         .split(" ")
         .map(w => w.trim())
         .filter(w => w);
