@@ -1,0 +1,23 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX : <http://wot.barneyb.com/wot/>
+SELECT
+(COALESCE(?slbl, ?s) as ?sn)
+(COALESCE(?elbl, ?e) as ?en)
+(COALESCE(?plbl, ?p) as ?pn)
+(COALESCE(?olbl, ?o) AS ?on)
+WHERE {
+      BIND ( :RandAlThor as ?s )
+      ?e a :Event .
+      ?e :hasParticipant ?s .
+      ?e ?p ?o .
+      FILTER ( ?p != rdf:type )
+      FILTER ( ?o != ?s )
+      OPTIONAL { ?s rdfs:label ?slbl }
+      OPTIONAL { ?o rdfs:label ?olbl }
+      OPTIONAL { ?e rdfs:label ?elbl }
+      OPTIONAL { ?p rdfs:label ?plbl }
+      }
+ORDER BY ?sn ?en ?pn ?on

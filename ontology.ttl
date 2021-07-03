@@ -26,6 +26,7 @@ dcterms:identifier rdf:type owl:AnnotationProperty ;
 
 ###  http://purl.org/dc/terms/title
 dcterms:title rdf:type owl:AnnotationProperty ;
+              rdfs:subPropertyOf rdfs:label ;
               rdfs:range xsd:string .
 
 
@@ -51,6 +52,7 @@ dcterms:title rdf:type owl:AnnotationProperty ;
 
 ###  http://xmlns.com/foaf/0.1/name
 foaf:name rdf:type owl:AnnotationProperty ;
+          rdfs:subPropertyOf rdfs:label ;
           rdfs:range xsd:string .
 
 
@@ -73,9 +75,33 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
                  rdfs:label "is part of" .
 
 
+###  http://wot.barneyb.com/wot/bondedBy
+:bondedBy rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          owl:inverseOf :hasBonded ;
+          rdfs:label "bonded by" .
+
+
+###  http://wot.barneyb.com/wot/during
+:during rdf:type owl:ObjectProperty ;
+        rdfs:range :Event .
+
+
+###  http://wot.barneyb.com/wot/hasBonded
+:hasBonded rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:label "bonded" .
+
+
 ###  http://wot.barneyb.com/wot/hasLearnedOf
 :hasLearnedOf rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://wot.barneyb.com/wot/hasLocation
+:hasLocation rdf:type owl:ObjectProperty ;
+             rdfs:range :Location ;
+             rdfs:label "has location" .
 
 
 ###  http://wot.barneyb.com/wot/hasPart
@@ -84,11 +110,19 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
          rdfs:label "has part" .
 
 
+###  http://wot.barneyb.com/wot/hasParticipant
+:hasParticipant rdf:type owl:ObjectProperty ;
+                rdfs:range :LivingThing ;
+                rdfs:label "has participant" .
+
+
 ###  http://wot.barneyb.com/wot/reincarnatedAs
 :reincarnatedAs rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
                 owl:inverseOf :reincarnationOf ;
                 rdf:type owl:TransitiveProperty ;
+                rdfs:domain :LivingThing ;
+                rdfs:range :LivingThing ;
                 rdfs:label "reincarnated as" .
 
 
@@ -147,6 +181,10 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
 ###  http://wot.barneyb.com/wot/Drakhar
 :Drakhar rdf:type owl:Class ;
          rdfs:subClassOf :Shadowspawn .
+
+
+###  http://wot.barneyb.com/wot/Event
+:Event rdf:type owl:Class .
 
 
 ###  http://wot.barneyb.com/wot/Feature
@@ -289,9 +327,29 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
       rdfs:subClassOf :Animal .
 
 
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement
+rdf:Statement rdf:type owl:Class .
+
+
 #################################################################
 #    Individuals
 #################################################################
+
+###  http://wot.barneyb.com/wot/Alanna
+:Alanna rdf:type owl:NamedIndividual ,
+                 :Human ;
+        rdfs:label "Alanna Mosvani" .
+
+
+###  http://wot.barneyb.com/wot/AlannaBondsRand
+:AlannaBondsRand rdf:type owl:NamedIndividual ,
+                          :Event ;
+                 :hasParticipant :Alanna ,
+                                 :RandAlThor ,
+                                 :Verin ;
+                 :storyLocation :TheWheelTurns ;
+                 rdfs:label "Alanna bonds Rand" .
+
 
 ###  http://wot.barneyb.com/wot/AnEmptyRoad
 :AnEmptyRoad rdf:type owl:NamedIndividual ,
@@ -308,6 +366,9 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
                    rdfs:label "Lews Therin Telamon" .
 
 
+###  http://wot.barneyb.com/wot/Myrddraal
+:Myrddraal rdf:type owl:NamedIndividual .
+
 
 ###  http://wot.barneyb.com/wot/PrologueDragonmount
 :PrologueDragonmount rdf:type owl:NamedIndividual ,
@@ -321,7 +382,10 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
 ###  http://wot.barneyb.com/wot/RandAlThor
 :RandAlThor rdf:type owl:NamedIndividual ,
                      :Human ;
-            rdfs:comment "A young man of The Two Rivers" ;
+            :hasLearnedOf :Myrddraal ;
+            :reincarnationOf :LewsTherinTelamon ;
+            rdfs:comment "A young man of The Two Rivers" ,
+                         "Rand's Adopted!" ;
             rdfs:label "Rand al'Thor" .
 
 [ rdf:type owl:Axiom ;
@@ -339,6 +403,13 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
    :storyLocation :TheWheelTurns
  ] .
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :RandAlThor ;
+   owl:annotatedProperty rdfs:comment ;
+   owl:annotatedTarget "Rand's Adopted!" ;
+   :storyLocation :TheWestwood
+ ] .
+
 
 ###  http://wot.barneyb.com/wot/TheEyeOfTheWorld
 :TheEyeOfTheWorld rdf:type owl:NamedIndividual ,
@@ -350,6 +421,15 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
                   rdfs:label "The Eye of the World" .
 
 
+###  http://wot.barneyb.com/wot/TheWestwood
+:TheWestwood rdf:type owl:NamedIndividual ,
+                      :Chapter ;
+             dcterms:isPartOf :TheEyeOfTheWorld ;
+             dcterms:title "The Westwood" ;
+             :chapterNumber 6 ;
+             rdfs:label "The Westwood" .
+
+
 ###  http://wot.barneyb.com/wot/TheWheelTurns
 :TheWheelTurns rdf:type owl:NamedIndividual ,
                         :Chapter ;
@@ -357,6 +437,26 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
                dcterms:title "The Wheel Turns" ;
                :chapterNumber 53 ;
                rdfs:label "The Wheel Turns" .
+
+
+###  http://wot.barneyb.com/wot/Verin
+:Verin rdf:type owl:NamedIndividual ,
+                :Human .
+
+
+[   rdf:type      rdf:Statement ;
+    rdf:subject   :RandAlThor ;
+    rdf:predicate :bondedBy ;
+    rdf:object    :Alanna ;
+    rdfs:comment  "Against his will" ;
+    :during :AlannaBondsRand
+] .
+
+#################################################################
+#    Annotations
+#################################################################
+
+:Myrddraal rdfs:label "Myrddraal" .
 
 
 #################################################################
