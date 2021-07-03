@@ -36,18 +36,13 @@ dcterms:title rdf:type owl:AnnotationProperty ;
 
 ###  http://wot.barneyb.com/wot/chapterNumber
 :chapterNumber rdf:type owl:AnnotationProperty ;
+               rdfs:subPropertyOf :chronologyOrder ;
                rdfs:range xsd:integer .
 
 
 ###  http://wot.barneyb.com/wot/chronologyOrder
 :chronologyOrder rdf:type owl:AnnotationProperty ;
                  rdfs:range xsd:integer .
-
-
-###  http://wot.barneyb.com/wot/storyLocation
-:storyLocation rdf:type owl:AnnotationProperty ;
-               rdfs:label "story location" ;
-               rdfs:range :StoryPart .
 
 
 ###  http://xmlns.com/foaf/0.1/name
@@ -242,7 +237,8 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
 
 ###  http://wot.barneyb.com/wot/Myrddraal
 :Myrddraal rdf:type owl:Class ;
-           rdfs:subClassOf :Shadowspawn .
+           rdfs:subClassOf :Shadowspawn ;
+           rdfs:label "Myrddraal" .
 
 
 ###  http://wot.barneyb.com/wot/ObjectOfPower
@@ -329,134 +325,6 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
 
 ###  http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement
 rdf:Statement rdf:type owl:Class .
-
-
-#################################################################
-#    Individuals
-#################################################################
-
-###  http://wot.barneyb.com/wot/Alanna
-:Alanna rdf:type owl:NamedIndividual ,
-                 :Human ;
-        rdfs:label "Alanna Mosvani" .
-
-
-###  http://wot.barneyb.com/wot/AlannaBondsRand
-:AlannaBondsRand rdf:type owl:NamedIndividual ,
-                          :Event ;
-                 :hasParticipant :Alanna ,
-                                 :RandAlThor ,
-                                 :Verin ;
-                 :storyLocation :TheWheelTurns ;
-                 rdfs:label "Alanna bonds Rand" .
-
-
-###  http://wot.barneyb.com/wot/AnEmptyRoad
-:AnEmptyRoad rdf:type owl:NamedIndividual ,
-                      :Chapter ;
-             dcterms:isPartOf :TheEyeOfTheWorld ;
-             dcterms:title "An Empty Road" ;
-             :chapterNumber 1 ;
-             rdfs:label "An Empty Road" .
-
-
-###  http://wot.barneyb.com/wot/LewsTherinTelamon
-:LewsTherinTelamon rdf:type owl:NamedIndividual ,
-                            :Human ;
-                   rdfs:label "Lews Therin Telamon" .
-
-
-###  http://wot.barneyb.com/wot/Myrddraal
-:Myrddraal rdf:type owl:NamedIndividual .
-
-
-###  http://wot.barneyb.com/wot/PrologueDragonmount
-:PrologueDragonmount rdf:type owl:NamedIndividual ,
-                              :Chapter ;
-                     dcterms:isPartOf :TheEyeOfTheWorld ;
-                     dcterms:title "PROLOGUE: Dragonmount" ;
-                     :chapterNumber 0 ;
-                     rdfs:label "PROLOGUE: Dragonmount" .
-
-
-###  http://wot.barneyb.com/wot/RandAlThor
-:RandAlThor rdf:type owl:NamedIndividual ,
-                     :Human ;
-            :hasLearnedOf :Myrddraal ;
-            :reincarnationOf :LewsTherinTelamon ;
-            rdfs:comment "A young man of The Two Rivers" ,
-                         "Rand's Adopted!" ;
-            rdfs:label "Rand al'Thor" .
-
-[ rdf:type owl:Axiom ;
-   owl:annotatedSource :RandAlThor ;
-   owl:annotatedProperty :hasLearnedOf ;
-   owl:annotatedTarget :Myrddraal ;
-   :storyLocation :AnEmptyRoad ;
-   rdfs:comment "On the way to Emond's Field"
- ] .
-
-[ rdf:type owl:Axiom ;
-   owl:annotatedSource :RandAlThor ;
-   owl:annotatedProperty :reincarnationOf ;
-   owl:annotatedTarget :LewsTherinTelamon ;
-   :storyLocation :TheWheelTurns
- ] .
-
-[ rdf:type owl:Axiom ;
-   owl:annotatedSource :RandAlThor ;
-   owl:annotatedProperty rdfs:comment ;
-   owl:annotatedTarget "Rand's Adopted!" ;
-   :storyLocation :TheWestwood
- ] .
-
-
-###  http://wot.barneyb.com/wot/TheEyeOfTheWorld
-:TheEyeOfTheWorld rdf:type owl:NamedIndividual ,
-                           :Book ;
-                  dcterms:date "1990-01-15"^^xsd:date ;
-                  dcterms:identifier "TEotW" ;
-                  dcterms:title "The Eye of the World" ;
-                  :chronologyOrder 1 ;
-                  rdfs:label "The Eye of the World" .
-
-
-###  http://wot.barneyb.com/wot/TheWestwood
-:TheWestwood rdf:type owl:NamedIndividual ,
-                      :Chapter ;
-             dcterms:isPartOf :TheEyeOfTheWorld ;
-             dcterms:title "The Westwood" ;
-             :chapterNumber 6 ;
-             rdfs:label "The Westwood" .
-
-
-###  http://wot.barneyb.com/wot/TheWheelTurns
-:TheWheelTurns rdf:type owl:NamedIndividual ,
-                        :Chapter ;
-               dcterms:isPartOf :TheEyeOfTheWorld ;
-               dcterms:title "The Wheel Turns" ;
-               :chapterNumber 53 ;
-               rdfs:label "The Wheel Turns" .
-
-
-###  http://wot.barneyb.com/wot/Verin
-:Verin rdf:type owl:NamedIndividual ,
-                :Human .
-
-
-[   rdf:type      rdf:Statement ;
-    rdf:subject   :RandAlThor ;
-    rdf:predicate :bondedBy ;
-    rdf:object    :Alanna ;
-    rdfs:comment  "Against his will" ;
-    :during :AlannaBondsRand
-] .
-
-#################################################################
-#    Annotations
-#################################################################
-
-:Myrddraal rdfs:label "Myrddraal" .
 
 
 #################################################################
