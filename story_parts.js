@@ -138,6 +138,7 @@ const prelude = `@prefix : <http://wot.barneyb.com/wot/> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @base <http://wot.barneyb.com/wot/> .
 `
 
@@ -153,10 +154,9 @@ books.forEach(b => blocks.push(`
 :${b.id} rdf:type owl:NamedIndividual ,
         :Book ;
     dcterms:date "${b.date}"^^xsd:date ;
-    dcterms:identifier "${b.tag}" ;
+    foaf:nick "${b.tag}" ;
     dcterms:title "${escapeTurtle(b.title)}" ;
-    :chronologyOrder ${b.chron} ;
-    rdfs:label "${escapeTurtle(b.title)}" .
+    :chronologyOrder ${b.chron}  .
 `))
 
 chapters.forEach(c => blocks.push(`
@@ -165,8 +165,7 @@ chapters.forEach(c => blocks.push(`
         :Chapter ;
     dcterms:isPartOf :${c.book.id} ;
     dcterms:title "${escapeTurtle(c.title)}" ;
-    :chapterNumber ${c.chron} ;
-    rdfs:label "${escapeTurtle(c.title)}" .
+    :chapterNumber ${c.chron} .
 `));
 
 fs.writeFileSync("target/books.ttl", blocks.join(""), "utf8")

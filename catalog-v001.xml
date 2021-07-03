@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-    <uri id="Imports Wizard Entry" name="http://purl.org/NET/dc_owl2dl/terms" uri="rdflib/dcterms.ttl" />
-    <uri id="Imports Wizard Entry" name="http://purl.org/NET/dc_owl2dl/elements" uri="rdflib/dc.ttl" />
-    <uri id="Imports Wizard Entry" name="http://purl.org/NET/dc_owl2dl/terms_od" uri="rdflib/dcterms_od.ttl" />
-    <uri id="Imports Wizard Entry" name="http://purl.org/NET/dc_owl2dl/dcam" uri="rdflib/dcam.ttl" />
-    <uri id="Imports Wizard Entry" name="http://purl.org/NET/dc_owl2dl/dcmitype" uri="rdflib/dcmitype.ttl" />
-    <uri id="Imports Wizard Entry" name="http://www.w3.org/2004/02/skos/core#" uri="rdflib/skos-owl1-dl.rdf" />
-    <uri id="Automatically generated entry, Timestamp=1624735190712" name="http://xmlns.com/foaf/0.1/" uri="rdflib/foaf.rdf" />
+    <uri id="Imports Wizard Entry" name="http://purl.org/NET/dc_owl2dl/terms" uri="rdflib/dcterms.ttl"/>
+    <uri id="Imports Wizard Entry" name="http://purl.org/NET/dc_owl2dl/elements" uri="rdflib/dc.ttl"/>
+    <uri id="Imports Wizard Entry" name="http://purl.org/NET/dc_owl2dl/terms_od" uri="rdflib/dcterms_od.ttl"/>
+    <uri id="Imports Wizard Entry" name="http://purl.org/NET/dc_owl2dl/dcam" uri="rdflib/dcam.ttl"/>
+    <uri id="Imports Wizard Entry" name="http://purl.org/NET/dc_owl2dl/dcmitype" uri="rdflib/dcmitype.ttl"/>
+    <uri id="Imports Wizard Entry" name="http://www.w3.org/2004/02/skos/core#" uri="rdflib/skos-owl1-dl.rdf"/>
+    <uri id="Automatically generated entry, Timestamp=1624735190712" name="http://xmlns.com/foaf/0.1/" uri="rdflib/foaf.rdf"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1624735190712" name="http://www.w3.org/2004/02/skos/core"
-             uri="rdflib/skos-owl1-dl.rdf" />
+        <uri id="Automatically generated entry, Timestamp=1625354729671" name="http://www.w3.org/2004/02/skos/core" uri="rdflib/skos-owl1-dl.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1625354729671" name="urn:webprotege:ontology:e32ec23e-6751-4af2-9ebe-2baa1169324b" uri="old-ass-wot.owl"/>
     </group>
 </catalog>
