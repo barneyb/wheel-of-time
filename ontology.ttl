@@ -32,7 +32,8 @@ dcterms:title rdf:type owl:AnnotationProperty ;
 
 
 ###  http://wot.barneyb.com/wot/alternateIRI
-:alternateIRI rdf:type owl:AnnotationProperty .
+:alternateIRI rdf:type owl:AnnotationProperty ;
+              rdfs:range xsd:anyURI .
 
 
 ###  http://wot.barneyb.com/wot/chapterNumber
@@ -44,17 +45,6 @@ dcterms:title rdf:type owl:AnnotationProperty ;
 ###  http://wot.barneyb.com/wot/chronologyOrder
 :chronologyOrder rdf:type owl:AnnotationProperty ;
                  rdfs:range xsd:integer .
-
-
-###  http://xmlns.com/foaf/0.1/name
-foaf:name rdf:type owl:AnnotationProperty ;
-          rdfs:subPropertyOf rdfs:label ;
-          rdfs:range xsd:string .
-
-
-###  http://xmlns.com/foaf/0.1/nick
-foaf:nick rdf:type owl:AnnotationProperty ;
-          rdfs:range xsd:string .
 
 
 #################################################################
@@ -70,17 +60,20 @@ xsd:date rdf:type rdfs:Datatype .
 #################################################################
 
 ###  http://purl.org/dc/terms/isPartOf
-dcterms:isPartOf rdf:type owl:ObjectProperty ;
-                 owl:inverseOf :hasPart ;
-                 rdf:type owl:TransitiveProperty ;
+dcterms:isPartOf rdf:type owl:ObjectProperty ,
+                          owl:TransitiveProperty ;
                  rdfs:label "is part of" .
 
 
-###  http://wot.barneyb.com/wot/bondedBy
-:bondedBy rdf:type owl:ObjectProperty ;
-          rdfs:subPropertyOf owl:topObjectProperty ;
-          owl:inverseOf :hasBonded ;
-          rdfs:label "bonded by" .
+###  http://wot.barneyb.com/wot/atLocation
+:atLocation rdf:type owl:ObjectProperty ;
+            rdfs:range :Location ;
+            rdfs:label "at location" .
+
+
+###  http://wot.barneyb.com/wot/borders
+:borders rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :isNear .
 
 
 ###  http://wot.barneyb.com/wot/during
@@ -88,50 +81,56 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
         rdfs:range :Event .
 
 
-###  http://wot.barneyb.com/wot/hasBonded
-:hasBonded rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf owl:topObjectProperty ;
-           rdfs:label "bonded" .
+###  http://wot.barneyb.com/wot/involvedWith
+:involvedWith rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:range foaf:Agent ;
+              rdfs:label "involved with" .
 
 
-###  http://wot.barneyb.com/wot/hasLearnedOf
-:hasLearnedOf rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf owl:topObjectProperty .
+###  http://wot.barneyb.com/wot/isNear
+:isNear rdf:type owl:ObjectProperty ;
+        rdfs:range :Location ;
+        rdfs:label "is near" .
 
 
-###  http://wot.barneyb.com/wot/hasLocation
-:hasLocation rdf:type owl:ObjectProperty ;
-             rdfs:range :Location ;
-             rdfs:label "has location" .
-
-
-###  http://wot.barneyb.com/wot/hasPart
-:hasPart rdf:type owl:ObjectProperty ,
-                  owl:TransitiveProperty ;
-         rdfs:label "has part" .
-
-
-###  http://wot.barneyb.com/wot/hasParticipant
-:hasParticipant rdf:type owl:ObjectProperty ;
-                rdfs:range :LivingThing ;
-                rdfs:label "has participant" .
-
-
-###  http://wot.barneyb.com/wot/reincarnatedAs
-:reincarnatedAs rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf owl:topObjectProperty ;
-                owl:inverseOf :reincarnationOf ;
-                rdf:type owl:TransitiveProperty ;
-                rdfs:domain :LivingThing ;
-                rdfs:range :LivingThing ;
-                rdfs:label "reincarnated as" .
+###  http://wot.barneyb.com/wot/participant
+:participant rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :involvedWith .
 
 
 ###  http://wot.barneyb.com/wot/reincarnationOf
-:reincarnationOf rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf owl:topObjectProperty ;
-                 rdf:type owl:TransitiveProperty ;
+:reincarnationOf rdf:type owl:ObjectProperty ,
+                          owl:TransitiveProperty ;
                  rdfs:label "reincarnation of" .
+
+
+###  http://wot.barneyb.com/wot/species
+:species rdf:type owl:ObjectProperty ;
+         rdfs:range :Species .
+
+
+###  http://wot.barneyb.com/wot/witnessed
+:witnessed rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :involvedWith .
+
+
+###  http://xmlns.com/foaf/0.1/member
+foaf:member rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :participant ;
+            rdf:type owl:TransitiveProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://xmlns.com/foaf/0.1/name
+foaf:name rdfs:range xsd:string .
+
+
+###  http://xmlns.com/foaf/0.1/nick
+foaf:nick rdfs:range xsd:string .
 
 
 #################################################################
@@ -143,19 +142,25 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
          rdfs:subClassOf :ObjectOfPower .
 
 
-###  http://wot.barneyb.com/wot/Animal
-:Animal rdf:type owl:Class ;
-        rdfs:subClassOf :LivingThing .
-
-
 ###  http://wot.barneyb.com/wot/Book
 :Book rdf:type owl:Class ;
       rdfs:subClassOf :StoryPart .
 
 
+###  http://wot.barneyb.com/wot/Building
+:Building rdf:type owl:Class ;
+          rdfs:subClassOf :Location .
+
+
 ###  http://wot.barneyb.com/wot/Chapter
 :Chapter rdf:type owl:Class ;
          rdfs:subClassOf :StoryPart .
+
+
+###  http://wot.barneyb.com/wot/Character
+:Character rdf:type owl:Class ;
+           owl:equivalentClass foaf:Person ;
+           rdfs:subClassOf foaf:Agent .
 
 
 ###  http://wot.barneyb.com/wot/City
@@ -173,77 +178,21 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
          rdfs:subClassOf :Location .
 
 
-###  http://wot.barneyb.com/wot/Darkhound
-:Darkhound rdf:type owl:Class ;
-           rdfs:subClassOf :Shadowspawn .
-
-
-###  http://wot.barneyb.com/wot/Drakhar
-:Drakhar rdf:type owl:Class ;
-         rdfs:subClassOf :Shadowspawn .
-
-
 ###  http://wot.barneyb.com/wot/Event
 :Event rdf:type owl:Class .
 
 
-###  http://wot.barneyb.com/wot/Feature
-:Feature rdf:type owl:Class ;
-         rdfs:subClassOf :Location .
-
-
-###  http://wot.barneyb.com/wot/Forest
-:Forest rdf:type owl:Class ;
-        rdfs:subClassOf :Feature .
-
-
-###  http://wot.barneyb.com/wot/Gholam
-:Gholam rdf:type owl:Class ;
-        rdfs:subClassOf :Shadowspawn .
-
-
-###  http://wot.barneyb.com/wot/GrayMan
-:GrayMan rdf:type owl:Class ;
-         rdfs:subClassOf :Shadowspawn ;
-         rdfs:label "Gray Man" .
-
-
-###  http://wot.barneyb.com/wot/Hold
-:Hold rdf:type owl:Class ;
-      rdfs:subClassOf :Location .
-
-
-###  http://wot.barneyb.com/wot/Horse
-:Horse rdf:type owl:Class ;
-       rdfs:subClassOf :Animal .
-
-
-###  http://wot.barneyb.com/wot/Human
-:Human rdf:type owl:Class ;
-       rdfs:subClassOf :LivingThing .
+###  http://wot.barneyb.com/wot/Inn
+:Inn rdf:type owl:Class ;
+     rdfs:subClassOf :Building .
 
 
 ###  http://wot.barneyb.com/wot/Item
 :Item rdf:type owl:Class .
 
 
-###  http://wot.barneyb.com/wot/LivingThing
-:LivingThing rdf:type owl:Class .
-
-
 ###  http://wot.barneyb.com/wot/Location
 :Location rdf:type owl:Class .
-
-
-###  http://wot.barneyb.com/wot/MountainRange
-:MountainRange rdf:type owl:Class ;
-               rdfs:subClassOf :Feature .
-
-
-###  http://wot.barneyb.com/wot/Myrddraal
-:Myrddraal rdf:type owl:Class ;
-           rdfs:subClassOf :Shadowspawn ;
-           rdfs:label "Myrddraal" .
 
 
 ###  http://wot.barneyb.com/wot/ObjectOfPower
@@ -252,24 +201,9 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
                rdfs:label "Object of Power" .
 
 
-###  http://wot.barneyb.com/wot/Ogier
-:Ogier rdf:type owl:Class ;
-       rdfs:subClassOf :LivingThing .
-
-
-###  http://wot.barneyb.com/wot/Raven
-:Raven rdf:type owl:Class ;
-       rdfs:subClassOf :Animal .
-
-
 ###  http://wot.barneyb.com/wot/Region
 :Region rdf:type owl:Class ;
         rdfs:subClassOf :Location .
-
-
-###  http://wot.barneyb.com/wot/River
-:River rdf:type owl:Class ;
-       rdfs:subClassOf :Feature .
 
 
 ###  http://wot.barneyb.com/wot/Saangreal
@@ -278,14 +212,8 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
            rdfs:label "Sa'angreal" .
 
 
-###  http://wot.barneyb.com/wot/Shadowspawn
-:Shadowspawn rdf:type owl:Class ;
-             rdfs:subClassOf :LivingThing .
-
-
-###  http://wot.barneyb.com/wot/Sheep
-:Sheep rdf:type owl:Class ;
-       rdfs:subClassOf :Animal .
+###  http://wot.barneyb.com/wot/Species
+:Species rdf:type owl:Class .
 
 
 ###  http://wot.barneyb.com/wot/StoryPart
@@ -298,24 +226,9 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
             rdfs:label "Ter'angreal" .
 
 
-###  http://wot.barneyb.com/wot/Town
-:Town rdf:type owl:Class ;
-      rdfs:subClassOf :Location .
-
-
-###  http://wot.barneyb.com/wot/Trolloc
-:Trolloc rdf:type owl:Class ;
-         rdfs:subClassOf :Shadowspawn .
-
-
 ###  http://wot.barneyb.com/wot/Vehicle
 :Vehicle rdf:type owl:Class ;
          rdfs:subClassOf :Item .
-
-
-###  http://wot.barneyb.com/wot/Village
-:Village rdf:type owl:Class ;
-         rdfs:subClassOf :Location .
 
 
 ###  http://wot.barneyb.com/wot/Weapon
@@ -323,10 +236,7 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
         rdfs:subClassOf :Item .
 
 
-###  http://wot.barneyb.com/wot/Wolf
-:Wolf rdf:type owl:Class ;
-      rdfs:subClassOf :Animal .
-
+###  http://xmlns.com/foaf/0.1/Person
 
 #################################################################
 #    General axioms
@@ -336,64 +246,6 @@ dcterms:isPartOf rdf:type owl:ObjectProperty ;
   owl:members ( :Angreal
                 :Saangreal
                 :Terangreal
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Animal
-                :Human
-                :Ogier
-                :Shadowspawn
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :City
-                :Country
-                :Feature
-                :Hold
-                :Region
-                :Town
-                :Village
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Darkhound
-                :Drakhar
-                :Gholam
-                :GrayMan
-                :Myrddraal
-                :Trolloc
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Forest
-                :MountainRange
-                :River
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Horse
-                :Raven
-                :Sheep
-                :Wolf
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Item
-                :LivingThing
-                :Location
-                :StoryPart
               )
 ] .
 

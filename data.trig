@@ -8,43 +8,41 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @base <http://wot.barneyb.com/wot/> .
 
-
-:TheWheelTurns {
-
-    :Alanna rdf:type owl:NamedIndividual ,
-                     :Human ;
-            rdfs:label "Alanna Mosvani" .
-
-
-    :AlannaBondsRand rdf:type owl:NamedIndividual ,
-                              :Event ;
-                     :hasParticipant :Alanna ,
-                     :RandAlThor ,
-                     :Verin ;
-                     rdfs:label "Alanna bonds Rand" .
-
-    :RandAlThor
-        :reincarnationOf :LewsTherinTelamon .
-
-    :Verin rdf:type owl:NamedIndividual ,
-                    :Human .
-
-
-    [   rdf:type      rdf:Statement ;
-        rdf:subject   :RandAlThor ;
-        rdf:predicate :bondedBy ;
-        rdf:object    :Alanna ;
-        rdfs:comment  "Against his will" ;
-        :during :AlannaBondsRand
-    ] .
-
-}
-
 :PrologueDragonmount {
+
+    :Human rdf:type owl:NamedIndividual ,
+                    :Species .
 
     :LewsTherinTelamon rdf:type owl:NamedIndividual ,
                                 :Human ;
                        rdfs:label "Lews Therin Telamon" .
+
+}
+
+:AnEmptyRoad {
+
+    :Horse rdf:type owl:NamedIndividual ,
+                    :Species .
+
+    :RandAlThor rdf:type owl:NamedIndividual ,
+                         :Human ;
+                rdfs:comment "A young man of The Two Rivers" ;
+                rdfs:label "Rand al'Thor" .
+
+}
+
+:Strangers {
+
+    :hasBonded rdf:type owl:ObjectProperty ;
+               rdfs:label "bonded" .
+
+    :LanMandragoran rdf:type owl:NamedIndividual ,
+                    :Character .
+
+    :Moiraine rdf:type owl:NamedIndividual ,
+                    :Character ;
+                     :species :Human ;
+                     :hasBonded :LanMandragoran .
 
 }
 
@@ -54,18 +52,35 @@
 
 }
 
-:AnEmptyRoad {
+:TheWheelTurns {
 
-    :RandAlThor rdf:type owl:NamedIndividual ,
-                         :Human ;
-                rdfs:comment "A young man of The Two Rivers" ;
-                rdfs:label "Rand al'Thor" .
+    :RandAlThor
+        :reincarnationOf :LewsTherinTelamon .
 
-    [ rdf:type owl:Axiom ;
-       owl:annotatedSource :RandAlThor ;
-       owl:annotatedProperty :hasLearnedOf ;
-       owl:annotatedTarget :Myrddraal ;
-       rdfs:comment "On the way to Emond's Field"
-     ] .
+}
+
+:ASayingInTheBorderlands {
+
+    :Caemlyn a owl:NamedIndividual ,
+               :City .
+
+    :CulainsHound a owl:NamedIndividual ,
+               :Inn .
+
+    :Alanna rdf:type owl:NamedIndividual ,
+                     :Human ;
+            rdfs:label "Alanna Mosvani" .
+
+    :AlannaBondsRand rdf:type owl:NamedIndividual ,
+                              :Event ;
+                     :participant :Alanna ,
+                                  :RandAlThor ;
+                     :witness :Verin ;
+                     rdfs:label "Alanna bonds Rand" ;
+                     :atLocation :CulainsHound ;
+                     rdfs:comment "Against his will" .
+
+    :Verin rdf:type owl:NamedIndividual ,
+                    :Human .
 
 }

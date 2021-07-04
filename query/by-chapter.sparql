@@ -6,7 +6,6 @@ prefix : <http://wot.barneyb.com/wot/>
 prefix dcterms: <http://purl.org/dc/terms/>
 SELECT ?chapter
 ?s ?p ?o ?pd ?dv ?pa ?av
-#?s ?e ?p ?o
 WHERE {
       :TheWheelTurns dcterms:isPartOf ?endBook ;
                      :chapterNumber ?endChapNum .
@@ -36,25 +35,7 @@ WHERE {
                                                    , rdf:subject, rdf:predicate, rdf:object
                                                    ) )
                            }
-                     # see if there are any annotations
-                     OPTIONAL {   [    a owl:Axiom ;
-                                       owl:annotatedSource ?s ;
-                                       owl:annotatedProperty ?p ;
-                                       owl:annotatedTarget ?o ;
-                                       ?pa ?av ;
-                                  ] .
-                                  FILTER ( ?pa NOT IN ( rdf:type
-                                                      , owl:annotatedSource, owl:annotatedProperty, owl:annotatedTarget
-                                                      ) )
-                              }
-#                     BIND ( :RandAlThor as ?s )
-#                     ?e a :Event .
-#                     ?e :hasParticipant ?s .
-#                     ?e ?p ?o .
-#                     FILTER ( ?p != rdf:type )
-#                     FILTER ( ?o != ?s )
                      }
       }
 order by ?pubDate ?chapNum
 ?s ?p ?o ?pd ?dv ?pa ?av
-#?s ?e ?p ?o
