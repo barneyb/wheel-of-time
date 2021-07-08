@@ -1,7 +1,0 @@
-micronaut:
-  application:
-    name: wot
-  router:
-    static-resources:
-      client:
-        paths: classpath:public
