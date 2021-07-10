@@ -15,4 +15,5 @@ out/
 /*.log
 /.firebaserc
 /public/books.json
+/public/bundle*
 /.firebase/
