@@ -108,6 +108,7 @@ let books = parseCsvWithHeaders(fs.readFileSync("books.csv", "utf8"))
         id: getId(b.title),
         tag: getTag(b.title),
         key: getKey(b.title),
+        chapters: [],
     }));
 const booksByKey = uniqueIndex(books, it => it.key);
 
@@ -131,41 +132,33 @@ chapters
     .filter(c => dupes.has(c.id))
     .forEach(c => c.id = `${c.id}_${c.book.tag}`);
 
-const prelude = `@prefix : <http://wot.barneyb.com/wot/> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@base <http://wot.barneyb.com/wot/> .
-`
-
 // chapters = chapters.slice(0, 2) // todo: remove
+//     .concat(chapters.slice(34, 36))
 //     .concat(chapters.slice(88, 90))
 //     .concat(chapters.slice(351, 353))
 //     .concat(chapters.slice(chapters.length - 1));
-books = new Set(chapters.map(c => c.book));
 
-const blocks = [prelude];
-books.forEach(b => blocks.push(`
-### ${b.id}
-:${b.id} rdf:type owl:NamedIndividual ,
-        :Book ;
-    dcterms:date "${b.date}"^^xsd:date ;
-    foaf:nick "${b.tag}" ;
-    dcterms:title "${escapeTurtle(b.title)}" ;
-    :chronologyOrder ${b.chron}  .
-`))
+chapters.forEach(c => c.book.chapters.push({
+    title: c.title,
+    id: getId(c.title),
+}));
 
-chapters.forEach(c => blocks.push(`
-### ${c.book.tag} / ${c.id}
-:${c.id} rdf:type owl:NamedIndividual ,
-        :Chapter ;
-    dcterms:isPartOf :${c.book.id} ;
-    dcterms:title "${escapeTurtle(c.title)}" ;
-    :chapterNumber ${c.chron} .
-`));
-
-fs.writeFileSync("target/books.ttl", blocks.join(""), "utf8")
+fs.writeFileSync(
+    "public/books.json",
+    JSON.stringify(
+        books
+            .filter(b => b.chapters.length > 0)
+            .sort((a, b) => a.date < b.date ? -1 : 1),
+        (k, v) => {
+            if (k === "book" || k === "key") {
+                return undefined;
+            } else if (k === "chron") {
+                return parseInt(v);
+            } else {
+                return v;
+            }
+        },
+        3,
+    ),
+    "utf8",
+)

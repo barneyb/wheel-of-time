@@ -12,3 +12,7 @@ out/
 .settings
 .classpath
 .factorypath
+/*.log
+/.firebaserc
+/public/books.json
+/.firebase/
