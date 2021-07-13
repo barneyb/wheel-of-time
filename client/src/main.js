@@ -1,8 +1,19 @@
+import { CssBaseline, Button } from "@material-ui/core";
 import update from './update.js';
+import React from 'react';
+import ReactDOM from 'react-dom';
 // import './load_books';
 
-// even though Rollup is bundling all your files together, errors and
-// logs will still point to your original source modules
-console.log('if you have sourcemaps enabled in your devtools, click on main.js:6 -->');
-
 update();
+
+function App() {
+    return <React.Fragment>
+        <CssBaseline />
+        <Button variant="contained" color="primary">
+            Hello World
+        </Button>
+    </React.Fragment>
+    ;
+}
+
+ReactDOM.render(<App />, document.querySelector('#app'));
