@@ -17,3 +17,4 @@ out/
 /public/books.json
 /public/bundle*
 /.firebase/
+/firebase_emulator_data/

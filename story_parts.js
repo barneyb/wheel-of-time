@@ -139,6 +139,7 @@ chapters
 //     .concat(chapters.slice(chapters.length - 1));
 
 chapters.forEach(c => c.book.chapters.push({
+    chron: c.chron,
     title: c.title,
     id: getId(c.title),
 }));

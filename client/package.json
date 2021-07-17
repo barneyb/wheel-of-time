@@ -1,5 +1,5 @@
 {
-  "name": "rollup-starter-app",
+  "name": "wot-client",
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
@@ -18,7 +18,8 @@
     "date-fns": "^2.16.1",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-dom": "^16.14.0",
+    "react-query": "^3.19.0"
   },
   "scripts": {
     "build": "rollup -c",
