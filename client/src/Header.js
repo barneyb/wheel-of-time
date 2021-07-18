@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom";
 import { useCreator } from "./Firestore";
 import Search from "./Search";
 import StoryLocation from "./StoryLocation";
+import { useUser } from "./UserContext";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -28,6 +29,17 @@ function Header() {
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
     const creator = useCreator();
+    const user = useUser();
+
+    if (!user) {
+        return <AppBar position="static">
+            <Toolbar>
+                <Typography variant="h6">
+                    Log In
+                </Typography>
+            </Toolbar>
+        </AppBar>
+    }
 
     return <AppBar position="static">
         <Toolbar>

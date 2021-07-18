@@ -1,7 +1,4 @@
-import {
-    CssBaseline,
-    Typography,
-} from "@material-ui/core";
+import { CssBaseline } from "@material-ui/core";
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './load_books';
@@ -9,7 +6,6 @@ import {
     QueryClient,
     QueryClientProvider,
 } from 'react-query'
-import { ReactQueryDevtools } from "react-query/devtools";
 import {
     BrowserRouter,
     Route,
@@ -20,6 +16,7 @@ import Chapter from "./Chapter";
 import Header from "./Header";
 import Home from "./Home";
 import Individual from "./Individual";
+import { UserProvider } from "./UserContext"
 
 // Create a client
 const queryClient = new QueryClient({
@@ -32,33 +29,14 @@ const queryClient = new QueryClient({
     },
 })
 
-function App() {
-    const [domReady, setDomReady] = React.useState(false);
-    React.useEffect(() => {
-        if (document.readyState !== "loading") {
-            setDomReady(true);
-            return;
-        }
-
-        function cleanup() {
-            document.removeEventListener('readystatechange', listener);
-        }
-
-        function listener() {
-            cleanup();
-            setDomReady(true);
-        }
-
-        document.addEventListener('readystatechange', listener);
-        return cleanup;
-    }, [])
+function App({user}) {
     return <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-            <CssBaseline />
-            {domReady
-                ? <React.Fragment>
+        <UserProvider value={user}>
+            <BrowserRouter>
+                <CssBaseline />
+                <React.Fragment>
                     <Header />
-                    <Switch>
+                    {user && <Switch>
                         <Route exact path="/">
                             <Home />
                         </Route>
@@ -71,11 +49,28 @@ function App() {
                         <Route exact path="/i/:id">
                             <Individual />
                         </Route>
-                    </Switch>
+                    </Switch>}
                 </React.Fragment>
-                : <Typography>Hang tight...</Typography>}
-        </BrowserRouter>
+            </BrowserRouter>
+        </UserProvider>
     </QueryClientProvider>;
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+const auth = firebase.auth();
+const ui = new firebaseui.auth.AuthUI(auth);
+auth.onAuthStateChanged(function (user) {
+    ReactDOM.render(<App user={user} />, document.querySelector('#app'));
+    if (!user) {
+        ui.start('#firebaseui-auth-container', {
+            signInOptions: [
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            ],
+            callbacks: {
+                // don't redirect; rerendering <App /> is enough
+                signInSuccessWithAuthResult: () => false,
+            },
+        });
+    }
+}, function (error) {
+    console.log(error);
+});

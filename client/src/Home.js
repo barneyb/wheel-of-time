@@ -1,12 +1,23 @@
+import { Button } from "@material-ui/core";
 import React from "react";
+import {
+    useUser,
+    useUserInfo,
+} from "./UserContext";
 
 function Home() {
+    const user = useUser();
+    const [info] = useUserInfo();
     return <React.Fragment>
-        {[...new Array(12)].map((n, i) =>
-        <div key={i}>
+        {user && <Button variant={"contained"} color={"secondary"}
+                         onClick={() => firebase.auth().signOut()}>SIGN
+            OUT</Button>}
+        <div>
             <h2>Why Hello!</h2>
             <p>You look great, by the way. Very healthy.</p>
-        </div>)}
+        </div>
+        <pre>info: {JSON.stringify(info, null, 3)}</pre>
+        <pre>user: {JSON.stringify(user, null, 3)}</pre>
     </React.Fragment>;
 }
 

@@ -7,10 +7,7 @@ import {
 import { getId } from "./stringUtils";
 import useStoryLocation from "./useStoryLocation";
 
-let db;
-document.addEventListener('DOMContentLoaded', () => {
-    db = firebase.firestore();
-});
+const db = firebase.firestore();
 
 const COL_BOOKS = "books";
 const COL_CHAPTERS = "chapters";
