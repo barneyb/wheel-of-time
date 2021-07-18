@@ -41,7 +41,6 @@ function Search({
     const [value, setValue] = React.useState("");
 
     const handleSelect = (e, value) => {
-        console.log("SELECT", e, value);
         if (typeof value === "string") {
             // hit ENTER
             onCreate && onCreate(value);
@@ -68,8 +67,6 @@ function Search({
         data: options,
         isFetching,
     } = useTitleSearch(value);
-
-    console.log("OPTIONS", options);
 
     return <Autocomplete
         className={classes.autocomplete}

@@ -4,7 +4,7 @@ service cloud.firestore {
     match /books/{document=**} {
       allow read: if true;
     }
-    match /objects/{document=**} {
+    match /individuals/{document=**} {
       allow read, write: if
           request.time < timestamp.date(2021, 8, 7);
     }

@@ -9,13 +9,7 @@ import {
     useBookList,
     useChapterList,
 } from "./Firestore";
-import useLocalStorage from "./useLocalStorage";
-
-const STARTING_LOCATION = {
-    book: "TheEyeOfTheWorld",
-    chapter: "EarlierRavens",
-    _order: 100,
-};
+import useStoryLocation from "./useStoryLocation";
 
 function SelectionLabel({
                             dialogTitle = "Select one",
@@ -87,10 +81,7 @@ function SelectionLabel({
 }
 
 function StoryLocation() {
-    const [storyLocation, setStoryLocation] = useLocalStorage(
-        "story-location",
-        STARTING_LOCATION,
-    );
+    const [storyLocation, setStoryLocation] = useStoryLocation();
     const {
         data: bookList,
         isFetching,

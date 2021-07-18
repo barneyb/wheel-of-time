@@ -1,13 +1,23 @@
 import debounce from "debounce-promise";
 import React from "react";
-import { useQuery } from "react-query";
+import {
+    useMutation,
+    useQuery,
+} from "react-query";
+import { getId } from "./stringUtils";
+import useStoryLocation from "./useStoryLocation";
 
 let db;
 document.addEventListener('DOMContentLoaded', () => {
     db = firebase.firestore();
 });
 
+const COL_BOOKS = "books";
+const COL_CHAPTERS = "chapters";
+const COL_INDIVIDUALS = "individuals";
+
 function docToObject(doc) {
+    if (!doc.exists) throw new Error(`${doc.id} doesn't exist`);
     return {
         id: doc.id,
         data: doc.data(),
@@ -21,7 +31,7 @@ function queryToList(qSnap) {
 }
 
 export function promiseBookList() {
-    return db.collection("books")
+    return db.collection(COL_BOOKS)
         .orderBy("_order")
         .get()
         .then(queryToList);
@@ -36,9 +46,9 @@ export function useBookList() {
 }
 
 export function promiseChapterList(bookId) {
-    return db.collection("books")
+    return db.collection(COL_BOOKS)
         .doc(bookId)
-        .collection("chapters")
+        .collection(COL_CHAPTERS)
         .orderBy("_order")
         .get()
         .then(queryToList);
@@ -56,7 +66,7 @@ export const promiseTitleSearch = debounce(function (title) {
     if (title.length < 2) {
         return Promise.resolve([]);
     }
-    return db.collection("objects")
+    return db.collection(COL_INDIVIDUALS)
         .where("title", ">=", title)
         .where("title", "<", title + "\uFFFF")
         .orderBy("title")
@@ -71,4 +81,32 @@ export function useTitleSearch(title) {
         ["title-search", title],
         () => promiseTitleSearch(title),
     );
+}
+
+export function promiseIndividual(id) {
+    return db.collection(COL_INDIVIDUALS)
+        .doc(id)
+        .get()
+        .then(docToObject);
+}
+
+export function useIndividual(id) {
+    return useQuery(
+        ["individual", id],
+        () => promiseIndividual(id),
+    )
+}
+
+export function useCreator() {
+    const [sl] = useStoryLocation();
+    return useMutation(title => {
+        const id = getId(title);
+        return db.collection(COL_INDIVIDUALS)
+            .doc(id)
+            .set({
+                title,
+                _order: sl._order,
+            })
+            .then(() => id);
+    });
 }

@@ -8,6 +8,7 @@ import {
 import { Search as SearchIcon } from "@material-ui/icons";
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { useCreator } from "./Firestore";
 import Search from "./Search";
 import StoryLocation from "./StoryLocation";
 
@@ -26,6 +27,7 @@ function Header() {
     const classes = useStyles();
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
+    const creator = useCreator();
 
     return <AppBar position="static">
         <Toolbar>
@@ -37,7 +39,11 @@ function Header() {
                         setOpen(false);
                     }}
                     onCreate={title => {
-                        alert("create: " + title);
+                        creator.mutateAsync(title)
+                            .then(id => {
+                                creator.reset();
+                                history.push(`/i/${id}`, {id});
+                            });
                         setOpen(false);
                     }}
                 />
