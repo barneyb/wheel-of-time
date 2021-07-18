@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import { Search as SearchIcon } from "@material-ui/icons";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Search from "./Search";
 import StoryLocation from "./StoryLocation";
 
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Header() {
     const classes = useStyles();
+    const history = useHistory();
     const [open, setOpen] = React.useState(false);
 
     return <AppBar position="static">
@@ -30,8 +32,8 @@ function Header() {
             {open
                 ? <Search
                     onBlur={() => setTimeout(() => setOpen(false), 100)}
-                    onSelect={(id, title) => {
-                        window.history.pushState({id}, title, `/${id}`);
+                    onSelect={id => {
+                        history.push(`/i/${id}`, {id});
                         setOpen(false);
                     }}
                     onCreate={title => {

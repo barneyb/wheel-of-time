@@ -53,7 +53,7 @@ function Search({
             return;
         }
         // a normal one
-        onSelect && onSelect(value.id, value.data.title);
+        onSelect && onSelect(value.id);
     }
 
     const handleInputChange = (e, value) =>

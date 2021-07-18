@@ -1,5 +1,4 @@
 import {
-    Button,
     CssBaseline,
     Typography,
 } from "@material-ui/core";
@@ -10,7 +9,16 @@ import {
     QueryClient,
     QueryClientProvider,
 } from 'react-query'
+import {
+    BrowserRouter,
+    Route,
+    Switch,
+} from "react-router-dom";
+import Book from "./Book";
+import Chapter from "./Chapter";
 import Header from "./Header";
+import Home from "./Home";
+import Individual from "./Individual";
 
 // Create a client
 const queryClient = new QueryClient()
@@ -22,6 +30,7 @@ function App() {
             setDomReady(true);
             return;
         }
+
         function cleanup() {
             document.removeEventListener('readystatechange', listener);
         }
@@ -35,18 +44,28 @@ function App() {
         return cleanup;
     }, [])
     return <QueryClientProvider client={queryClient}>
-        <CssBaseline />
-        {domReady ? <React.Fragment>
-            <Header />
-            {[...new Array(12)].map((n, i) =>
-                <div key={i}>
-                    <h2>Why Hello!</h2>
-                    <p>You look great, by the way. Very healthy.</p>
-                </div>)}
-            <Button variant="contained" color="primary">
-                Hello World
-            </Button>
-        </React.Fragment> : <Typography>Hang tight...</Typography> }
+        <BrowserRouter>
+            <CssBaseline />
+            {domReady
+                ? <React.Fragment>
+                    <Header />
+                    <Switch>
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        <Route exact path="/b/:id">
+                            <Book />
+                        </Route>
+                        <Route path="/b/:bookId/c/:id">
+                            <Chapter />
+                        </Route>
+                        <Route exact path="/i/:id">
+                            <Individual />
+                        </Route>
+                    </Switch>
+                </React.Fragment>
+                : <Typography>Hang tight...</Typography>}
+        </BrowserRouter>
     </QueryClientProvider>;
 }
 
