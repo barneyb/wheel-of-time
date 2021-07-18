@@ -1,3 +1,4 @@
+import debounce from "debounce-promise";
 import React from "react";
 import { useQuery } from "react-query";
 
@@ -30,7 +31,7 @@ export function useBookList() {
     return useQuery(
         "book-list",
         promiseBookList,
-        {staleTime: Number.MAX_SAFE_INTEGER},
+        {staleTime: Infinity},
     );
 }
 
@@ -47,11 +48,11 @@ export function useChapterList(bookId) {
     return useQuery(
         ["chapter-list", bookId],
         () => promiseChapterList(bookId),
-        {staleTime: Number.MAX_SAFE_INTEGER},
+        {staleTime: Infinity},
     );
 }
 
-export function promiseTitleSearch(title) {
+export const promiseTitleSearch = debounce(function (title) {
     if (title.length < 2) {
         return Promise.resolve([]);
     }
@@ -62,15 +63,12 @@ export function promiseTitleSearch(title) {
         .limit(20)
         .get()
         .then(queryToList);
-}
+}, 300);
 
 export function useTitleSearch(title) {
+    title = title.trim();
     return useQuery(
         ["title-search", title],
         () => promiseTitleSearch(title),
-        {
-            staleTime: 5000,
-            keepPreviousData: true,
-        },
     );
 }

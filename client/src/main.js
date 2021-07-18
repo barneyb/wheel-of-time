@@ -9,6 +9,7 @@ import {
     QueryClient,
     QueryClientProvider,
 } from 'react-query'
+import { ReactQueryDevtools } from "react-query/devtools";
 import {
     BrowserRouter,
     Route,
@@ -21,7 +22,13 @@ import Home from "./Home";
 import Individual from "./Individual";
 
 // Create a client
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            keepPreviousData: true,
+        },
+    },
+})
 
 function App() {
     const [domReady, setDomReady] = React.useState(false);
