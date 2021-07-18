@@ -30,6 +30,14 @@ function Header() {
             {open
                 ? <Search
                     onBlur={() => setTimeout(() => setOpen(false), 100)}
+                    onSelect={(id, title) => {
+                        window.history.pushState({id}, title, `/${id}`);
+                        setOpen(false);
+                    }}
+                    onCreate={title => {
+                        alert("create: " + title);
+                        setOpen(false);
+                    }}
                 />
                 : <Typography
                     variant="h6"

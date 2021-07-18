@@ -50,3 +50,27 @@ export function useChapterList(bookId) {
         {staleTime: Number.MAX_SAFE_INTEGER},
     );
 }
+
+export function promiseTitleSearch(title) {
+    if (title.length < 2) {
+        return Promise.resolve([]);
+    }
+    return db.collection("objects")
+        .where("title", ">=", title)
+        .where("title", "<", title + "\uFFFF")
+        .orderBy("title")
+        .limit(20)
+        .get()
+        .then(queryToList);
+}
+
+export function useTitleSearch(title) {
+    return useQuery(
+        ["title-search", title],
+        () => promiseTitleSearch(title),
+        {
+            staleTime: 5000,
+            keepPreviousData: true,
+        },
+    );
+}
