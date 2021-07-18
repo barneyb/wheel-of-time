@@ -38,10 +38,11 @@ function App() {
         <CssBaseline />
         {domReady ? <React.Fragment>
             <Header />
-            <div>
-                <h2>Why Hello!</h2>
-                <p>You look great, by the way. Very healthy.</p>
-            </div>
+            {[...new Array(12)].map((n, i) =>
+                <div key={i}>
+                    <h2>Why Hello!</h2>
+                    <p>You look great, by the way. Very healthy.</p>
+                </div>)}
             <Button variant="contained" color="primary">
                 Hello World
             </Button>

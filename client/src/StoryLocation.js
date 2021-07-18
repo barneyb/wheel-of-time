@@ -66,16 +66,20 @@ function SelectionLabel({
             <DialogTitle id="simple-dialog-title">{dialogTitle}</DialogTitle>
             <DialogContent>
                 <List>
-                    {items.map((it) => (
-                        <ListItem
-                            button
-                            onClick={() => handleListItemClick(it)}
-                            selected={it.id === selectedId}
-                            key={it.id}
-                        >
-                            {itemRenderer(it)}
-                        </ListItem>
-                    ))}
+                    {items.map((it) => {
+                        const selected = it.id === selectedId;
+                        return (
+                            <ListItem
+                                button
+                                onClick={() => handleListItemClick(it)}
+                                selected={selected}
+                                autoFocus={selected}
+                                key={it.id}
+                            >
+                                {itemRenderer(it)}
+                            </ListItem>
+                        );
+                    })}
                 </List>
             </DialogContent>
         </Dialog>
@@ -87,12 +91,17 @@ function StoryLocation() {
         "story-location",
         STARTING_LOCATION,
     );
-    const {data: bookList, isFetching} = useBookList();
-    const {data: chapterList, isFetching: isFetchingChapters} = useChapterList(
-        storyLocation.book);
+    const {
+        data: bookList,
+        isFetching,
+    } = useBookList();
+    const {
+        data: chapterList,
+        isFetching: isFetchingChapters,
+    } = useChapterList(storyLocation.book);
 
     if (isFetching) {
-        return "The Wheel of Time";
+        return "TWoT: Loading...";
     }
 
     return <React.Fragment>
