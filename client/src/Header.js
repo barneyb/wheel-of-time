@@ -50,14 +50,14 @@ function Header() {
                         history.push(`/i/${id}`, {id});
                         setOpen(false);
                     }}
-                    onCreate={title => {
+                    onCreate={user.email === "bboisvert@gmail.com" ? title => {
                         creator.mutateAsync(title)
                             .then(id => {
                                 creator.reset();
                                 history.push(`/i/${id}`, {id});
                             });
                         setOpen(false);
-                    }}
+                    } : undefined}
                 />
                 : <Typography
                     variant="h6"

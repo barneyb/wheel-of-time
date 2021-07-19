@@ -1,4 +1,9 @@
-import { CssBaseline } from "@material-ui/core";
+import {
+    AppBar,
+    CssBaseline,
+    Toolbar,
+    Typography,
+} from "@material-ui/core";
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './load_books';
@@ -35,7 +40,16 @@ function App({user}) {
             <BrowserRouter>
                 <CssBaseline />
                 <React.Fragment>
-                    <Header />
+                    {user
+                        ? <Header />
+                        : <AppBar position="static">
+                            <Toolbar>
+                                <Typography variant="h6">
+                                    Log In
+                                </Typography>
+                            </Toolbar>
+                        </AppBar>
+                    }
                     {user && <Switch>
                         <Route exact path="/">
                             <Home />

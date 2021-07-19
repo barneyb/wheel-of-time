@@ -41,12 +41,13 @@ function Search({
     const [value, setValue] = React.useState("");
 
     const handleSelect = (e, value) => {
+        if (!value) return;
         if (typeof value === "string") {
             // hit ENTER
             onCreate && onCreate(value);
             return;
         }
-        if (value && value.inputValue) {
+        if (value.inputValue) {
             // picked the Add "xxx" option
             onCreate && onCreate(value.inputValue);
             return;
@@ -98,7 +99,7 @@ function Search({
             const filtered = filter(options, params);
 
             // Suggest the creation of a new value
-            if (params.inputValue.length >= 2 && !filtered.some(o => o.data.title === params.inputValue)) {
+            if (onCreate && params.inputValue.length >= 2 && !filtered.some(o => o.data.title === params.inputValue)) {
                 filtered.push({
                     inputValue: params.inputValue,
                     data: {

@@ -97,6 +97,7 @@ export function useIndividual(id) {
 export function useCreator() {
     const [sl] = useStoryLocation();
     return useMutation(title => {
+        title = title.trim();
         const id = getId(title);
         return db.collection(COL_INDIVIDUALS)
             .doc(id)
