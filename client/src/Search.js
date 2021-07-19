@@ -1,6 +1,5 @@
 import {
     alpha,
-    CircularProgress,
     makeStyles,
     TextField,
 } from "@material-ui/core";
@@ -18,14 +17,10 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
     },
     textField: {
-        color: theme.palette.common.white,
         width: "100%",
         padding: theme.spacing(1, 2),
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: alpha(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: alpha(theme.palette.common.white, 0.25),
-        },
+        backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
     input: {
         color: theme.palette.common.white,
@@ -64,10 +59,7 @@ function Search({
         onBlur && onBlur();
     }
 
-    const {
-        data: options,
-        isFetching,
-    } = useTitleSearch(value);
+    const matches = useTitleSearch(value);
 
     return <Autocomplete
         className={classes.autocomplete}
@@ -75,6 +67,7 @@ function Search({
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
+        clearOnEscape
         inputValue={value}
         onInputChange={handleInputChange}
         renderInput={({InputProps, ...params}) => (
@@ -82,9 +75,6 @@ function Search({
                 {...params}
                 InputProps={{
                     ...InputProps,
-                    endAdornment: isFetching
-                        ? <CircularProgress color="inherit" size={20} />
-                        : InputProps.endAdornment,
                     className: classes.input,
                 }}
                 variant="standard"
@@ -94,17 +84,15 @@ function Search({
                 onBlur={handleBlur}
             />
         )}
-        options={options || []}
+        options={matches.docs}
         filterOptions={(options, params) => {
             const filtered = filter(options, params);
 
             // Suggest the creation of a new value
-            if (onCreate && params.inputValue.length >= 2 && !filtered.some(o => o.data.title === params.inputValue)) {
+            if (onCreate && params.inputValue.length >= 2 && !filtered.some(o => o.get(
+                "title") === params.inputValue)) {
                 filtered.push({
                     inputValue: params.inputValue,
-                    data: {
-                        title: `Add "${params.inputValue}"`,
-                    },
                 });
             }
 
@@ -120,9 +108,10 @@ function Search({
                 return option.inputValue;
             }
             // a "normal" one
-            return option.data.title;
+            return option.get("title");
         }}
-        renderOption={(option) => option.data.title}
+        renderOption={(option) => option.inputValue ? `Add "${option.inputValue}"` : option.get(
+            "title")}
         onChange={handleSelect}
     />;
 }

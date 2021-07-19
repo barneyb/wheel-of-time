@@ -6,8 +6,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import React from "react";
 import {
-    useBookList,
-    useChapterList,
+    useBookChapters,
+    useBooks,
 } from "./Firestore";
 import useStoryLocation from "./useStoryLocation";
 
@@ -82,45 +82,41 @@ function SelectionLabel({
 
 function StoryLocation() {
     const [storyLocation, setStoryLocation] = useStoryLocation();
-    const {
-        data: bookList,
-        isFetching,
-    } = useBookList();
-    const {
-        data: chapterList,
-        isFetching: isFetchingChapters,
-    } = useChapterList(storyLocation.book);
+    const books = useBooks();
+    const chapters = useBookChapters(storyLocation.book);
 
-    if (isFetching) {
+    if (books.empty) {
         return "TWoT: Loading...";
     }
 
     return <React.Fragment>
         <SelectionLabel
             dialogTitle={"Select Book"}
-            items={bookList}
+            items={books.docs}
             selectedId={storyLocation.book}
-            labelRenderer={it => it?.data.tag}
+            labelRenderer={it => it?.get("tag")}
             itemRenderer={it =>
-                <ListItemText primary={it.data.title} />}
+                <ListItemText primary={it.get("title")} />}
             onChange={value => setStoryLocation({
                 book: value.id,
-                chapter: value.data.firstChapter.id,
-                _order: value.data._order * 100,
+                chapter: value.get("firstChapter").id,
+                _order: value.get("_order") * 100,
             })}
         />
-        {!isFetchingChapters && <SelectionLabel
+        {!chapters.empty && <SelectionLabel
             dialogTitle={"Select Chapter"}
-            items={chapterList}
+            items={chapters.docs}
             selectedId={storyLocation.chapter}
-            labelRenderer={it => it ? `: ${it.data.title}` : null}
-            itemRenderer={it =>
-                <ListItemText
-                    primary={`${it.data.chapter ? `${it.data.chapter}. ` : ''}${it.data.title}`} />}
+            labelRenderer={it => it ? `: ${it.get("title")}` : null}
+            itemRenderer={it => {
+                const ch = it.get("chapter");
+                return <ListItemText
+                    primary={`${ch ? `${ch}. ` : ''}${it.get("title")}`} />;
+            }}
             onChange={value => setStoryLocation(s => ({
                 ...s,
                 chapter: value.id,
-                _order: value.data._order,
+                _order: value.get("_order"),
             }))}
         />}
     </React.Fragment>;

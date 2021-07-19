@@ -8,10 +8,11 @@ import {
 import { Search as SearchIcon } from "@material-ui/icons";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useCreator } from "./Firestore";
+import { promiseIndividualId } from "./Firestore";
 import Search from "./Search";
 import StoryLocation from "./StoryLocation";
 import { useUser } from "./UserContext";
+import useStoryLocation from "./useStoryLocation";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -28,7 +29,7 @@ function Header() {
     const classes = useStyles();
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
-    const creator = useCreator();
+    const [storyLocation] = useStoryLocation();
     const user = useUser();
 
     if (!user) {
@@ -43,29 +44,27 @@ function Header() {
 
     return <AppBar position="static">
         <Toolbar>
-            {open
-                ? <Search
-                    onBlur={() => setTimeout(() => setOpen(false), 100)}
-                    onSelect={id => {
-                        history.push(`/i/${id}`, {id});
-                        setOpen(false);
-                    }}
-                    onCreate={user.email === "bboisvert@gmail.com" ? title => {
-                        creator.mutateAsync(title)
-                            .then(id => {
-                                creator.reset();
-                                history.push(`/i/${id}`, {id});
-                            });
-                        setOpen(false);
-                    } : undefined}
-                />
-                : <Typography
-                    variant="h6"
-                    className={classes.title}
-                >
-                    <StoryLocation />
-                </Typography>
-            }
+            <Typography
+                variant="h6"
+                className={classes.title}
+                style={{
+                    display: open ? "none" : "block",
+                }}
+            >
+                <StoryLocation />
+            </Typography>
+            {open && <Search
+                onBlur={() => setTimeout(() => setOpen(false), 100)}
+                onSelect={id => {
+                    history.push(`/i/${id}`, {id});
+                    setOpen(false);
+                }}
+                onCreate={user.email === "bboisvert@gmail.com" ? title => {
+                    promiseIndividualId(title, storyLocation)
+                        .then(id => history.push(`/i/${id}`, {id}));
+                    setOpen(false);
+                } : undefined}
+            />}
             <IconButton edge="end"
                         className={open ? undefined : classes.searchButton}
                         color="inherit" aria-label="search"

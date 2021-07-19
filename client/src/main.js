@@ -8,10 +8,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import './load_books';
 import {
-    QueryClient,
-    QueryClientProvider,
-} from 'react-query'
-import {
     BrowserRouter,
     Route,
     Switch,
@@ -23,51 +19,38 @@ import Home from "./Home";
 import Individual from "./Individual";
 import { UserProvider } from "./UserContext"
 
-// Create a client
-const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            keepPreviousData: true,
-            refetchOnWindowFocus: false,
-            retry: 1,
-        },
-    },
-})
-
 function App({user}) {
-    return <QueryClientProvider client={queryClient}>
-        <UserProvider value={user}>
-            <BrowserRouter>
-                <CssBaseline />
-                <React.Fragment>
-                    {user
-                        ? <Header />
-                        : <AppBar position="static">
-                            <Toolbar>
-                                <Typography variant="h6">
-                                    Log In
-                                </Typography>
-                            </Toolbar>
-                        </AppBar>
-                    }
-                    {user && <Switch>
-                        <Route exact path="/">
-                            <Home />
-                        </Route>
-                        <Route exact path="/b/:id">
-                            <Book />
-                        </Route>
-                        <Route path="/b/:bookId/c/:id">
-                            <Chapter />
-                        </Route>
-                        <Route exact path="/i/:id">
-                            <Individual />
-                        </Route>
-                    </Switch>}
-                </React.Fragment>
-            </BrowserRouter>
-        </UserProvider>
-    </QueryClientProvider>;
+    return <UserProvider value={user}>
+        <BrowserRouter>
+            <CssBaseline />
+            <React.Fragment>
+                {user
+                    ? <Header />
+                    : <AppBar position="static">
+                        <Toolbar>
+                            <Typography variant="h6">
+                                Log In
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
+                }
+                {user && <Switch>
+                    <Route exact path="/">
+                        <Home />
+                    </Route>
+                    <Route exact path="/b/:id">
+                        <Book />
+                    </Route>
+                    <Route path="/b/:bookId/c/:id">
+                        <Chapter />
+                    </Route>
+                    <Route exact path="/i/:id">
+                        <Individual />
+                    </Route>
+                </Switch>}
+            </React.Fragment>
+        </BrowserRouter>
+    </UserProvider>;
 }
 
 const auth = firebase.auth();
