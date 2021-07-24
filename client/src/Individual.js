@@ -14,8 +14,7 @@ import { useUser } from "./UserContext";
 import useStoryLocation from "./useStoryLocation";
 
 function Fact({fact}) {
-    return <pre>{fact.id}
-        {JSON.stringify(fact.data(), null, 3)}</pre>
+    return <pre>{fact.id} {JSON.stringify(fact.data(), null, 3)}</pre>
 }
 
 function NewFact({doc, storyLocation}) {
@@ -32,7 +31,7 @@ function NewFact({doc, storyLocation}) {
             return;
         }
         setSaving(true);
-        promiseFact(doc, fact, storyLocation)
+        promiseFact(doc.id, fact, storyLocation)
             .then(() => setFact(""))
             .finally(() => setSaving(false));
     };
@@ -58,7 +57,10 @@ function Facts({doc}) {
     const facts = useFacts(doc.id, storyLocation);
 
     return <React.Fragment>
-        {user.canWrite && <NewFact doc={doc} />}
+        {user.canWrite && <NewFact
+            doc={doc}
+            storyLocation={storyLocation}
+        />}
         {facts.docs.map(f => <Fact
             key={f.id}
             fact={f}

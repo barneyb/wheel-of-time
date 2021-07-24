@@ -103,10 +103,12 @@ export function promiseIndividual(title, storyLocation) {
     });
 }
 
-export function promiseFact(individual, fact, storyLocation) {
+export function promiseFact(individualId, fact, storyLocation) {
     return new Promise(resolve => {
         fact = fact.trim();
-        resolve(individual.collection(COL_FACTS)
+        resolve(db.collection(COL_INDIVIDUALS)
+            .doc(individualId)
+            .collection(COL_FACTS)
             .add({
                 fact,
                 _at: storyLocation._order,
