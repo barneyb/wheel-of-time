@@ -18,3 +18,4 @@ out/
 /public/bundle*
 /.firebase/
 /firebase_emulator_data/
+/client/.parcel-cache
