@@ -84,7 +84,7 @@ export function promiseIndividualId(title, storyLocation) {
             if (snap.exists) return snap.id;
             return ref.set({
                 title,
-                _order: storyLocation._order,
+                _at: storyLocation._order,
             }).then(() => ref.id);
         }));
     });

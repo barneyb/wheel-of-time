@@ -59,7 +59,7 @@ function Header() {
                     history.push(`/i/${id}`, {id});
                     setOpen(false);
                 }}
-                onCreate={user.email === "bboisvert@gmail.com" ? title => {
+                onCreate={user.canWrite ? title => {
                     promiseIndividualId(title, storyLocation)
                         .then(id => history.push(`/i/${id}`, {id}));
                     setOpen(false);

@@ -10,8 +10,9 @@ function Home() {
     const [info] = useUserInfo();
     return <React.Fragment>
         {user && <Button variant={"contained"} color={"secondary"}
-                         onClick={() => firebase.auth().signOut()}>SIGN
-            OUT</Button>}
+                         onClick={() => firebase.auth().signOut()}>
+            SIGN OUT
+        </Button>}
         <div>
             <h2>Why Hello!</h2>
             <p>You look great, by the way. Very healthy.</p>
