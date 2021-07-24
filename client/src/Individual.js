@@ -1,5 +1,4 @@
 import {
-    Box,
     Container,
     Grid,
     IconButton,
@@ -17,6 +16,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import {
     promiseFact,
+    promiseIndividual,
     useFacts,
     useIndividual,
     useTitleSearch,
@@ -87,6 +87,9 @@ function Individual() {
     const [storyLocation] = useStoryLocation();
     const [open, setOpen] = React.useState(false);
     const [fact, setFact] = React.useState("");
+    React.useEffect(() => {
+        setFact("")
+    }, [id]);
     const inputRef = React.useRef();
     const [search, setSearch] = React.useState(null);
     const [saving, setSaving] = React.useState(false);
@@ -221,20 +224,38 @@ function Individual() {
                     </Typography>)}
                 </ul>
             </React.Fragment>
-            :
-            <Typography
-                variant={"h4"}
-                component={"h1"}
-            >
-                <Box
-                    component={"span"}
-                    fontFamily={"monospace"}
+            : user.canWrite
+                ? <Unknown
+                    id={id}
+                    storyLocation={storyLocation}
+                />
+                : <Typography
+                    variant={"h4"}
+                    component={"h1"}
                 >
-                    {id}
-                </Box>
-                ? Huh?
-            </Typography>}
+                    '{id}' Not Found
+                </Typography>}
     </Container>;
+}
+
+function Unknown({id, storyLocation}) {
+    const [title, setTitle] = React.useState(id);
+    return <form onSubmit={e => {
+        e.preventDefault();
+        promiseIndividual(title, storyLocation);
+    }}>
+        <Grid container alignItems={"center"}>
+            <Grid item>
+                <TextField
+                    value={title}
+                    onChange={e => setTitle(e.target.value)}
+                />
+            </Grid>
+            <Grid item>
+                ...doesn't exist?
+            </Grid>
+        </Grid>
+    </form>;
 }
 
 export default Individual;

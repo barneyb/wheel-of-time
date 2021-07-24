@@ -94,7 +94,7 @@ export function promiseIndividual(title, storyLocation) {
         title = title.trim();
         const ref = db.collection(COL_INDIVIDUALS).doc(getId(title));
         resolve(ref.get().then(snap => {
-            if (snap.exists) return;
+            if (snap.exists) return ref;
             return ref.set({
                 title,
                 _at: storyLocation._order,
@@ -106,13 +106,30 @@ export function promiseIndividual(title, storyLocation) {
 export function promiseFact(individualId, fact, storyLocation) {
     return new Promise(resolve => {
         fact = fact.trim();
-        resolve(db.collection(COL_INDIVIDUALS)
-            .doc(individualId)
-            .collection(COL_FACTS)
-            .add({
-                fact,
-                _at: storyLocation._order,
-                _ts: Date.now(),
-            }));
+        const indivs = db.collection(COL_INDIVIDUALS);
+        resolve(Promise.all(fact.match(/\[([^\]]+)]/g)
+            .map(s => s.substr(1, s.length - 2))
+            .map(idOrTitle =>
+                indivs.doc(idOrTitle)
+                    .get()
+                    .then(snap => {
+                        if (snap.exists) return;
+                        return promiseIndividual(idOrTitle, storyLocation)
+                            .then(ref => {
+                                fact = fact.replaceAll(
+                                    `[${idOrTitle}]`,
+                                    `[${ref.id}]`,
+                                );
+                            });
+                    }),
+            ))
+            .then(() => indivs
+                .doc(individualId)
+                .collection(COL_FACTS)
+                .add({
+                    fact,
+                    _at: storyLocation._order,
+                    _ts: Date.now(),
+                })));
     });
 }
