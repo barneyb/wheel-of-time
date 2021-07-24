@@ -1,8 +1,15 @@
 import {
+    Box,
     Container,
+    Grid,
+    IconButton,
     TextField,
     Typography,
 } from "@material-ui/core";
+import {
+    Add as AddIcon,
+    Close as CloseIcon,
+} from "@material-ui/icons";
 import React from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -13,16 +20,48 @@ import {
 import { useUser } from "./UserContext";
 import useStoryLocation from "./useStoryLocation";
 
-function Fact({fact}) {
-    return <pre>{fact.id} {JSON.stringify(fact.data(), null, 3)}</pre>
-}
-
-function NewFact({doc, storyLocation}) {
+function Individual() {
+    const {id} = useParams();
+    const doc = useIndividual(id);
+    const user = useUser();
+    const [storyLocation] = useStoryLocation();
+    const [open, setOpen] = React.useState(false);
     const [fact, setFact] = React.useState("");
     const [saving, setSaving] = React.useState(false);
+    const facts = useFacts(doc.id, storyLocation);
+    React.useEffect(
+        () => {
+            if (!facts.isLoading && facts.empty && !open) {
+                setOpen(true);
+            }
+        },
+        // deliberately don't want to retrigger if the user acts
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [facts.isLoading, facts.empty],
+    )
+
+    const handleOpen = e => {
+        e.preventDefault();
+        setOpen(true);
+    };
+
+    const handleClose = e => {
+        e.preventDefault();
+        setOpen(false);
+        setFact("");
+    };
 
     const handleChange = e =>
         setFact(e.target.value);
+
+    const handleKeyDown = e => {
+        if (e.key === "Enter") {
+            handleSubmit(e);
+        }
+        if (e.key === "Escape") {
+            handleClose(e);
+        }
+    }
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -32,58 +71,74 @@ function NewFact({doc, storyLocation}) {
         }
         setSaving(true);
         promiseFact(doc.id, fact, storyLocation)
-            .then(() => setFact(""))
+            .then(() => {
+                setFact("");
+                setOpen(false);
+            })
             .finally(() => setSaving(false));
     };
-
-    return <form
-        onSubmit={handleSubmit}
-    >
-        <TextField
-            fullWidth
-            variant={"outlined"}
-            size={"small"}
-            placeholder={"Add note..."}
-            disabled={saving}
-            value={fact}
-            onChange={handleChange}
-        />
-    </form>;
-}
-
-function Facts({doc}) {
-    const user = useUser();
-    const [storyLocation] = useStoryLocation();
-    const facts = useFacts(doc.id, storyLocation);
-
-    return <React.Fragment>
-        {user.canWrite && <NewFact
-            doc={doc}
-            storyLocation={storyLocation}
-        />}
-        {facts.docs.map(f => <Fact
-            key={f.id}
-            fact={f}
-        />)}
-    </React.Fragment>;
-}
-
-function Individual() {
-    const {id} = useParams();
-    const doc = useIndividual(id);
 
     return <Container>
         {doc.exists
             ? <React.Fragment>
-                <Typography variant={"h4"}
-                            component={"h1"}>{doc.get("title")}</Typography>
-                <pre>{JSON.stringify({
-                    id: doc.id,
-                    data: doc.data(),
-                }, null, 3)}</pre>
-                <Facts doc={doc} />
+                <Grid container justifyContent={"space-between"}>
+                    <Grid item>
+                        <Typography
+                            variant={"h4"}
+                            component={"h1"}
+                        >
+                            {doc.get("title")}
+                        </Typography>
+                    </Grid>
+                    {user.canWrite && <Grid item>
+                        <IconButton
+                            onClick={open ? handleClose : handleOpen}
+                            style={{float: "right"}}
+                        >
+                            {open ? <CloseIcon /> : <AddIcon />}
+                        </IconButton>
+                    </Grid>}
+                </Grid>
+                {user.canWrite && open && <form
+                    onSubmit={handleSubmit}
+                >
+                    <TextField
+                        fullWidth
+                        autoFocus
+                        autoComplete={"off"}
+                        variant={"outlined"}
+                        size={"small"}
+                        placeholder={"Add note..."}
+                        disabled={saving}
+                        value={fact}
+                        multiline
+                        onChange={handleChange}
+                        onKeyDown={handleKeyDown}
+                    />
+                </form>}
+                <ul>
+                    {facts.docs.map(f => <Typography
+                        key={f.id}
+                        variant={"body1"}
+                        component={"li"}
+                    >
+                        {f.get("fact")}
+                    </Typography>)}
+                </ul>
             </React.Fragment>
-            : `Unknown '${id}'`}
+            :
+            <Typography
+                variant={"h4"}
+                component={"h1"}
+            >
+                <Box
+                    component={"span"}
+                    fontFamily={"monospace"}
+                >
+                    {id}
+                </Box>
+                ? Huh?
+            </Typography>}
     </Container>;
 }
 

@@ -82,7 +82,8 @@ export function useFacts(individualId, storyLocation) {
             .doc(individualId)
             .collection(COL_FACTS)
             .where("_at", "<=", storyLocation._order)
-            .orderBy("_at", "desc"),
+            .orderBy("_at", "desc")
+            .orderBy("_ts", "desc"),
         [individualId, storyLocation._order],
     );
     return useQueryRef(ref);
@@ -111,6 +112,7 @@ export function promiseFact(individualId, fact, storyLocation) {
             .add({
                 fact,
                 _at: storyLocation._order,
+                _ts: Date.now(),
             }));
     });
 }
