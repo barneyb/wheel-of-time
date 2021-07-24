@@ -1,9 +1,10 @@
+import { firestore } from "./firebase";
 
 document.addEventListener('DOMContentLoaded', function () {
     fetch("books.json")
         .then(r => r.json())
         .then(r => {
-            const db = firebase.firestore();
+            const db = firestore;
             return r.forEach((b, i) => {
                 const bookDoc = db.collection("books").doc(b.id);
                 bookDoc.set({

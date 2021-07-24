@@ -4,6 +4,8 @@ import {
     Toolbar,
     Typography,
 } from "@material-ui/core";
+import * as firebaseui from 'firebaseui'
+import 'firebaseui/dist/firebaseui.css'
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './load_books';
@@ -14,6 +16,8 @@ import {
 } from "react-router-dom";
 import Book from "./Book";
 import Chapter from "./Chapter";
+
+import firebase, { auth } from "./firebase";
 import Header from "./Header";
 import Home from "./Home";
 import Individual from "./Individual";
@@ -51,7 +55,6 @@ function App({user}) {
     </UserProvider>;
 }
 
-const auth = firebase.auth();
 const ui = new firebaseui.auth.AuthUI(auth);
 auth.onAuthStateChanged(function (user) {
     if (user) {

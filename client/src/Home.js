@@ -1,5 +1,6 @@
 import { Button } from "@material-ui/core";
 import React from "react";
+import { auth } from "./firebase";
 import {
     useUser,
     useUserInfo,
@@ -10,7 +11,7 @@ function Home() {
     const [info] = useUserInfo();
     return <React.Fragment>
         {user && <Button variant={"contained"} color={"secondary"}
-                         onClick={() => firebase.auth().signOut()}>
+                         onClick={() => auth.signOut()}>
             SIGN OUT
         </Button>}
         <div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { firestore } from "./firebase";
 
 const UserContext = React.createContext(undefined);
 
@@ -14,7 +15,7 @@ export function useUserInfo() {
     const user = useUser();
     React.useEffect(
         () => {
-            const ref = firebase.firestore()
+            const ref = firestore
                 .collection(COL_USERS)
                 .doc(user.uid);
             return ref.onSnapshot(snap => {
@@ -33,7 +34,7 @@ export function useUserInfo() {
             if (typeof data === "function") {
                 data = data(info);
             }
-            return firebase.firestore()
+            return firestore
                 .collection(COL_USERS)
                 .doc(user.uid)
                 .update(data);

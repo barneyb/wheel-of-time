@@ -3,6 +3,7 @@ Thumbs.db
 .gradle
 build/
 target/
+node_modules/
 out/
 .idea
 *.iml
@@ -14,8 +15,7 @@ out/
 .factorypath
 /*.log
 /.firebaserc
-/public/books.json
-/public/bundle*
+/public
 /.firebase/
 /firebase_emulator_data/
 /client/.parcel-cache

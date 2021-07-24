@@ -1,7 +1,6 @@
 import React from "react";
+import { firestore as db } from "./firebase";
 import { getId } from "./stringUtils";
-
-const db = firebase.firestore();
 
 const COL_BOOKS = "books";
 const COL_CHAPTERS = "chapters";
@@ -84,7 +83,7 @@ export function useFacts(individualId, storyLocation) {
             .collection(COL_FACTS)
             .where("_at", "<=", storyLocation._order)
             .orderBy("_at", "desc"),
-        [individualId],
+        [individualId, storyLocation._order],
     );
     return useQueryRef(ref);
 }
