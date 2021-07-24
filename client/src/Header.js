@@ -8,7 +8,7 @@ import {
 import { Search as SearchIcon } from "@material-ui/icons";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { promiseIndividualId } from "./Firestore";
+import { promiseIndividual } from "./Firestore";
 import Search from "./Search";
 import StoryLocation from "./StoryLocation";
 import { useUser } from "./UserContext";
@@ -61,8 +61,11 @@ function Header() {
                 }}
                 onNav={path => history.push(path)}
                 onCreate={user.canWrite ? title => {
-                    promiseIndividualId(title, storyLocation)
-                        .then(id => history.push(`/i/${id}`, {id}));
+                    promiseIndividual(title, storyLocation)
+                        .then(ref => history.push(
+                            `/i/${ref.id}`,
+                            {id: ref.id},
+                        ));
                     setOpen(false);
                 } : undefined}
             />}

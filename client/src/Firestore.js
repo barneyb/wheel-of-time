@@ -6,6 +6,7 @@ const db = firebase.firestore();
 const COL_BOOKS = "books";
 const COL_CHAPTERS = "chapters";
 const COL_INDIVIDUALS = "individuals";
+const COL_FACTS = "facts";
 
 function useRefWithInit(ref, init) {
     const [snap, setSnap] = React.useState(init);
@@ -76,16 +77,39 @@ export function useIndividual(id) {
     return useDocRef(ref);
 }
 
-export function promiseIndividualId(title, storyLocation) {
-    return new Promise((resolve) => {
+export function useFacts(individualId, storyLocation) {
+    const ref = React.useMemo(
+        () => db.collection(COL_INDIVIDUALS)
+            .doc(individualId)
+            .collection(COL_FACTS)
+            .where("_at", "<=", storyLocation._order)
+            .orderBy("_at", "desc"),
+        [individualId],
+    );
+    return useQueryRef(ref);
+}
+
+export function promiseIndividual(title, storyLocation) {
+    return new Promise(resolve => {
         title = title.trim();
         const ref = db.collection(COL_INDIVIDUALS).doc(getId(title));
         resolve(ref.get().then(snap => {
-            if (snap.exists) return snap.id;
+            if (snap.exists) return;
             return ref.set({
                 title,
                 _at: storyLocation._order,
-            }).then(() => ref.id);
+            }).then(() => ref);
         }));
+    });
+}
+
+export function promiseFact(individual, fact, storyLocation) {
+    return new Promise(resolve => {
+        fact = fact.trim();
+        resolve(individual.collection(COL_FACTS)
+            .add({
+                fact,
+                _at: storyLocation._order,
+            }));
     });
 }
