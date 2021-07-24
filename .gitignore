@@ -15,7 +15,6 @@ out/
 .factorypath
 /*.log
 /.firebaserc
-/public
 /.firebase/
 /firebase_emulator_data/
-/client/.parcel-cache
+/public
