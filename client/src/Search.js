@@ -15,11 +15,7 @@ import { useTitleSearch } from "./Firestore";
 const filter = createFilterOptions();
 
 const useStyles = makeStyles((theme) => ({
-    autocomplete: {
-        width: "100%",
-    },
     textField: {
-        width: "100%",
         padding: theme.spacing(1, 2),
         borderRadius: theme.shape.borderRadius,
         backgroundColor: alpha(theme.palette.common.white, 0.25),
@@ -69,8 +65,8 @@ function Search({
     const matches = useTitleSearch(value);
 
     return <Autocomplete
-        className={classes.autocomplete}
         freeSolo
+        fullWidth
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
@@ -84,6 +80,7 @@ function Search({
                     ...InputProps,
                     className: classes.input,
                 }}
+                fullWidth
                 variant="standard"
                 autoFocus
                 placeholder="Search…"
