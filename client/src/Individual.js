@@ -1,9 +1,11 @@
 import {
     Box,
     Container,
-    debounce,
     Grid,
     IconButton,
+    List,
+    ListItem,
+    Paper,
     TextField,
     Typography,
 } from "@material-ui/core";
@@ -17,6 +19,7 @@ import {
     promiseFact,
     useFacts,
     useIndividual,
+    useTitleSearch,
 } from "./Firestore";
 import { useUser } from "./UserContext";
 import useStoryLocation from "./useStoryLocation";
@@ -26,9 +29,55 @@ function getSearchString(str, cursor) {
         const c = str.charAt(i);
         if (c === ']') return;
         if (c === '[') {
-            return str.substring(i + 1, cursor);
+            const start = i;
+            const text = str.substring(i + 1, cursor);
+            let end = str.length;
+            for (i = cursor; i < str.length; i++) {
+                const c = str.charAt(i);
+                if (c === ' ') {
+                    // end at first space by default
+                    end = Math.min(i, end);
+                }
+                if (c === '[') {
+                    // if we hit another injection, we're too far
+                    break;
+                }
+                if (c === ']') {
+                    // explicit end, so use that
+                    end = i + 1;
+                    break;
+                }
+            }
+            return {
+                start,
+                text,
+                end,
+            }
         }
     }
+}
+
+function Suggest({
+                     search: {
+                         start, end, text,
+                     },
+                     onSelect,
+                 }) {
+    const matches = useTitleSearch(text);
+    if (matches.empty) return null;
+
+    const handleClick = d =>
+        onSelect && onSelect(start, end, d.id);
+
+    return <List>
+        {matches.docs.map(d =>
+            <ListItem
+                key={d.id}
+                onClick={() => handleClick(d)}
+            >
+                {d.get("title")}
+            </ListItem>)}
+    </List>;
 }
 
 function Individual() {
@@ -38,17 +87,19 @@ function Individual() {
     const [storyLocation] = useStoryLocation();
     const [open, setOpen] = React.useState(false);
     const [fact, setFact] = React.useState("");
+    const inputRef = React.useRef();
+    const [search, setSearch] = React.useState(null);
     const [saving, setSaving] = React.useState(false);
     const facts = useFacts(doc.id, storyLocation);
     React.useEffect(
         () => {
-            if (!facts.isLoading && facts.empty && !open) {
+            if (!facts.isFetching && facts.empty && !open) {
                 setOpen(true);
             }
         },
         // deliberately don't want to retrigger if the user acts
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [facts.isLoading, facts.empty],
+        [facts.isFetching, facts.empty],
     )
 
     const handleOpen = e => {
@@ -67,10 +118,6 @@ function Individual() {
         queueCompletionProcessing(e);
     };
 
-    const doCompletions = debounce((value, selectionStart) => {
-        console.log("SEARCH", getSearchString(value, selectionStart))
-    }, 300);
-
     const queueCompletionProcessing = e => {
         const {
             value,
@@ -78,7 +125,7 @@ function Individual() {
             selectionEnd,
         } = e.target;
         if (selectionStart === selectionEnd) {
-            doCompletions(value, selectionStart);
+            setSearch(getSearchString(value, selectionStart));
         }
     };
 
@@ -91,6 +138,15 @@ function Individual() {
             queueCompletionProcessing(e);
         }
     }
+
+    const handleSelectSuggestion = (start, end, text) => {
+        const prefix = fact.substr(0, start);
+        const suffix = fact.substr(end);
+        inputRef.current.focus();
+        inputRef.current.setRangeText(`[${text}]`, start, end, "end");
+        setFact(`${prefix}[${text}]${suffix}`);
+        setSearch(null);
+    };
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -128,24 +184,33 @@ function Individual() {
                         </IconButton>
                     </Grid>}
                 </Grid>
-                {user.canWrite && open && <form
-                    onSubmit={handleSubmit}
+                {user.canWrite && open && <Paper
+                    elevation={2}
                 >
-                    <TextField
-                        fullWidth
-                        autoFocus
-                        autoComplete={"off"}
-                        variant={"outlined"}
-                        size={"small"}
-                        placeholder={"Add note..."}
-                        disabled={saving}
-                        value={fact}
-                        multiline
-                        onChange={handleChange}
-                        onKeyUp={handleKeyUp}
-                        onClick={queueCompletionProcessing}
-                    />
-                </form>}
+                    <form
+                        onSubmit={handleSubmit}
+                    >
+                        <TextField
+                            inputRef={inputRef}
+                            fullWidth
+                            autoFocus
+                            autoComplete={"off"}
+                            variant={"outlined"}
+                            size={"small"}
+                            placeholder={"Add note..."}
+                            disabled={saving}
+                            value={fact}
+                            multiline
+                            onChange={handleChange}
+                            onKeyUp={handleKeyUp}
+                            onClick={queueCompletionProcessing}
+                        />
+                        {search && search.text && <Suggest
+                            search={search}
+                            onSelect={handleSelectSuggestion}
+                        />}
+                    </form>
+                </Paper>}
                 <ul>
                     {facts.docs.map(f => <Typography
                         key={f.id}
