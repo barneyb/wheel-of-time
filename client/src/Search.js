@@ -1,8 +1,10 @@
 import {
     alpha,
     makeStyles,
+    SvgIcon,
     TextField,
 } from "@material-ui/core";
+import { ArrowForwardOutlined as ArrowForwardIcon } from "@material-ui/icons";
 import {
     Autocomplete,
     createFilterOptions,
@@ -30,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 function Search({
                     onBlur,
                     onCreate,
+                    onNav,
                     onSelect,
                 }) {
     const classes = useStyles();
@@ -40,6 +43,10 @@ function Search({
         if (typeof value === "string") {
             // hit ENTER
             onCreate && onCreate(value);
+            return;
+        }
+        if (value.nav) {
+            onNav && onNav(value.nav);
             return;
         }
         if (value.inputValue) {
@@ -88,12 +95,20 @@ function Search({
         filterOptions={(options, params) => {
             const filtered = filter(options, params);
 
-            // Suggest the creation of a new value
-            if (onCreate && params.inputValue.length >= 2 && !filtered.some(o => o.get(
-                "title") === params.inputValue)) {
-                filtered.push({
-                    inputValue: params.inputValue,
-                });
+            if (params.inputValue.length >= 2) {
+                // Suggest the creation of a new value
+                if (onCreate && !filtered.some(o =>
+                    o.get("title") === params.inputValue)) {
+                    filtered.push({
+                        inputValue: params.inputValue,
+                    });
+                }
+                if (onNav && "home".indexOf(params.inputValue.toLowerCase()) === 0) {
+                    filtered.push({
+                        nav: "/",
+                        inputValue: "Home",
+                    })
+                }
             }
 
             return filtered;
@@ -110,8 +125,20 @@ function Search({
             // a "normal" one
             return option.get("title");
         }}
-        renderOption={(option) => option.inputValue ? `Add "${option.inputValue}"` : option.get(
-            "title")}
+        renderOption={(option) => {
+            if (option.nav) {
+                return <React.Fragment>
+                    <SvgIcon>
+                        <ArrowForwardIcon />
+                    </SvgIcon>
+                    {option.inputValue}
+                </React.Fragment>
+            }
+            if (option.inputValue) {
+                return `Add "${option.inputValue}"`;
+            }
+            return option.get("title");
+        }}
         onChange={handleSelect}
     />;
 }

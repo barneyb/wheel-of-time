@@ -59,6 +59,7 @@ function Header() {
                     history.push(`/i/${id}`, {id});
                     setOpen(false);
                 }}
+                onNav={path => history.push(path)}
                 onCreate={user.canWrite ? title => {
                     promiseIndividualId(title, storyLocation)
                         .then(id => history.push(`/i/${id}`, {id}));
