@@ -1,6 +1,7 @@
 import {
     Box,
     Container,
+    debounce,
     Grid,
     IconButton,
     TextField,
@@ -19,6 +20,16 @@ import {
 } from "./Firestore";
 import { useUser } from "./UserContext";
 import useStoryLocation from "./useStoryLocation";
+
+function getSearchString(str, cursor) {
+    for (let i = cursor - 1; i >= 0; i--) {
+        const c = str.charAt(i);
+        if (c === ']') return;
+        if (c === '[') {
+            return str.substring(i + 1, cursor);
+        }
+    }
+}
 
 function Individual() {
     const {id} = useParams();
@@ -51,15 +62,33 @@ function Individual() {
         setFact("");
     };
 
-    const handleChange = e =>
+    const handleChange = e => {
         setFact(e.target.value);
+        queueCompletionProcessing(e);
+    };
 
-    const handleKeyDown = e => {
+    const doCompletions = debounce((value, selectionStart) => {
+        console.log("SEARCH", getSearchString(value, selectionStart))
+    }, 300);
+
+    const queueCompletionProcessing = e => {
+        const {
+            value,
+            selectionStart,
+            selectionEnd,
+        } = e.target;
+        if (selectionStart === selectionEnd) {
+            doCompletions(value, selectionStart);
+        }
+    };
+
+    const handleKeyUp = e => {
         if (e.key === "Enter") {
             handleSubmit(e);
-        }
-        if (e.key === "Escape") {
+        } else if (e.key === "Escape") {
             handleClose(e);
+        } else {
+            queueCompletionProcessing(e);
         }
     }
 
@@ -113,7 +142,8 @@ function Individual() {
                         value={fact}
                         multiline
                         onChange={handleChange}
-                        onKeyDown={handleKeyDown}
+                        onKeyUp={handleKeyUp}
+                        onClick={queueCompletionProcessing}
                     />
                 </form>}
                 <ul>
