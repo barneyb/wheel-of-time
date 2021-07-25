@@ -5,6 +5,9 @@ import {
     IconButton,
     List,
     ListItem,
+    ListItemAvatar,
+    ListItemSecondaryAction,
+    ListItemText,
     makeStyles,
     Paper,
     TextField,
@@ -13,6 +16,7 @@ import {
 import {
     Add as AddIcon,
     Close as CloseIcon,
+    Edit as EditIcon,
 } from "@material-ui/icons";
 import React from "react";
 import {
@@ -141,42 +145,50 @@ function factRenderParts(text) {
     return parts;
 }
 
-function Fact({snap, component = "li"}) {
+function Fact({snap, canWrite}) {
     const parts = factRenderParts(snap.get("fact"));
-    return <Typography
+    const query = React.useMemo(
+        () => firestore.collectionGroup("facts")
+            .where("_ref", "==", snap.ref),
+        [snap],
+    );
+    const refs = useQuerySnapshot(query);
+    return <ListItem
         variant={"body1"}
-        component={component}
+        divider
     >
-        {parts}
-    </Typography>;
+        <ListItemText>
+            {parts} {refs && `(${refs.size})`}
+        </ListItemText>
+        {canWrite && <ListItemSecondaryAction>
+            <IconButton edge="end" aria-label="edit">
+                <EditIcon />
+            </IconButton>
+        </ListItemSecondaryAction>}
+    </ListItem>;
 }
 
-function FactRef({docRef, component = "li"}) {
+function FactRef({docRef}) {
     const snap = useDocSnapshot(docRef);
     const srcRef = React.useMemo(
         () => docRef?.parent?.parent,
         [docRef],
     );
-    const src = useDocSnapshot(srcRef);
-    let body;
-    if (snap.isFetching || src.isFetching) {
-        body = "...";
-    } else {
-        body = [
-            <IndividualChip
-                key={"src"}
-                id={src.id}
-            />,
-            " ",
-            ...factRenderParts(snap.get("fact")),
-        ]
-    }
-    return <Typography
+    const fact = snap.get("fact");
+    return <ListItem
         variant={"body1"}
-        component={component}
+        divider
     >
-        {body}
-    </Typography>;
+        <ListItemAvatar>
+            {srcRef?.id && <IndividualChip
+                key={"src"}
+                id={srcRef.id}
+            />}
+        </ListItemAvatar>
+        <ListItemText>
+            {fact ? factRenderParts(fact) : "..."}
+        </ListItemText>
+    </ListItem>;
 }
 
 function Individual() {
@@ -308,7 +320,9 @@ function Individual() {
                         />}
                     </form>
                 </Paper>}
-                <ul>
+                <List
+                    dense
+                >
                     {facts.docs.map(f => f.get("_ref")
                         ? <FactRef
                             key={f.id}
@@ -317,8 +331,9 @@ function Individual() {
                         : <Fact
                             key={f.id}
                             snap={f}
+                            canWrite={user.canWrite}
                         />)}
-                </ul>
+                </List>
             </React.Fragment>
             : user.canWrite
                 ? <Unknown

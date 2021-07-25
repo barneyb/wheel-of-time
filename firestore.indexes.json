@@ -15,5 +15,21 @@
             ]
         }
     ],
-    "fieldOverrides": []
+    "fieldOverrides": [
+        {
+            "collectionGroup": "facts",
+            "fieldPath": "fact",
+            "indexes": []
+        },
+        {
+            "collectionGroup": "facts",
+            "fieldPath": "_ref",
+            "indexes": [
+                {
+                    "queryScope": "COLLECTION_GROUP",
+                    "order": "ASCENDING"
+                }
+            ]
+        }
+    ]
 }
