@@ -16,7 +16,7 @@ function useRefWithInit(ref, init) {
     return snap;
 }
 
-function useDocRef(ref) {
+export function useDocRef(ref) {
     return useRefWithInit(ref, {
         id: ref.id,
         ref,
@@ -107,22 +107,27 @@ export function promiseFact(individualId, fact, storyLocation) {
     return new Promise(resolve => {
         fact = fact.trim();
         const indivs = db.collection(COL_INDIVIDUALS);
-        resolve(Promise.all(fact.match(/\[([^\]]+)]/g) // DUPLICATED!
+        const rawRefs = new Set();
+        (fact.match(/\[([^\]]+)]/g) || []) // DUPLICATED!
             .map(s => s.substr(1, s.length - 2))
-            .map(idOrTitle =>
-                indivs.doc(idOrTitle)
-                    .get()
-                    .then(snap => {
-                        if (snap.exists) return;
-                        return promiseIndividual(idOrTitle, storyLocation)
-                            .then(ref => {
-                                fact = fact.replaceAll(
-                                    `[${idOrTitle}]`,
-                                    `[${ref.id}]`,
-                                );
-                            });
-                    }),
-            ))
+            .forEach(idOrTitle => rawRefs.add(idOrTitle));
+        const idRefs = new Set();
+        resolve(Promise.all(Array.from(rawRefs).map(idOrTitle =>
+            indivs.doc(idOrTitle)
+                .get()
+                .then(snap => {
+                    if (snap.exists) return snap;
+                    return promiseIndividual(idOrTitle, storyLocation)
+                        .then(ref => {
+                            fact = fact.replaceAll(
+                                `[${idOrTitle}]`,
+                                `[${ref.id}]`,
+                            );
+                            return ref;
+                        });
+                })
+                .then(refOrSnap => idRefs.add(refOrSnap.id)),
+        ))
             .then(() => indivs
                 .doc(individualId)
                 .collection(COL_FACTS)
@@ -130,6 +135,16 @@ export function promiseFact(individualId, fact, storyLocation) {
                     fact,
                     _at: storyLocation._order,
                     _ts: Date.now(),
-                })));
+                }))
+            .then(factRef =>
+                // now add a refFact to each of idRef's documents, pointed at factRef
+                Promise.all(Array.from(idRefs).map(id =>
+                    indivs.doc(id).collection(COL_FACTS).add({
+                        _ref: factRef,
+                        _at: storyLocation._order,
+                        _ts: Date.now(),
+                    }),
+                )),
+            ));
     });
 }
