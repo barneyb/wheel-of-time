@@ -5,6 +5,7 @@ import {
     IconButton,
     List,
     ListItem,
+    makeStyles,
     Paper,
     TextField,
     Typography,
@@ -19,12 +20,14 @@ import {
     useHistory,
     useParams,
 } from "react-router-dom";
+import { firestore } from "./firebase";
 import {
     promiseFact,
     promiseIndividual,
     useDocSnapshot,
     useFacts,
     useIndividual,
+    useQuerySnapshot,
     useTitleSearch,
 } from "./Firestore";
 import { useUser } from "./UserContext";
@@ -86,22 +89,33 @@ function Suggest({
     </List>;
 }
 
+const useLinkStyles = makeStyles(theme => ({
+    root: {
+        color: "inherit",
+        textDecorationStyle: "dotted",
+        textDecorationThickness: "1px",
+        textDecorationColor: theme.palette.text.disabled,
+    },
+}));
+
 function IndividualLink({id}) {
-    const indiv = useIndividual(id);
+    const classes = useLinkStyles();
+    const snap = useIndividual(id);
     return <Link
+        className={classes.root}
         to={`/i/${id}`}
     >
-        {indiv.get("title") || id}
+        {snap.get("title") || id}
     </Link>;
 }
 
 function IndividualChip({id}) {
     const history = useHistory();
-    const indiv = useIndividual(id);
+    const snap = useIndividual(id);
     return <Chip
         size={"small"}
         variant={"outlined"}
-        label={indiv.get("title") || id}
+        label={snap.get("title") || id}
         onClick={() => history.push(`/i/${id}`)}
     />;
 }
