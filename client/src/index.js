@@ -1,5 +1,8 @@
 import {
     AppBar,
+    Card,
+    CardContent,
+    Container,
     CssBaseline,
     Toolbar,
     Typography,
@@ -26,32 +29,41 @@ import { UserProvider } from "./UserContext"
 function App({user}) {
     return <UserProvider value={user}>
         <CssBaseline />
-        <BrowserRouter>
-            {user
-                ? <Header />
-                : <AppBar position="static">
+        {user
+            ? <BrowserRouter>
+                <Header />
+                <Switch>
+                    <Route exact path="/">
+                        <Home />
+                    </Route>
+                    <Route exact path="/b/:id">
+                        <Book />
+                    </Route>
+                    <Route path="/b/:bookId/c/:id">
+                        <Chapter />
+                    </Route>
+                    <Route exact path="/i/:id">
+                        <Individual />
+                    </Route>
+                </Switch>
+            </BrowserRouter>
+            : <React.Fragment>
+                <AppBar position="static">
                     <Toolbar>
                         <Typography variant="h6">
-                            Log In
+                            Sign In
                         </Typography>
                     </Toolbar>
                 </AppBar>
-            }
-            {user && <Switch>
-                <Route exact path="/">
-                    <Home />
-                </Route>
-                <Route exact path="/b/:id">
-                    <Book />
-                </Route>
-                <Route path="/b/:bookId/c/:id">
-                    <Chapter />
-                </Route>
-                <Route exact path="/i/:id">
-                    <Individual />
-                </Route>
-            </Switch>}
-        </BrowserRouter>
+                <Container>
+                    <Card elevation={2}>
+                        <CardContent>
+                            First sign in below, then you can browse my <em>The
+                            Wheel of Time</em> notes.
+                        </CardContent>
+                    </Card>
+                </Container>
+            </React.Fragment>}
     </UserProvider>;
 }
 
