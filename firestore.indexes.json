@@ -1,4 +1,19 @@
 {
-  "indexes": [],
-  "fieldOverrides": []
+    "indexes": [
+        {
+            "collectionGroup": "facts",
+            "queryScope": "COLLECTION",
+            "fields": [
+                {
+                    "fieldPath": "_at",
+                    "order": "DESCENDING"
+                },
+                {
+                    "fieldPath": "_ts",
+                    "order": "DESCENDING"
+                }
+            ]
+        }
+    ],
+    "fieldOverrides": []
 }
