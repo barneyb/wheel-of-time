@@ -13,7 +13,10 @@ import {
     Close as CloseIcon,
 } from "@material-ui/icons";
 import React from "react";
-import { useParams } from "react-router-dom";
+import {
+    Link,
+    useParams,
+} from "react-router-dom";
 import {
     promiseFact,
     promiseIndividual,
@@ -80,6 +83,42 @@ function Suggest({
     </List>;
 }
 
+function IndividualLink({id}) {
+    const indiv = useIndividual(id);
+    return <Link
+        to={`/i/${id}`}
+    >
+        {indiv.get("title") || id}
+    </Link>;
+}
+
+function Fact({doc, component = "li"}) {
+    const RE_REF = /\[([^\]]+)]/g; // DUPLICATED!
+    const text = doc.get("fact");
+    let curr = 0;
+    const parts = [];
+    let match;
+    while ((match = RE_REF.exec(text))) {
+        if (curr < match.index) {
+            parts.push(text.substring(curr, match.index));
+        }
+        parts.push(<IndividualLink
+            key={curr}
+            id={match[1]}
+        />); // the ID
+        curr = match.index + match[0].length;
+    }
+    if (curr < text.length) {
+        parts.push(text.substr(curr));
+    }
+    return <Typography
+        variant={"body1"}
+        component={component}
+    >
+        {parts}
+    </Typography>;
+}
+
 function Individual() {
     const {id} = useParams();
     const doc = useIndividual(id);
@@ -88,7 +127,8 @@ function Individual() {
     const [open, setOpen] = React.useState(false);
     const [fact, setFact] = React.useState("");
     React.useEffect(() => {
-        setFact("")
+        setOpen(false);
+        setFact("");
     }, [id]);
     const inputRef = React.useRef();
     const [search, setSearch] = React.useState(null);
@@ -215,13 +255,10 @@ function Individual() {
                     </form>
                 </Paper>}
                 <ul>
-                    {facts.docs.map(f => <Typography
+                    {facts.docs.map(f => <Fact
                         key={f.id}
-                        variant={"body1"}
-                        component={"li"}
-                    >
-                        {f.get("fact")}
-                    </Typography>)}
+                        doc={f}
+                    />)}
                 </ul>
             </React.Fragment>
             : user.canWrite

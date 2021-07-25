@@ -107,7 +107,7 @@ export function promiseFact(individualId, fact, storyLocation) {
     return new Promise(resolve => {
         fact = fact.trim();
         const indivs = db.collection(COL_INDIVIDUALS);
-        resolve(Promise.all(fact.match(/\[([^\]]+)]/g)
+        resolve(Promise.all(fact.match(/\[([^\]]+)]/g) // DUPLICATED!
             .map(s => s.substr(1, s.length - 2))
             .map(idOrTitle =>
                 indivs.doc(idOrTitle)
