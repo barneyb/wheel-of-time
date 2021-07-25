@@ -5,7 +5,6 @@ import {
     IconButton,
     List,
     ListItem,
-    ListItemAvatar,
     ListItemSecondaryAction,
     ListItemText,
     makeStyles,
@@ -24,16 +23,16 @@ import {
     useHistory,
     useParams,
 } from "react-router-dom";
-import { firestore } from "./firebase";
 import {
-    promiseFact,
+    promiseFactUpdate,
     promiseIndividual,
+    promiseNewFact,
     useDocSnapshot,
     useFacts,
     useIndividual,
-    useQuerySnapshot,
     useTitleSearch,
 } from "./Firestore";
+import RE_REF from "./RE_REF";
 import { useUser } from "./UserContext";
 import useStoryLocation from "./useStoryLocation";
 
@@ -98,7 +97,7 @@ const useLinkStyles = makeStyles(theme => ({
         color: "inherit",
         textDecorationStyle: "dotted",
         textDecorationThickness: "1px",
-        textDecorationColor: theme.palette.text.disabled,
+        textDecorationColor: theme.palette.info.main,
     },
 }));
 
@@ -113,19 +112,19 @@ function IndividualLink({id}) {
     </Link>;
 }
 
-function IndividualChip({id}) {
+function IndividualChip({id, ...props}) {
     const history = useHistory();
     const snap = useIndividual(id);
     return <Chip
-        size={"small"}
-        variant={"outlined"}
         label={snap.get("title") || id}
         onClick={() => history.push(`/i/${id}`)}
+        {...props}
+        size={"small"}
+        variant={"outlined"}
     />;
 }
 
 function factRenderParts(text) {
-    const RE_REF = /\[([^\]]+)]/g; // DUPLICATED!
     let curr = 0;
     const parts = [];
     let match;
@@ -145,30 +144,76 @@ function factRenderParts(text) {
     return parts;
 }
 
-function Fact({snap, canWrite}) {
-    const parts = factRenderParts(snap.get("fact"));
-    const query = React.useMemo(
-        () => firestore.collectionGroup("facts")
-            .where("_ref", "==", snap.ref),
+function Fact({snap, canWrite, storyLocation}) {
+    const [open, setOpen] = React.useState(false);
+    const [fact, setFact] = React.useState(snap.get("fact"));
+    React.useEffect(
+        () => {
+            setFact(snap.get("fact"))
+        },
         [snap],
-    );
-    const refs = useQuerySnapshot(query);
+    )
+    const [saving, setSaving] = React.useState(false);
+
+    const handleOpen = e => {
+        e.preventDefault();
+        setOpen(true);
+    };
+
+    const handleCancel = () => {
+        setOpen(false);
+        setFact(snap.get("fact"));
+    };
+
+    const handleSubmit = () => {
+        if (!fact.trim()) {
+            setFact("");
+            return;
+        }
+        setSaving(true);
+        promiseFactUpdate(snap.ref, fact, storyLocation)
+            .then(() => {
+                setOpen(false);
+            })
+            .finally(() => setSaving(false));
+    };
+
     return <ListItem
         variant={"body1"}
+        alignItems={"flex-start"}
         divider
     >
         <ListItemText>
-            {parts} {refs && `(${refs.size})`}
+            {canWrite && open
+                ? <EditFact
+                    value={fact}
+                    saving={saving}
+                    onChange={setFact}
+                    onCancel={handleCancel}
+                    onCommit={handleSubmit}
+                />
+                : factRenderParts(fact)}
         </ListItemText>
         {canWrite && <ListItemSecondaryAction>
-            <IconButton edge="end" aria-label="edit">
-                <EditIcon />
+            <IconButton
+                edge="end"
+                aria-label="edit"
+                onClick={open ? handleCancel : handleOpen}
+            >
+                {open ? <CloseIcon /> : <EditIcon />}
             </IconButton>
         </ListItemSecondaryAction>}
     </ListItem>;
 }
 
+const useRefStyles = makeStyles(theme => ({
+    chip: {
+        marginRight: theme.spacing(0.5),
+    },
+}))
+
 function FactRef({docRef}) {
+    const classes = useRefStyles();
     const snap = useDocSnapshot(docRef);
     const srcRef = React.useMemo(
         () => docRef?.parent?.parent,
@@ -179,57 +224,29 @@ function FactRef({docRef}) {
         variant={"body1"}
         divider
     >
-        <ListItemAvatar>
+        <ListItemText>
             {srcRef?.id && <IndividualChip
                 key={"src"}
                 id={srcRef.id}
+                className={classes.chip}
             />}
-        </ListItemAvatar>
-        <ListItemText>
             {fact ? factRenderParts(fact) : "..."}
         </ListItemText>
     </ListItem>;
 }
 
-function Individual() {
-    const {id} = useParams();
-    const doc = useIndividual(id);
-    const user = useUser();
-    const [storyLocation] = useStoryLocation();
-    const [open, setOpen] = React.useState(false);
-    const [fact, setFact] = React.useState("");
-    React.useEffect(() => {
-        setOpen(false);
-        setFact("");
-    }, [id]);
+function EditFact({
+                      value = "",
+                      saving = false,
+                      onChange,
+                      onCommit,
+                      onCancel,
+                  }) {
     const inputRef = React.useRef();
     const [search, setSearch] = React.useState(null);
-    const [saving, setSaving] = React.useState(false);
-    const facts = useFacts(doc.id, storyLocation);
-    React.useEffect(
-        () => {
-            if (!facts.isFetching && facts.empty && !open) {
-                setOpen(true);
-            }
-        },
-        // deliberately don't want to retrigger if the user acts
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [facts.isFetching, facts.empty],
-    )
-
-    const handleOpen = e => {
-        e.preventDefault();
-        setOpen(true);
-    };
-
-    const handleClose = e => {
-        e.preventDefault();
-        setOpen(false);
-        setFact("");
-    };
 
     const handleChange = e => {
-        setFact(e.target.value);
+        onChange && onChange(e.target.value);
         queueCompletionProcessing(e);
     };
 
@@ -248,29 +265,97 @@ function Individual() {
         if (e.key === "Enter") {
             handleSubmit(e);
         } else if (e.key === "Escape") {
-            handleClose(e);
+            handleCancel(e)
         } else {
             queueCompletionProcessing(e);
         }
     }
 
     const handleSelectSuggestion = (start, end, text) => {
-        const prefix = fact.substr(0, start);
-        const suffix = fact.substr(end);
+        const prefix = value.substr(0, start);
+        const suffix = value.substr(end);
         inputRef.current.focus();
         inputRef.current.setRangeText(`[${text}]`, start, end, "end");
-        setFact(`${prefix}[${text}]${suffix}`);
+        onChange && onChange(`${prefix}[${text}]${suffix}`);
         setSearch(null);
+    };
+
+    const handleCancel = e => {
+        e.preventDefault();
+        onCancel && onCancel();
     };
 
     const handleSubmit = e => {
         e.preventDefault();
+        onCommit && onCommit();
+    };
+
+    return <form
+        onSubmit={handleSubmit}
+    >
+        <TextField
+            inputRef={inputRef}
+            fullWidth
+            autoFocus
+            autoComplete={"off"}
+            variant={"outlined"}
+            size={"small"}
+            placeholder={"Add note..."}
+            disabled={saving}
+            value={value}
+            multiline
+            onChange={handleChange}
+            onKeyUp={handleKeyUp}
+            onClick={queueCompletionProcessing}
+        />
+        {search && search.text && <Suggest
+            search={search}
+            onSelect={handleSelectSuggestion}
+        />}
+    </form>;
+}
+
+function Individual() {
+    const {id} = useParams();
+    const doc = useIndividual(id);
+    const user = useUser();
+    const [storyLocation] = useStoryLocation();
+    const [open, setOpen] = React.useState(false);
+    const [fact, setFact] = React.useState("");
+    React.useEffect(() => {
+        setOpen(false);
+        setFact("");
+    }, [id]);
+    const [saving, setSaving] = React.useState(false);
+    const facts = useFacts(doc.id, storyLocation);
+    React.useEffect(
+        () => {
+            if (!facts.isFetching && facts.empty && !open) {
+                setOpen(true);
+            }
+        },
+        // deliberately don't want to retrigger if the user acts
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [facts.isFetching, facts.empty],
+    )
+
+    const handleOpen = e => {
+        e.preventDefault();
+        setOpen(true);
+    };
+
+    const handleCancel = () => {
+        setOpen(false);
+        setFact("");
+    };
+
+    const handleSubmit = () => {
         if (!fact.trim()) {
             setFact("");
             return;
         }
         setSaving(true);
-        promiseFact(doc.id, fact, storyLocation)
+        promiseNewFact(doc.id, fact, storyLocation)
             .then(() => {
                 setFact("");
                 setOpen(false);
@@ -282,7 +367,7 @@ function Individual() {
         {doc.exists
             ? <React.Fragment>
                 {user.canWrite && <IconButton
-                    onClick={open ? handleClose : handleOpen}
+                    onClick={open ? handleCancel : handleOpen}
                     style={{float: "right"}}
                 >
                     {open ? <CloseIcon /> : <AddIcon />}
@@ -296,29 +381,13 @@ function Individual() {
                 {user.canWrite && open && <Paper
                     elevation={2}
                 >
-                    <form
-                        onSubmit={handleSubmit}
-                    >
-                        <TextField
-                            inputRef={inputRef}
-                            fullWidth
-                            autoFocus
-                            autoComplete={"off"}
-                            variant={"outlined"}
-                            size={"small"}
-                            placeholder={"Add note..."}
-                            disabled={saving}
-                            value={fact}
-                            multiline
-                            onChange={handleChange}
-                            onKeyUp={handleKeyUp}
-                            onClick={queueCompletionProcessing}
-                        />
-                        {search && search.text && <Suggest
-                            search={search}
-                            onSelect={handleSelectSuggestion}
-                        />}
-                    </form>
+                    <EditFact
+                        value={fact}
+                        saving={saving}
+                        onChange={setFact}
+                        onCancel={handleCancel}
+                        onCommit={handleSubmit}
+                    />
                 </Paper>}
                 <List
                     dense
@@ -332,6 +401,7 @@ function Individual() {
                             key={f.id}
                             snap={f}
                             canWrite={user.canWrite}
+                            storyLocation={storyLocation}
                         />)}
                 </List>
             </React.Fragment>
@@ -350,16 +420,31 @@ function Individual() {
 }
 
 function Unknown({id, storyLocation}) {
+    const history = useHistory();
     const [title, setTitle] = React.useState(id);
-    return <form onSubmit={e => {
+
+    const handleSubmit = e => {
         e.preventDefault();
-        promiseIndividual(title, storyLocation);
-    }}>
+        promiseIndividual(title, storyLocation)
+            .then(ref => history.push(
+                `/i/${ref.id}`,
+                {id: ref.id},
+            ));
+    }
+
+    const handleKeyUp = e => {
+        if (e.key === "Enter") {
+            handleSubmit(e);
+        }
+    }
+
+    return <form onSubmit={handleSubmit}>
         <Grid container alignItems={"center"}>
             <Grid item>
                 <TextField
                     value={title}
                     onChange={e => setTitle(e.target.value)}
+                    onKeyUp={handleKeyUp}
                 />
             </Grid>
             <Grid item>

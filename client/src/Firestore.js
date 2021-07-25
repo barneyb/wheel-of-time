@@ -1,5 +1,6 @@
 import React from "react";
 import { firestore as db } from "./firebase";
+import RE_REF from "./RE_REF";
 import { getId } from "./stringUtils";
 
 const COL_BOOKS = "books";
@@ -7,7 +8,7 @@ const COL_CHAPTERS = "chapters";
 const COL_INDIVIDUALS = "individuals";
 const COL_FACTS = "facts";
 
-// XxxSnapshot
+// XxxReference -> XxxSnapshot
 function useSnapshotOfXxxWithInit(refOrQuery, init) {
     const [snap, setSnap] = React.useState(init);
     React.useEffect(
@@ -17,7 +18,7 @@ function useSnapshotOfXxxWithInit(refOrQuery, init) {
     return snap;
 }
 
-// DocumentSnapshot
+// DocumentReference -> DocumentSnapshot
 export function useDocSnapshot(ref) {
     return useSnapshotOfXxxWithInit(ref, {
         id: ref.id,
@@ -28,7 +29,7 @@ export function useDocSnapshot(ref) {
     });
 }
 
-// QuerySnapshot
+// Query -> QuerySnapshot
 export function useQuerySnapshot(query) {
     return useSnapshotOfXxxWithInit(query, {
         empty: true,
@@ -39,7 +40,7 @@ export function useQuerySnapshot(query) {
     });
 }
 
-// QuerySnapshot
+// () -> QuerySnapshot
 export function useBooks() {
     const ref = React.useMemo(
         () => db.collection(COL_BOOKS)
@@ -49,7 +50,7 @@ export function useBooks() {
     return useQuerySnapshot(ref);
 }
 
-// QuerySnapshot
+// String -> QuerySnapshot
 export function useBookChapters(bookId) {
     const ref = React.useMemo(
         () => db.collection(COL_BOOKS)
@@ -61,7 +62,7 @@ export function useBookChapters(bookId) {
     return useQuerySnapshot(ref);
 }
 
-// QuerySnapshot
+// String -> QuerySnapshot
 export function useTitleSearch(title) {
     const ref = React.useMemo(
         () => db.collection(COL_INDIVIDUALS)
@@ -74,7 +75,7 @@ export function useTitleSearch(title) {
     return useQuerySnapshot(ref);
 }
 
-// DocumentSnapshot
+// String -> DocumentSnapshot
 export function useIndividual(id) {
     const ref = React.useMemo(
         () => db.collection(COL_INDIVIDUALS).doc(id),
@@ -83,7 +84,7 @@ export function useIndividual(id) {
     return useDocSnapshot(ref);
 }
 
-// QuerySnapshot
+// String -> StoryLocation -> QuerySnapshot
 export function useFacts(individualId, storyLocation) {
     const ref = React.useMemo(
         () => db.collection(COL_INDIVIDUALS)
@@ -97,7 +98,7 @@ export function useFacts(individualId, storyLocation) {
     return useQuerySnapshot(ref);
 }
 
-// Promise<DocumentReference>
+// String -> StoryLocation -> Promise<DocumentReference>
 export function promiseIndividual(title, storyLocation) {
     return new Promise(resolve => {
         title = title.trim();
@@ -112,64 +113,133 @@ export function promiseIndividual(title, storyLocation) {
     });
 }
 
-// Promise<DocumentReference>
-export function promiseFact(individualId, fact, storyLocation) {
-    return new Promise(resolve => {
-        fact = fact.trim();
-        const indivs = db.collection(COL_INDIVIDUALS);
-        const rawRefs = new Set();
-        (fact.match(/\[([^\]]+)]/g) || []) // DUPLICATED!
-            .map(s => s.substr(1, s.length - 2))
-            .forEach(idOrTitle => rawRefs.add(idOrTitle));
-        const idRefs = new Set();
-        // ensure all the referred-to individuals exist
-        resolve(Promise.all(Array.from(rawRefs).map(idOrTitle =>
-            indivs.doc(idOrTitle)
+// String -> StoryLocation -> Promise<[String, Set<ID>]>
+function promiseFactWithReferencedIndividualsIDs(fact, storyLocation) {
+    fact = fact.trim();
+    const rawRefs = new Set((fact.match(RE_REF) || [])
+        .map(s => s.substr(1, s.length - 2)));
+    return Promise.all([...rawRefs].map(idOrTitle =>
+        db.collection(COL_INDIVIDUALS)
+            .doc(idOrTitle)
+            .get()
+            .then(snap => {
+                if (snap.exists) return snap.id;
+                return promiseIndividual(idOrTitle, storyLocation)
+                    .then(ref => {
+                        fact = fact.replaceAll(
+                            `[${idOrTitle}]`,
+                            `[${ref.id}]`,
+                        );
+                        return ref.id;
+                    });
+            }),
+    ))
+        .then(ids => [fact, new Set(ids)]);
+}
+
+function promiseFactReference(id, factRef, storyLocation) {
+    return db.collection(COL_INDIVIDUALS)
+        .doc(id)
+        .collection(COL_FACTS)
+        .add({
+            _ref: factRef,
+            _at: storyLocation._order,
+            _ts: Date.now(),
+        });
+}
+
+// String -> String -> StoryLocation -> Promise<DocumentReference>
+export function promiseNewFact(individualId, fact, storyLocation) {
+    // ensure all referenced individuals exist, and get their IDs in the fact
+    return promiseFactWithReferencedIndividualsIDs(fact, storyLocation)
+        .then(([fact, reffedIndivIds]) =>
+            db.collection(COL_INDIVIDUALS)
+                .doc(individualId)
                 .get()
-                .then(snap => {
-                    if (snap.exists) return snap;
-                    return promiseIndividual(idOrTitle, storyLocation)
-                        .then(ref => {
-                            fact = fact.replaceAll(
-                                `[${idOrTitle}]`,
-                                `[${ref.id}]`,
-                            );
-                            return ref;
-                        });
-                })
-                .then(refOrSnap => idRefs.add(refOrSnap.id)),
-        ))
-            .then(() =>
-                // ensure the individual's _at is early enough
-                indivs.doc(individualId)
-                    .get()
-                    .then(snap => {
-                        if (snap.get("_at") > storyLocation._order) {
-                            return snap.ref.update({
+                .then(iSnap =>
+                    Promise.all([
+                        // ensure the individual's _at is early enough
+                        iSnap.get("_at") <= storyLocation._order
+                            ? iSnap
+                            : iSnap.ref.update({
                                 _at: storyLocation._order,
+                            }),
+                        // add the fact to the individual
+                        iSnap.ref
+                            .collection(COL_FACTS)
+                            .add({
+                                fact,
+                                _at: storyLocation._order,
+                                _ts: Date.now(),
+                            }),
+                        reffedIndivIds,
+                    ]))
+                .then(([ignored, factRef, reffedIndivIds]) =>
+                    // add a refFact to each referenced individual, pointed at factRef
+                    Promise.all([...reffedIndivIds].map(id =>
+                        promiseFactReference(id, factRef, storyLocation),
+                    ))
+                        .then(() => factRef)),
+        );
+}
+
+// Iterable<T> -> (T -> String) -> Object<T>
+function groupBy(iterable, extractKey) {
+    const result = {};
+    iterable.forEach(it => {
+        const key = extractKey(it);
+        if (!(key in result)) {
+            result[key] = [it];
+        } else {
+            result[key].push(it);
+        }
+    })
+    return result;
+}
+
+// DocumentReference -> String -> StoryLocation -> Promise<DocumentReference>
+export function promiseFactUpdate(factRef, fact, storyLocation) {
+    // ensure all referenced individuals exist, and get their IDs in the fact
+    return promiseFactWithReferencedIndividualsIDs(fact, storyLocation)
+        .then(([fact, reffedIndivIds]) =>
+            Promise.all([
+                factRef.update({
+                    fact,
+                }),
+                db.collectionGroup("facts")
+                    .where("_ref", "==", factRef)
+                    .get()
+                    .then(qSnap => {
+                        const byIndivId = groupBy(qSnap.docs, s =>
+                            s.ref.parent.parent.id);
+                        const promisedActions = [];
+                        Object.entries(byIndivId)
+                            .forEach(([indivId, refSnaps]) => {
+                                if (reffedIndivIds.has(indivId)) return;
+                                promisedActions.push(refSnaps.map(s => {
+                                    console.log("delete from", indivId)
+                                    return s.ref.delete();
+                                }));
                             });
-                        }
+                        promisedActions.push([...reffedIndivIds]
+                            .filter(id => {
+                                if (id in byIndivId) {
+                                    console.log("already has one", id)
+                                    return false;
+                                }
+                                return true;
+                            })
+                            .map(id => {
+                                    console.log("add to", id)
+                                    return promiseFactReference(
+                                        id,
+                                        factRef,
+                                        storyLocation,
+                                    );
+                                },
+                            ))
+                        return Promise.all(promisedActions);
                     }),
-            )
-            .then(() =>
-                // now add the fact to the individual
-                indivs.doc(individualId)
-                    .collection(COL_FACTS)
-                    .add({
-                        fact,
-                        _at: storyLocation._order,
-                        _ts: Date.now(),
-                    }))
-            .then(factRef =>
-                // now add a refFact to each of idRef's documents, pointed at factRef
-                Promise.all(Array.from(idRefs).map(id =>
-                    indivs.doc(id).collection(COL_FACTS).add({
-                        _ref: factRef,
-                        _at: storyLocation._order,
-                        _ts: Date.now(),
-                    }),
-                ))
-                    .then(() => factRef),
-            ));
-    });
+            ]))
+        .then(() => factRef);
 }

@@ -82,6 +82,7 @@ function Search({
                 }}
                 fullWidth
                 variant="standard"
+                autoCapitalize={"words"}
                 autoFocus
                 placeholder="Search…"
                 className={classes.textField}
