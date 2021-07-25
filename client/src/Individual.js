@@ -16,12 +16,13 @@ import {
 import React from "react";
 import {
     Link,
+    useHistory,
     useParams,
 } from "react-router-dom";
 import {
     promiseFact,
     promiseIndividual,
-    useDocRef,
+    useDocSnapshot,
     useFacts,
     useIndividual,
     useTitleSearch,
@@ -94,9 +95,19 @@ function IndividualLink({id}) {
     </Link>;
 }
 
-function factRenderParts(doc) {
+function IndividualChip({id}) {
+    const history = useHistory();
+    const indiv = useIndividual(id);
+    return <Chip
+        size={"small"}
+        variant={"outlined"}
+        label={indiv.get("title") || id}
+        onClick={() => history.push(`/i/${id}`)}
+    />;
+}
+
+function factRenderParts(text) {
     const RE_REF = /\[([^\]]+)]/g; // DUPLICATED!
-    const text = doc.get("fact");
     let curr = 0;
     const parts = [];
     let match;
@@ -116,8 +127,8 @@ function factRenderParts(doc) {
     return parts;
 }
 
-function Fact({doc, component = "li"}) {
-    const parts = factRenderParts(doc);
+function Fact({snap, component = "li"}) {
+    const parts = factRenderParts(snap.get("fact"));
     return <Typography
         variant={"body1"}
         component={component}
@@ -127,27 +138,23 @@ function Fact({doc, component = "li"}) {
 }
 
 function FactRef({docRef, component = "li"}) {
-    const doc = useDocRef(docRef);
-    const src = useDocRef(doc && doc.ref.parent.parent);
+    const snap = useDocSnapshot(docRef);
+    const srcRef = React.useMemo(
+        () => docRef?.parent?.parent,
+        [docRef],
+    );
+    const src = useDocSnapshot(srcRef);
     let body;
-    if (doc.isFetching || src.isFetching) {
+    if (snap.isFetching || src.isFetching) {
         body = "...";
     } else {
         body = [
-            <Chip
-                key={"source"}
-                size={"small"}
-                color={"secondary"}
-                variant={"outlined"}
-                label={
-                    <IndividualLink
-                        key={"src"}
-                        id={src.id}
-                    />
-                }
+            <IndividualChip
+                key={"src"}
+                id={src.id}
             />,
             " ",
-            ...factRenderParts(doc),
+            ...factRenderParts(snap.get("fact")),
         ]
     }
     return <Typography
@@ -295,7 +302,7 @@ function Individual() {
                         />
                         : <Fact
                             key={f.id}
-                            doc={f}
+                            snap={f}
                         />)}
                 </ul>
             </React.Fragment>
