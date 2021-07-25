@@ -248,24 +248,18 @@ function Individual() {
     return <Container>
         {doc.exists
             ? <React.Fragment>
-                <Grid container justifyContent={"space-between"}>
-                    <Grid item>
-                        <Typography
-                            variant={"h4"}
-                            component={"h1"}
-                        >
-                            {doc.get("title")}
-                        </Typography>
-                    </Grid>
-                    {user.canWrite && <Grid item>
-                        <IconButton
-                            onClick={open ? handleClose : handleOpen}
-                            style={{float: "right"}}
-                        >
-                            {open ? <CloseIcon /> : <AddIcon />}
-                        </IconButton>
-                    </Grid>}
-                </Grid>
+                {user.canWrite && <IconButton
+                    onClick={open ? handleClose : handleOpen}
+                    style={{float: "right"}}
+                >
+                    {open ? <CloseIcon /> : <AddIcon />}
+                </IconButton>}
+                <Typography
+                    variant={"h4"}
+                    component={"h1"}
+                >
+                    {doc.get("title")}
+                </Typography>
                 {user.canWrite && open && <Paper
                     elevation={2}
                 >
