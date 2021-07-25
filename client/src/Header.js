@@ -42,6 +42,27 @@ function Header() {
         </AppBar>
     }
 
+    const handleSelect = id => {
+        history.push(`/i/${id}`, {id});
+        setOpen(false);
+    };
+
+    const handleCreate = title => {
+        if (!open) return;
+        promiseIndividual(title, storyLocation)
+            .then(ref => history.push(
+                `/i/${ref.id}`,
+                {id: ref.id},
+            ));
+        setOpen(false);
+    };
+
+    const handleNav = path =>
+        history.push(path);
+
+    const handleBlur = () =>
+        setTimeout(() => setOpen(false), 100);
+
     return <AppBar position="static">
         <Toolbar>
             <Typography
@@ -54,20 +75,10 @@ function Header() {
                 <StoryLocation />
             </Typography>
             {open && <Search
-                onBlur={() => setTimeout(() => setOpen(false), 100)}
-                onSelect={id => {
-                    history.push(`/i/${id}`, {id});
-                    setOpen(false);
-                }}
-                onNav={path => history.push(path)}
-                onCreate={user.canWrite ? title => {
-                    promiseIndividual(title, storyLocation)
-                        .then(ref => history.push(
-                            `/i/${ref.id}`,
-                            {id: ref.id},
-                        ));
-                    setOpen(false);
-                } : undefined}
+                onBlur={handleBlur}
+                onSelect={handleSelect}
+                onNav={handleNav}
+                onCreate={user.canWrite ? handleCreate : undefined}
             />}
             <IconButton edge="end"
                         className={open ? undefined : classes.searchButton}

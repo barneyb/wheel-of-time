@@ -11,6 +11,7 @@ import {
 } from "@material-ui/lab";
 import React from "react";
 import { useTitleSearch } from "./Firestore";
+import Title from "./Title";
 
 const filter = createFilterOptions();
 
@@ -135,7 +136,7 @@ function Search({
             if (option.inputValue) {
                 return `Add "${option.inputValue}"`;
             }
-            return option.get("title");
+            return <Title of={option} />;
         }}
         onChange={handleSelect}
     />;

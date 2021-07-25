@@ -33,6 +33,7 @@ import {
     useTitleSearch,
 } from "./Firestore";
 import RE_REF from "./RE_REF";
+import Title from "./Title";
 import { useUser } from "./UserContext";
 import useStoryLocation from "./useStoryLocation";
 
@@ -87,7 +88,7 @@ function Suggest({
                 key={d.id}
                 onClick={() => handleClick(d)}
             >
-                {d.get("title")}
+                <Title of={d} />
             </ListItem>)}
     </List>;
 }
@@ -108,7 +109,7 @@ function IndividualLink({id}) {
         className={classes.root}
         to={`/i/${id}`}
     >
-        {snap.get("title") || id}
+        <Title of={snap} />
     </Link>;
 }
 
@@ -116,7 +117,7 @@ function IndividualChip({id, ...props}) {
     const history = useHistory();
     const snap = useIndividual(id);
     return <Chip
-        label={snap.get("title") || id}
+        label={<Title of={snap} />}
         onClick={() => history.push(`/i/${id}`)}
         {...props}
         size={"small"}
@@ -317,7 +318,7 @@ function EditFact({
 
 function Individual() {
     const {id} = useParams();
-    const doc = useIndividual(id);
+    const snap = useIndividual(id);
     const user = useUser();
     const [storyLocation] = useStoryLocation();
     const [open, setOpen] = React.useState(false);
@@ -327,7 +328,7 @@ function Individual() {
         setFact("");
     }, [id]);
     const [saving, setSaving] = React.useState(false);
-    const facts = useFacts(doc.id, storyLocation);
+    const facts = useFacts(snap.id, storyLocation);
     React.useEffect(
         () => {
             if (!facts.isFetching && facts.empty && !open) {
@@ -355,7 +356,7 @@ function Individual() {
             return;
         }
         setSaving(true);
-        promiseNewFact(doc.id, fact, storyLocation)
+        promiseNewFact(snap.id, fact, storyLocation)
             .then(() => {
                 setFact("");
                 setOpen(false);
@@ -364,7 +365,7 @@ function Individual() {
     };
 
     return <Container>
-        {doc.exists
+        {snap.exists
             ? <React.Fragment>
                 {user.canWrite && <IconButton
                     onClick={open ? handleCancel : handleOpen}
@@ -376,7 +377,7 @@ function Individual() {
                     variant={"h4"}
                     component={"h1"}
                 >
-                    {doc.get("title")}
+                    <Title of={snap} />
                 </Typography>
                 {user.canWrite && open && <Paper
                     elevation={2}
@@ -404,6 +405,7 @@ function Individual() {
                             storyLocation={storyLocation}
                         />)}
                 </List>
+                {facts.size === 0 && "Nothing here. Yet."}
             </React.Fragment>
             : user.canWrite
                 ? <Unknown
@@ -445,6 +447,7 @@ function Unknown({id, storyLocation}) {
                     value={title}
                     onChange={e => setTitle(e.target.value)}
                     onKeyUp={handleKeyUp}
+                    autoFocus
                 />
             </Grid>
             <Grid item>

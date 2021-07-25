@@ -216,28 +216,16 @@ export function promiseFactUpdate(factRef, fact, storyLocation) {
                         Object.entries(byIndivId)
                             .forEach(([indivId, refSnaps]) => {
                                 if (reffedIndivIds.has(indivId)) return;
-                                promisedActions.push(refSnaps.map(s => {
-                                    console.log("delete from", indivId)
-                                    return s.ref.delete();
-                                }));
+                                promisedActions.push(refSnaps.map(s =>
+                                    s.ref.delete()));
                             });
                         promisedActions.push([...reffedIndivIds]
-                            .filter(id => {
-                                if (id in byIndivId) {
-                                    console.log("already has one", id)
-                                    return false;
-                                }
-                                return true;
-                            })
-                            .map(id => {
-                                    console.log("add to", id)
-                                    return promiseFactReference(
-                                        id,
-                                        factRef,
-                                        storyLocation,
-                                    );
-                                },
-                            ))
+                            .filter(id => !(id in byIndivId))
+                            .map(id => promiseFactReference(
+                                id,
+                                factRef,
+                                storyLocation,
+                            )))
                         return Promise.all(promisedActions);
                     }),
             ]))
