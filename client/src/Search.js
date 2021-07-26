@@ -86,7 +86,7 @@ function Search({
             }}
             inputProps={{
                 ...inputProps,
-                autoCapitalize: "words",
+                autoCapitalize: "on",
                 autoCorrect: "off",
             }}
             fullWidth
