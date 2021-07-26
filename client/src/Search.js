@@ -74,22 +74,28 @@ function Search({
         clearOnEscape
         inputValue={value}
         onInputChange={handleInputChange}
-        renderInput={({InputProps, ...params}) => (
-            <TextField
-                {...params}
-                InputProps={{
-                    ...InputProps,
-                    className: classes.input,
-                }}
-                fullWidth
-                variant="standard"
-                autoCapitalize={"words"}
-                autoFocus
-                placeholder="Search…"
-                className={classes.textField}
-                onBlur={handleBlur}
-            />
-        )}
+        renderInput={({
+                          InputProps, // component
+                          inputProps, // element
+                          ...params
+                      }) => <TextField
+            {...params}
+            InputProps={{
+                ...InputProps,
+                className: classes.input,
+            }}
+            inputProps={{
+                ...inputProps,
+                autoCapitalize: "words",
+                autoCorrect: "off",
+            }}
+            fullWidth
+            variant="standard"
+            autoFocus
+            placeholder="Search…"
+            className={classes.textField}
+            onBlur={handleBlur}
+        />}
         options={matches.docs}
         filterOptions={(options, params) => {
             const filtered = filter(options, params);
